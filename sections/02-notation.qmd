@@ -1,0 +1,40 @@
+::: {=latex}
+\clearpage
+:::
+
+# Notation and conventions {#sec-notation}
+
+This page fixes notation used throughout the manuscript.  The conventions for weighted functions, the Markov kernel and Poisson equations follow @andrieuMoulines2006; the notation for the Stiefel manifold and retractions follows @boumal2023.
+
+| Symbol | Meaning |
+|:---|:---|
+| \(d\), \(r\) | State dimension and subspace dimension, \(1\leq r<d\) |
+| \(X_n\) | MCMC state after the \(n\)-th transition |
+| \(\pi\) | Common invariant probability distribution of the frozen kernels |
+| \(m\), \(C\) | Mean and covariance of \(\pi\): \(m=\pi(x)\), \(C=\pi[(x-m)(x-m)^\top]\) |
+| \(\mu_n\), \(\Gamma_n\) | Adaptive estimates of \(m\) and \(C\) |
+| \(\mathbb S_{++}^d\) | Real symmetric, **strictly** positive-definite \(d\times d\) matrices |
+| \(\mathrm{St}(d,r)\) | \(\{W\in\mathbb R^{d\times r}:W^\top W=I_r\}\) |
+| \(W_n\) | Stiefel iterate; \(\operatorname{span}(W_n)\) is its subspace |
+| \(\theta_n\) | Full parameter \((\mu_n,\Gamma_n,W_n)\) |
+| \(P_\theta\) | Frozen MCMC kernel; in the example \(P_\theta=P_\Gamma\) |
+| \(H(\theta,x)\) | Stochastic approximation observable in ambient coordinates |
+| \(h(\theta)\) | Mean field \(\pi[H(\theta,\cdot)]\) |
+| \(\gamma_n\) | Positive decreasing stochastic approximation step size |
+| \(R_W(U)\) | Polar retraction of tangent increment \(U\) at \(W\) |
+| \(V\colon\mathbb R^d\to[1,\infty)\) | Markov drift/weight function |
+| \(\|f\|_{V^a}\) | \(\sup_x \|f(x)\|/V^a(x)\), for scalar, vector or matrix \(f\) |
+| \(u_\theta\) | Centered Poisson solution \(u_\theta-P_\theta u_\theta=H_\theta-h(\theta)\) |
+| \(v_\theta\) | \(P_\theta u_\theta\), used in summation by parts |
+| \(\mathcal E_C\) | \(\{W\in\mathrm{St}(d,r):(I-WW^\top)CW=0\}\) |
+
+Our vectors use the Euclidean norm, matrices the Frobenius norm \(\|\cdot\|_F\), and operators the spectral norm \(\|\cdot\|_{\mathrm{op}}\).  Products of gradients and vector fields use the product Euclidean--Frobenius inner product.  We abbreviate integration against \(\pi\) as \(\pi(f)=\int f(x)\pi(dx)\).
+
+Throughout, \(C\succ0\) refers to the target covariance, whereas \(\Gamma\succ0\) is the time-varying estimate.  The letter \(V\) is **reserved for the Markov drift function**, never for the covariance.  We also write
+
+$$
+v=\mu-m,\qquad Q(\mu)=C+vv^\top,\qquad
+B_C(W)=(I-WW^\top)CW.
+$$ {#eq-basic-notation}
+
+All stochastic convergence statements specify whether they are unconditional or asserted only on an eventual compactness event.  The term *equilibrium set* refers to equilibria of the averaged ODE, not the set of roots of an arbitrary projected noisy step.

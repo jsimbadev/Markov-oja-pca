@@ -1,26 +1,54 @@
 ---
-title: "Research note title"
+title: "Online principal-subspace estimation with adaptive Markov chain Monte Carlo"
+subtitle: "A controlled stochastic approximation analysis"
 author:
-  - name: "Author name"
+  - name: "Jordan Simbananiye"
     affiliations:
-      - name: "Affiliation"
+      - name: "University College London — CCMI CDT"
 date: last-modified
 abstract: |
-  Replace with a precise, self-contained account of the problem, result,
-  main assumptions and motivation before publication.
+  We investigate whether Oja's online principal-subspace iteration can be
+  coupled to adaptive Markov chain Monte Carlo without assuming independent
+  samples.  The adaptive mean and covariance estimates follow the recursion
+  considered by Andrieu and Moulines, while an additional Stiefel-valued
+  iterate is updated through a polar retraction.  We identify the common
+  averaged vector field, establish a uniform second-order bound for the
+  retraction error, and give an explicit weighted Poisson decomposition of
+  the controlled Markov fluctuations.  A localized convergence theorem
+  shows that, on eventually compact parameter trajectories, the estimates
+  approach the target moments and the Oja iterate approaches the collection
+  of invariant subspaces of the target covariance.  A composite Lyapunov
+  function provides a quantitative dissipativity argument on compact sets.
+  The remaining global stability question, needed for an unconditional
+  convergence theorem for the untruncated algorithm, is isolated explicitly.
+keywords:
+  - adaptive MCMC
+  - online PCA
+  - Oja iteration
+  - stochastic approximation
+  - Poisson equation
+  - retraction
 ---
 
 {{< include sections/01-introduction.qmd >}}
 
-{{< include sections/02-setting.qmd >}}
+{{< include sections/02-notation.qmd >}}
 
-{{< include sections/03-main-result.qmd >}}
+{{< include sections/03-algorithm.qmd >}}
 
-{{< include sections/04-proof.qmd >}}
+{{< include sections/04-assumptions.qmd >}}
 
-{{< include sections/05-discussion.qmd >}}
+{{< include sections/05-retraction-tracking.qmd >}}
+
+{{< include sections/06-lyapunov.qmd >}}
+
+{{< include sections/07-main-result.qmd >}}
+
+{{< include sections/08-discussion.qmd >}}
 
 {{< include appendices/appendix-a.qmd >}}
+
+{{< include appendices/appendix-b.qmd >}}
 
 # References {.unnumbered}
 
