@@ -1,10 +1,8 @@
-::: {=latex}
-\clearpage
-:::
+\newpage
 
 # Detailed weighted Poisson estimates {#sec-appendix-poisson}
 
-For completeness, we account for every line in @eq-weighted-poisson.  Work first up to the exit time \(\tau_K\) from a compact parameter region.  By the locally uniform geometric drift and minorization properties, and after enlarging \(K\) slightly if necessary, stopped expectations of \(V(X_k)\) are uniformly bounded.  The same bounds apply to \(V^{2\beta}(X_k)\), since \(2\beta\leq1\).
+For completeness, we account for every line in @eq-weighted-poisson.  Work first up to the exit time $\tau_K$ from a compact parameter region.  By the locally uniform geometric drift and minorization properties, and after enlarging $K$ slightly if necessary, stopped expectations of $V(X_k)$ are uniformly bounded.  The same bounds apply to $V^{2\beta}(X_k)$, since $2\beta\leq1$.
 
 **Martingale.**  From @eq-poisson-lipschitz and conditional Jensen's inequality,
 
@@ -15,7 +13,7 @@ V^{2\beta}(X_{k-1})+V^{2\beta}(X_k);
 \tau_K\geq k]\leq C_K.
 $$ {#eq-martingale-bound}
 
-Thus \(\sum_k\gamma_kM_k\mathbf1_{\{\tau_K\geq k\}}\) is an \(L^2\)-bounded martingale, and the martingale convergence theorem makes its tails vanish uniformly over their terminal index.
+Thus $\sum_k\gamma_kM_k\mathbf1_{\{\tau_K\geq k\}}$ is an $L^2$-bounded martingale, and the martingale convergence theorem makes its tails vanish uniformly over their terminal index.
 
 **Endpoints.**  Markov's inequality and @eq-poisson-lipschitz give
 
@@ -26,17 +24,17 @@ $$
 \leq \varepsilon^{-2}C_K\sum_k\gamma_k^2<\infty.
 $$ {#eq-endpoint-bound}
 
-Hence \(\gamma_kv_{\theta_{k-1}}(X_{k-1})\to0\) almost surely on the localized event, by Borel--Cantelli.  The two endpoint contributions therefore vanish even when the upper index \(m\) varies.
+Hence $\gamma_kv_{\theta_{k-1}}(X_{k-1})\to0$ almost surely on the localized event, by Borel--Cantelli.  The two endpoint contributions therefore vanish even when the upper index $m$ varies.
 
-**Step-size variation.**  Because \((\gamma_k)\) is nonincreasing and converges to zero,
+**Step-size variation.**  Because $(\gamma_k)$ is nonincreasing and converges to zero,
 
 $$
 \sum_{k=1}^\infty|\gamma_{k+1}-\gamma_k|
 =\gamma_1<\infty.
 $$
 
-Since \(\mathbb E[V^\beta(X_k);\tau_K\geq k]\leq C_K\), the expectation of the absolute sum
-\(\sum|\gamma_{k+1}-\gamma_k|\|v_{\theta_k}(X_k)\|\) is finite.  Thus that sum converges almost surely.
+Since $\mathbb E[V^\beta(X_k);\tau_K\geq k]\leq C_K$, the expectation of the absolute sum
+$\sum|\gamma_{k+1}-\gamma_k|\|v_{\theta_k}(X_k)\|$ is finite.  Thus that sum converges almost surely.
 
 **Parameter variation.**  Use the exact place where the parameter increments enter:
 

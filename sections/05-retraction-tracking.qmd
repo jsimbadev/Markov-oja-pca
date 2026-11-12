@@ -7,7 +7,7 @@ There are two different perturbations: an error caused by replacing the Stiefel 
 ::: {#lem-retraction}
 ## Polar retraction bounds
 
-For every horizontal tangent vector \(U\) at \(W\in\mathrm{St}(d,r)\), constants \(c_r,c'_r<\infty\), depending only on \(r\), satisfy
+For every horizontal tangent vector $U$ at $W\in\mathrm{St}(d,r)$, constants $c_r,c'_r<\infty$, depending only on $r$, satisfy
 
 $$
 \|R_W(U)-W-U\|_F\leq c_r\|U\|_F^2,\qquad
@@ -16,15 +16,15 @@ $$ {#eq-retraction-bounds}
 :::
 
 ::: {.proof}
-Since \(W^\top U=0\), we have \((W+U)^\top(W+U)=I_r+U^\top U\), so
+Since $W^\top U=0$, we have $(W+U)^\top(W+U)=I_r+U^\top U$, so
 
 $$
 R_W(U)-W-U=(W+U)[(I_r+U^\top U)^{-1/2}-I_r].
 $$
 
-When \(\|U\|_F\leq1\), the scalar inequality \(0\leq1-(1+t)^{-1/2}\leq t/2\), applied to the eigenvalues of \(U^\top U\), yields
-\(\|(I_r+U^\top U)^{-1/2}-I_r\|_F\leq\|U\|_F^2/2\).
-Also \(\|W+U\|_{\mathrm{op}}\leq\sqrt2\).  Thus the quadratic bound holds uniformly for small increments.  For \(\|U\|_F>1\), the triangle inequality and \(\|R_W(U)\|_F=\|W\|_F=\sqrt r\) give
+When $\|U\|_F\leq1$, the scalar inequality $0\leq1-(1+t)^{-1/2}\leq t/2$, applied to the eigenvalues of $U^\top U$, yields
+$\|(I_r+U^\top U)^{-1/2}-I_r\|_F\leq\|U\|_F^2/2$.
+Also $\|W+U\|_{\mathrm{op}}\leq\sqrt2$.  Thus the quadratic bound holds uniformly for small increments.  For $\|U\|_F>1$, the triangle inequality and $\|R_W(U)\|_F=\|W\|_F=\sqrt r$ give
 
 $$
 \|R_W(U)-W-U\|_F
@@ -32,10 +32,10 @@ $$
 \leq(2\sqrt r+1)\|U\|_F^2.
 $$
 
-The linear estimate follows for small \(U\) from the quadratic one, and for large \(U\) from \(\|R_W(U)-W\|_F\leq2\sqrt r\).  This explicit global bound is convenient with unbounded MCMC observations; the local Taylor principle is described in @boumal2023, Section 4.1.
+The linear estimate follows for small $U$ from the quadratic one, and for large $U$ from $\|R_W(U)-W\|_F\leq2\sqrt r$.  This explicit global bound is convenient with unbounded MCMC observations; the local Taylor principle is described in @boumal2023, Section 4.1.
 :::
 
-Writing \(G_n=G(\mu_n,W_n,X_{n+1})\), @eq-coupled-algorithm becomes
+Writing $G_n=G(\mu_n,W_n,X_{n+1})$, @eq-coupled-algorithm becomes
 
 $$
 W_{n+1}=W_n+\gamma_{n+1}G_n+r_{n+1},
@@ -47,7 +47,7 @@ $$ {#eq-retraction-remainder}
 ::: {#lem-retraction-summability}
 ## Retraction errors are summable on eventually compact trajectories
 
-Under @asm-kernel, @asm-step-sizes and @lem-observable-regularity, on the event that \((\mu_n,\Gamma_n)\) eventually stays in some compact subset of \(\mathbb R^d\times\mathbb S_{++}^d\),
+Under @asm-kernel, @asm-step-sizes and @lem-observable-regularity, on the event that $(\mu_n,\Gamma_n)$ eventually stays in some compact subset of $\mathbb R^d\times\mathbb S_{++}^d$,
 
 $$
 \sum_{n=0}^\infty\|r_{n+1}\|_F<\infty
@@ -56,8 +56,8 @@ $$ {#eq-retraction-series}
 :::
 
 ::: {.proof}
-For a recursion stopped at its first exit from a compact \(K\), @eq-retraction-remainder and @eq-polynomial-regularity give
-\(\|r_{n+1}\|_F\leq C_K\gamma_{n+1}^2V^{2\beta}(X_{n+1})\).  As \(2\beta\leq1\), the localized moment bound @eq-localized-moments makes the expectation of the nonnegative series at most \(C_K\sum_n\gamma_{n+1}^2\), which is finite.  Exhaust the open mean--covariance domain by countably many compacts; an eventually confined trajectory lies in a stopped regime after a finite prefix.
+For a recursion stopped at its first exit from a compact $K$, @eq-retraction-remainder and @eq-polynomial-regularity give
+$\|r_{n+1}\|_F\leq C_K\gamma_{n+1}^2V^{2\beta}(X_{n+1})$.  As $2\beta\leq1$, the localized moment bound @eq-localized-moments makes the expectation of the nonnegative series at most $C_K\sum_n\gamma_{n+1}^2$, which is finite.  Exhaust the open mean--covariance domain by countably many compacts; an eventually confined trajectory lies in a stopped regime after a finite prefix.
 :::
 
 ## Decompose the controlled Markov fluctuation
@@ -71,20 +71,20 @@ $$
 \xi_{n+1}=H(\theta_n,X_{n+1})-h(\theta_n).
 $$ {#eq-euclidean-recursion}
 
-Let \(u_\theta\) solve @eq-poisson, and write \(v_\theta=P_\theta u_\theta\).  For \(k\geq1\), define
+Let $u_\theta$ solve @eq-poisson, and write $v_\theta=P_\theta u_\theta$.  For $k\geq1$, define
 
 $$
 M_k=u_{\theta_{k-1}}(X_k)-v_{\theta_{k-1}}(X_{k-1}).
 $$ {#eq-martingale-difference}
 
-Because \(X_k\) is conditionally distributed according to \(P_{\theta_{k-1}}\), we have
-\(\mathbb E[M_k\mid\mathcal F_{k-1}]=0\).  Subtracting this quantity from the Poisson identity gives
+Because $X_k$ is conditionally distributed according to $P_{\theta_{k-1}}$, we have
+$\mathbb E[M_k\mid\mathcal F_{k-1}]=0$.  Subtracting this quantity from the Poisson identity gives
 
 $$
 \xi_k=M_k+v_{\theta_{k-1}}(X_{k-1})-v_{\theta_{k-1}}(X_k).
 $$
 
-Multiplying by the step sizes and summing by parts, for \(m\geq n\geq1\),
+Multiplying by the step sizes and summing by parts, for $m\geq n\geq1$,
 
 $$
 \begin{aligned}
@@ -115,19 +115,19 @@ $$ {#eq-noise-tail}
 :::
 
 ::: {.proof}
-The estimates are detailed in @sec-appendix-poisson.  In summary, the first line of @eq-weighted-poisson converges by the martingale \(L^2\) theorem and \(\sum\gamma_k^2<\infty\).  Its endpoints vanish by Borel--Cantelli.  The third line has absolutely summable coefficients because \(\gamma_k\) is nonincreasing.  For the final line, combine Poisson Lipschitz regularity with the parameter increment estimate
+The estimates are detailed in @sec-appendix-poisson.  In summary, the first line of @eq-weighted-poisson converges by the martingale $L^2$ theorem and $\sum\gamma_k^2<\infty$.  Its endpoints vanish by Borel--Cantelli.  The third line has absolutely summable coefficients because $\gamma_k$ is nonincreasing.  For the final line, combine Poisson Lipschitz regularity with the parameter increment estimate
 
 $$
 \|\theta_k-\theta_{k-1}\|
 \leq C_K\gamma_k V^\beta(X_k),
 $$ {#eq-increment-estimate}
 
-which follows from @lem-retraction and the first two Euclidean recursions.  Hence the last line is bounded in absolute value by \(C_K\sum_k\gamma_k^2V^{2\beta}(X_k)\), finite almost surely on the localized event.
+which follows from @lem-retraction and the first two Euclidean recursions.  Hence the last line is bounded in absolute value by $C_K\sum_k\gamma_k^2V^{2\beta}(X_k)$, finite almost surely on the localized event.
 :::
 
 ## ODE tracking, without a manifold-noise theorem
 
-Set \(t_n=\sum_{k=1}^n\gamma_k\), and linearly interpolate the ambient coordinates between \(t_n\) and \(t_{n+1}\).  For any fixed \(T>0\),
+Set $t_n=\sum_{k=1}^n\gamma_k$, and linearly interpolate the ambient coordinates between $t_n$ and $t_{n+1}$.  For any fixed $T>0$,
 
 $$
 \sup_{\substack{m\geq n\\t_m-t_n\leq T}}
@@ -135,6 +135,6 @@ $$
 [\gamma_{k+1}\xi_{k+1}+(0,0,r_{k+1})]\right\|\to0.
 $$ {#eq-ode-window}
 
-The averaged field is locally Lipschitz; its Euler error on a compact set is \(O(\sum\gamma_k^2)\).  Comparing the interpolation with the integral equation for @eq-coupled-ode and applying Grönwall's inequality proves that the interpolation is an **asymptotic pseudotrajectory** of the ODE.  Its values between consecutive Stiefel iterates need not lie on the manifold; their distance to the manifold vanishes because @eq-increment-estimate and the weighted moment bound imply the step increment tends to zero.  The limiting flow itself preserves Stiefel orthogonality.
+The averaged field is locally Lipschitz; its Euler error on a compact set is $O(\sum\gamma_k^2)$.  Comparing the interpolation with the integral equation for @eq-coupled-ode and applying Grönwall's inequality proves that the interpolation is an **asymptotic pseudotrajectory** of the ODE.  Its values between consecutive Stiefel iterates need not lie on the manifold; their distance to the manifold vanishes because @eq-increment-estimate and the weighted moment bound imply the step increment tends to zero.  The limiting flow itself preserves Stiefel orthogonality.
 
 This is the usual Euclidean stochastic approximation method [@benaim1999], with the extra geometric term shown explicitly.

@@ -2,14 +2,14 @@
 
 ## The Stiefel tangent and invariance statements
 
-The tangent space at \(W\in\mathrm{St}(d,r)\) is
+The tangent space at $W\in\mathrm{St}(d,r)$ is
 
 $$
 T_W\mathrm{St}(d,r)
 =\{U\in\mathbb R^{d\times r}:W^\top U+U^\top W=0\}.
 $$
 
-For \(G(\mu,W,x)\) from @eq-oja-observable, \(W^\top G=0\).  Hence \(G\) is not merely tangent: it is horizontal, with the particularly simple polar retraction @eq-polar-retraction.  Its image satisfies
+For $G(\mu,W,x)$ from @eq-oja-observable, $W^\top G=0$.  Hence $G$ is not merely tangent: it is horizontal, with the particularly simple polar retraction @eq-polar-retraction.  Its image satisfies
 
 $$
 R_W(U)^\top R_W(U)
@@ -35,17 +35,17 @@ $$
 \gamma_{n+1}(X_{n+1}-\mu_n)(X_{n+1}-\mu_n)^\top.
 $$
 
-As \(0<\gamma_{n+1}<1\) and the second term is positive semidefinite,
+As $0<\gamma_{n+1}<1$ and the second term is positive semidefinite,
 
 $$
 \Gamma_{n+1}\succeq(1-\gamma_{n+1})\Gamma_n\succ0.
 $$
 
-Thus \(\Gamma_n\) stays positive definite at every **finite** iteration.  This does not establish that its smallest eigenvalue stays bounded away from zero as \(n\to\infty\).  Such a uniform lower bound requires the eventual-compactness/stability argument; the distinction is central to @eq-compact-eigenvalue-bounds.
+Thus $\Gamma_n$ stays positive definite at every **finite** iteration.  This does not establish that its smallest eigenvalue stays bounded away from zero as $n\to\infty$.  Such a uniform lower bound requires the eventual-compactness/stability argument; the distinction is central to @eq-compact-eigenvalue-bounds.
 
 ## A direct deterministic check of the PCA energy
 
-Using @eq-oja-coupling-perturbation and \(B_C=(I-WW^\top)CW\),
+Using @eq-oja-coupling-perturbation and $B_C=(I-WW^\top)CW$,
 
 $$
 \begin{aligned}
@@ -55,9 +55,9 @@ $$
 \end{aligned}
 $$
 
-For the fixed-target Oja flow (\(v=0\)) this simplifies to
-\(\dot\Phi=-\|B_C\|_F^2\).  The composite argument in @prp-composite quantitatively absorbs the nonzero-\(v\) cross term with mean--covariance dissipation.  Its strictness is **relative to the equilibrium set**, not to an individual basis or a unique top eigenspace.
+For the fixed-target Oja flow ($v=0$) this simplifies to
+$\dot\Phi=-\|B_C\|_F^2$.  The composite argument in @prp-composite quantitatively absorbs the nonzero-$v$ cross term with mean--covariance dissipation.  Its strictness is **relative to the equilibrium set**, not to an individual basis or a unique top eigenspace.
 
 ## Invariant subspaces and finitely many energy values
 
-Let \(C=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top\), counting eigenvalues with multiplicity.  If \(\operatorname{span}(W)\) is invariant under the symmetric \(C\), it is a direct sum of subspaces of eigenspaces.  The trace \(\operatorname{tr}(W^\top CW)\) equals a sum of exactly \(r\) entries from this eigenvalue list.  The number of possible sums is finite, although there can be infinitely many orthonormal bases representing the same invariant subspace, and even infinitely many invariant subspaces when eigenvalues repeat.  Therefore \(\widetilde w_L(\mathcal E)\) is a finite subset of \(\mathbb R\), as required by @benaim1999, Proposition 6.4.
+Let $C=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top$, counting eigenvalues with multiplicity.  If $\operatorname{span}(W)$ is invariant under the symmetric $C$, it is a direct sum of subspaces of eigenspaces.  The trace $\operatorname{tr}(W^\top CW)$ equals a sum of exactly $r$ entries from this eigenvalue list.  The number of possible sums is finite, although there can be infinitely many orthonormal bases representing the same invariant subspace, and even infinitely many invariant subspaces when eigenvalues repeat.  Therefore $\widetilde w_L(\mathcal E)$ is a finite subset of $\mathbb R$, as required by @benaim1999, Proposition 6.4.

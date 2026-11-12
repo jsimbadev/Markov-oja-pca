@@ -7,7 +7,7 @@ The central obstacle is not the algebra of PCA but the fact that the same Markov
 ::: {#asm-target-M}
 ## Andrieu--Moulines condition (M)
 
-The target density \(\pi\) on \(\mathbb R^d\) is bounded, continuously differentiable and bounded away from zero on every compact subset.  It satisfies
+The target density $\pi$ on $\mathbb R^d$ is bounded, continuously differentiable and bounded away from zero on every compact subset.  It satisfies
 
 $$
 \lim_{\|x\|\to\infty}
@@ -23,19 +23,19 @@ $$
 $$ {#eq-condition-M-contours}
 :::
 
-These super-exponential tail and contour conditions are sufficient, not necessary, conditions for the random-walk Metropolis estimates used here.  They imply that all polynomial moments of \(\pi\) exist; the strictly positive density implies the target covariance \(C\) is positive definite.  Following A&M, choose
+These super-exponential tail and contour conditions are sufficient, not necessary, conditions for the random-walk Metropolis estimates used here.  They imply that all polynomial moments of $\pi$ exist; the strictly positive density implies the target covariance $C$ is positive definite.  Following A&M, choose
 
 $$
 V(x)=\pi(x)^{-\eta}/(\sup_y\pi(y))^{-\eta},
 \qquad 0<\eta<1,
 $$ {#eq-drift-weight}
 
-so \(V\geq1\).  For a vector- or matrix-valued observable \(f\), use \(\|f\|_{V^a}=\sup_x\|f(x)\|/V^a(x)\).
+so $V\geq1$.  For a vector- or matrix-valued observable $f$, use $\|f\|_{V^a}=\sup_x\|f(x)\|/V^a(x)$.
 
 ::: {#asm-kernel}
 ## Locally uniform Markov kernel control
 
-For every compact \(K\subset\mathbb R^d\times\mathbb S_{++}^d\), the family \(P_\Gamma\), \((\mu,\Gamma)\in K\), satisfies uniform minorization and geometric drift with weight \(V\), and the weighted operator bound
+For every compact $K\subset\mathbb R^d\times\mathbb S_{++}^d$, the family $P_\Gamma$, $(\mu,\Gamma)\in K$, satisfies uniform minorization and geometric drift with weight $V$, and the weighted operator bound
 
 $$
 \|(P_\Gamma-P_{\Gamma'})f\|_{V^a}
@@ -43,12 +43,12 @@ $$
 \qquad 0\leq a\leq1.
 $$ {#eq-weighted-kernel-lipschitz}
 
-Every \(P_\Gamma\) preserves the same \(\pi\).
+Every $P_\Gamma$ preserves the same $\pi$.
 :::
 
-Proposition 12 and Lemma 13 of @andrieuMoulines2006 establish precisely these ingredients for the symmetric Gaussian random-walk Metropolis family under @asm-target-M.  Notice that \(P_{\mu,\Gamma,W}=P_\Gamma\): adjoining \(W\) adds **no new kernel dependence**.  Compactness of \(\mathrm{St}(d,r)\) makes the constants uniform in \(W\).
+Proposition 12 and Lemma 13 of @andrieuMoulines2006 establish precisely these ingredients for the symmetric Gaussian random-walk Metropolis family under @asm-target-M.  Notice that $P_{\mu,\Gamma,W}=P_\Gamma$: adjoining $W$ adds **no new kernel dependence**.  Compactness of $\mathrm{St}(d,r)$ makes the constants uniform in $W$.
 
-For a chain stopped when \((\mu_n,\Gamma_n)\) exits a compact parameter region, the drift bound yields a localized moment estimate of the form
+For a chain stopped when $(\mu_n,\Gamma_n)$ exits a compact parameter region, the drift bound yields a localized moment estimate of the form
 
 $$
 \sup_{n\geq0}\mathbb E[
@@ -60,7 +60,7 @@ This is the input used repeatedly in the summation arguments.
 ::: {#asm-step-sizes}
 ## Step sizes
 
-The deterministic sequence \((\gamma_n)\) is nonincreasing, \(0<\gamma_n<1\), and
+The deterministic sequence $(\gamma_n)$ is nonincreasing, $0<\gamma_n<1$, and
 
 $$
 \sum_{n=1}^\infty\gamma_n=\infty,\qquad
@@ -73,7 +73,7 @@ $$ {#eq-stepsizes}
 ::: {#lem-observable-regularity}
 ## Polynomial and weighted Lipschitz bounds
 
-For every compact \(K\) in the mean--covariance parameter domain, a constant \(A_K\) exists such that for all \(\theta,\theta'\in K\times\mathrm{St}(d,r)\),
+For every compact $K$ in the mean--covariance parameter domain, a constant $A_K$ exists such that for all $\theta,\theta'\in K\times\mathrm{St}(d,r)$,
 
 $$
 \begin{aligned}
@@ -83,11 +83,11 @@ $$
 \end{aligned}
 $$ {#eq-polynomial-regularity}
 
-For the weight @eq-drift-weight, \(H\) is locally \(V^\beta\)-Lipschitz for any fixed \(0<\beta\leq1/2\).
+For the weight @eq-drift-weight, $H$ is locally $V^\beta$-Lipschitz for any fixed $0<\beta\leq1/2$.
 :::
 
 ::: {.proof}
-Write \(z=x-\mu\), \(z'=x-\mu'\).  From \(\|W\|_{\mathrm{op}}=1\) and \(\|I-WW^\top\|_{\mathrm{op}}\leq1\),
+Write $z=x-\mu$, $z'=x-\mu'$.  From $\|W\|_{\mathrm{op}}=1$ and $\|I-WW^\top\|_{\mathrm{op}}\leq1$,
 
 $$
 \|(I-WW^\top)zz^\top W\|_F\leq\|z\|^2.
@@ -99,24 +99,24 @@ $$
 zz^\top-z'z'^\top=(z-z')z^\top+z'(z-z')^\top,
 $$
 
-together with \(\|WW^\top-W'W'^\top\|_{\mathrm{op}}\leq2\|W-W'\|_F\).  Add and subtract terms with \(\mu'\) and \(W'\) one at a time.  Because \(\mu,\mu'\) are bounded on \(K\), every difference is bounded by \(A_K(1+\|x\|^2)\|\theta-\theta'\|\).  The first two coordinates of \(H\) are simpler.  Under (M), \(V^\beta\) dominates each fixed polynomial, so the weighted statements follow.
+together with $\|WW^\top-W'W'^\top\|_{\mathrm{op}}\leq2\|W-W'\|_F$.  Add and subtract terms with $\mu'$ and $W'$ one at a time.  Because $\mu,\mu'$ are bounded on $K$, every difference is bounded by $A_K(1+\|x\|^2)\|\theta-\theta'\|$.  The first two coordinates of $H$ are simpler.  Under (M), $V^\beta$ dominates each fixed polynomial, so the weighted statements follow.
 :::
 
 ## Poisson equation and its parameter regularity
 
-Put \(f_\theta(x)=H(\theta,x)-h(\theta)\).  The relevant Poisson solution is **Euclidean-valued**, not manifold-valued:
+Put $f_\theta(x)=H(\theta,x)-h(\theta)$.  The relevant Poisson solution is **Euclidean-valued**, not manifold-valued:
 
 $$
 u_\theta-P_\theta u_\theta=f_\theta,\qquad
 u_\theta=\sum_{j=0}^\infty(P_\theta^jH_\theta-\pi H_\theta).
 $$ {#eq-poisson}
 
-Existence alone is not enough: changing \(\theta\) generates differences of \(P_\theta u_\theta\), which must be controlled.
+Existence alone is not enough: changing $\theta$ generates differences of $P_\theta u_\theta$, which must be controlled.
 
 ::: {#lem-poisson-regularity}
 ## Uniform bounds and Lipschitz regularity
 
-On every compact \(K\times\mathrm{St}(d,r)\), there exists \(L_K\) such that
+On every compact $K\times\mathrm{St}(d,r)$, there exists $L_K$ such that
 
 $$
 \begin{aligned}
@@ -130,5 +130,5 @@ $$ {#eq-poisson-lipschitz}
 :::
 
 ::: {.proof}
-Apply Proposition 3, equations (18)--(19), of @andrieuMoulines2006 to each coordinate of \(f_\theta\), using @asm-kernel and @lem-observable-regularity.  The common invariant law and weighted geometric ergodicity ensure convergence of the Poisson series.  The operator regularity A2 is used for the Lipschitz estimate, as is explicit in A&M's appendix proof.  As the observable takes values in a fixed finite-dimensional ambient space, coordinatewise estimates suffice.
+Apply Proposition 3, equations (18)--(19), of @andrieuMoulines2006 to each coordinate of $f_\theta$, using @asm-kernel and @lem-observable-regularity.  The common invariant law and weighted geometric ergodicity ensure convergence of the Poisson series.  The operator regularity A2 is used for the Lipschitz estimate, as is explicit in A&M's appendix proof.  As the observable takes values in a fixed finite-dimensional ambient space, coordinatewise estimates suffice.
 :::
