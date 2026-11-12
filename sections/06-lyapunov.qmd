@@ -1,0 +1,212 @@
+# Lyapunov structure of the averaged flow {#sec-lyapunov}
+
+The Lyapunov part has two logically distinct tasks: bound the noncompact mean--covariance coordinates, and identify which \(W\) values can persist in the limit.  The first is controlled by A&M's original energy; the second is revealed by a small PCA-energy perturbation.
+
+## Mean--covariance dissipation, derived directly
+
+Let \(v=\mu-m\), \(Q=C+vv^\top\) and \(A=\Gamma^{-1}\).  In the notation of @andrieuMoulines2006, equation (52), define
+
+$$
+w_{\mathrm{AM}}(\mu,\Gamma)
+=\log\det\Gamma+v^\top\Gamma^{-1}v
++\operatorname{tr}(\Gamma^{-1}C).
+$$ {#eq-am-energy}
+
+::: {#lem-am-dissipation}
+## Exact mean--covariance dissipation
+
+Along @eq-coupled-ode,
+
+$$
+\frac{\mathrm d}{\mathrm dt}w_{\mathrm{AM}}(\mu,\Gamma)
+=-D_{\mathrm{AM}}(\mu,\Gamma),
+$$
+
+where
+
+$$
+D_{\mathrm{AM}}
+=2v^\top\Gamma^{-1}v+
+\big\|\Gamma^{-1/2}(\Gamma-Q)\Gamma^{-1/2}\big\|_F^2
+\geq0.
+$$ {#eq-am-dissipation}
+
+Moreover \(D_{\mathrm{AM}}=0\) if and only if \((\mu,\Gamma)=(m,C)\).
+:::
+
+::: {.proof}
+We differentiate both arguments independently.  The elementary matrix identities
+
+$$
+\mathrm d(\log\det\Gamma)[U]=\operatorname{tr}(\Gamma^{-1}U),
+\quad
+\mathrm d(\Gamma^{-1})[U]=-\Gamma^{-1}U\Gamma^{-1}
+$$
+
+give
+
+$$
+\nabla_\mu w_{\mathrm{AM}}=2Av,\qquad
+\nabla_\Gamma w_{\mathrm{AM}}=A-AQA=A(\Gamma-Q)A.
+$$
+
+The relevant mean-field components are \(\dot\mu=-v\) and \(\dot\Gamma=Q-\Gamma\).  Therefore
+
+$$
+\begin{aligned}
+\langle\nabla w_{\mathrm{AM}},h\rangle
+&=\langle2Av,-v\rangle
+  +\operatorname{tr}\{A(\Gamma-Q)A(Q-\Gamma)\}\\
+&=-2v^\top Av
+ -\operatorname{tr}\{A(\Gamma-Q)A(\Gamma-Q)\}.
+\end{aligned}
+$$
+
+The trace is the square of the Frobenius norm in @eq-am-dissipation, because \(A\succ0\) and \(\Gamma-Q\) is symmetric.  Each negative term can vanish only when its corresponding quantity vanishes.  Thus \(v=0\) and \(\Gamma=Q=C\).  We deliberately retain this unexpanded sum of squares rather than relying on a printed expansion of equation (53) in A&M.
+:::
+
+## Why compact sublevel sets stay uniformly positive definite
+
+A&M's energy is coercive on \(\mathbb R^d\times\mathbb S_{++}^d\).  This can be seen directly.  Put \(S=C^{-1/2}\Gamma C^{-1/2}\succ0\).  Then
+
+$$
+w_{\mathrm{AM}}
+=\log\det C+\log\det S
++\operatorname{tr}(S^{-1})
++v^\top\Gamma^{-1}v.
+$$ {#eq-am-coercivity-transformation}
+
+For every eigenvalue \(s_i>0\) of \(S\), the scalar function
+\(\log s_i+s_i^{-1}\) goes to \(+\infty\) both as \(s_i\downarrow0\) and as \(s_i\uparrow\infty\).  Consequently a sublevel set bounds the eigenvalues of \(S\) away from both zero and infinity.  Then the positive quadratic term in \(v\) bounds \(\|v\|\).
+
+In particular, for a nonempty sublevel set
+
+$$
+K_L=\{(\mu,\Gamma):w_{\mathrm{AM}}(\mu,\Gamma)\leq L\},
+$$ {#eq-am-sublevel}
+
+there are constants \(0<a_L\leq b_L<\infty\) and \(M_L<\infty\) such that
+
+$$
+a_LI\preceq\Gamma\preceq b_LI,\qquad
+\|\mu-m\|\leq M_L
+\quad\text{on }K_L.
+$$ {#eq-compact-eigenvalue-bounds}
+
+This also follows from compactness inside the *positive-definite*, rather than semidefinite, cone and continuity of the extremal eigenvalue functions:
+\(|\lambda_{\min}(A)-\lambda_{\min}(B)|\leq\|A-B\|_{\mathrm{op}}\).
+The strict lower bound \(a_L>0\) is exactly what fails for compact sets containing singular matrices.
+
+::: {#lem-uniform-dissipation}
+## Uniform coercivity of the dissipation on \(K_L\)
+
+There exists \(c_L>0\) such that on \(K_L\),
+
+$$
+D_{\mathrm{AM}}(\mu,\Gamma)
+\geq c_L\big(
+\|\mu-m\|^2+\|\Gamma-C\|_F^2
+\big).
+$$ {#eq-compact-dissipation}
+
+One admissible choice is
+\(c_L=(b_L/2+2b_L^2+b_LM_L^2)^{-1}\).
+:::
+
+::: {.proof}
+The eigenvalue bound \(\Gamma\preceq b_LI\) implies \(\Gamma^{-1}\succeq b_L^{-1}I\).  Therefore
+
+$$
+D_{\mathrm{AM}}\geq
+(2/b_L)\|v\|^2+b_L^{-2}\|\Gamma-Q\|_F^2.
+$$
+
+Since \(\Gamma-C=(\Gamma-Q)+vv^\top\),
+
+$$
+\begin{aligned}
+\|\Gamma-C\|_F^2
+&\leq2\|\Gamma-Q\|_F^2+2\|vv^\top\|_F^2\\
+&=2\|\Gamma-Q\|_F^2+2\|v\|^4\\
+&\leq (2b_L^2+b_LM_L^2)D_{\mathrm{AM}}.
+\end{aligned}
+$$
+
+Also \(\|v\|^2\leq(b_L/2)D_{\mathrm{AM}}\).  Add these bounds and invert the resulting positive constant.
+:::
+
+## Add a PCA energy
+
+On the Stiefel manifold, define
+
+$$
+\Phi(W)=-\frac12\operatorname{tr}(W^\top CW),
+\qquad B_C(W)=(I-WW^\top)CW.
+$$ {#eq-pca-energy}
+
+The Riemannian gradient of \(\Phi\) is \(\operatorname{grad}\Phi=-B_C\).  This is a familiar reconstruction-error Lyapunov objective for principal-subspace algorithms [@plumbley1995].  The exact averaged Oja field in our **sample-driven** algorithm is
+
+$$
+\dot W=B_C(W)+(I-WW^\top)vv^\top W.
+$$ {#eq-oja-coupling-perturbation}
+
+Its perturbation from the target-covariance flow is quadratic in the mean error \(v\).  No \(\Gamma-C\) term appears in this version of the algorithm.
+
+::: {#prp-composite}
+## Composite Lyapunov function on each A&M sublevel set
+
+Fix a nonempty compact sublevel set \(K_L\) as in @eq-am-sublevel.  There exists \(\lambda_L>0\) such that for every \(0<\lambda<\lambda_L\) the composite function
+
+$$
+\widetilde w_L(\mu,\Gamma,W)
+=w_{\mathrm{AM}}(\mu,\Gamma)+\lambda\Phi(W)
+$$ {#eq-composite-energy}
+
+has nonpositive derivative along @eq-coupled-ode on
+\(K_L\times\mathrm{St}(d,r)\), with equality precisely at
+
+$$
+\mathcal E=\{(m,C,W):
+      (I-WW^\top)CW=0\}.
+$$ {#eq-full-equilibria}
+:::
+
+::: {.proof}
+Since \(\operatorname{grad}\Phi=-B_C\), @eq-oja-coupling-perturbation gives
+
+$$
+\begin{aligned}
+\dot{\widetilde w}_L
+&=-D_{\mathrm{AM}}-\lambda\|B_C\|_F^2
+-\lambda\langle B_C,(I-WW^\top)vv^\top W\rangle_F\\
+&\leq-D_{\mathrm{AM}}-\lambda\|B_C\|_F^2
++\lambda\|B_C\|_F\|v\|^2.
+\end{aligned}
+$$
+
+Apply \(ab\leq(a^2+b^2)/2\), then @eq-compact-dissipation and \(\|v\|\leq M_L\):
+
+$$
+\begin{aligned}
+\dot{\widetilde w}_L
+&\leq -D_{\mathrm{AM}}-\frac{\lambda}{2}\|B_C\|_F^2
++\frac{\lambda}{2}\|v\|^4\\
+&\leq-\left(1-\frac{\lambda M_L^2}{2c_L}\right)
+D_{\mathrm{AM}}-\frac{\lambda}{2}\|B_C\|_F^2.
+\end{aligned}
+$$ {#eq-composite-dissipation}
+
+Choose \(\lambda M_L^2<2c_L\); if \(M_L=0\), any positive \(\lambda\) works.  Equality can then occur only when \(D_{\mathrm{AM}}=0\) and \(B_C=0\), which is exactly @eq-full-equilibria.
+:::
+
+The compact-set qualification is essential.  A&M's original \(w_{\mathrm{AM}}\) gives global nonpositive drift for \((\mu,\Gamma)\), and its sublevel sets are **forward invariant** under the deterministic ODE.  The composite function is a strict Lyapunov function on each selected forward-invariant sublevel set; it is not claimed to verify A&M's A4 globally for one universal \(\lambda\).
+
+## Identify the equilibria
+
+At an equilibrium \(\mu=m\), \(\Gamma=C\), and \(B_C(W)=0\).  Thus
+
+$$
+CW=WW^\top CW.
+$$ {#eq-invariant-subspace}
+
+Equivalently, the column space of \(W\) is an invariant \(r\)-dimensional subspace of the symmetric matrix \(C\).  The equilibrium set is generally **not a singleton**.  At any such \(W\), \(\operatorname{tr}(W^\top CW)\) is a sum of \(r\) eigenvalues of \(C\) (counted with multiplicity).  Therefore the composite Lyapunov function assumes only finitely many distinct values on \(\mathcal E\), even if the eigenvalues have multiplicities.  This finite-critical-values property is what connects @prp-composite to the ODE limit-set theorem.

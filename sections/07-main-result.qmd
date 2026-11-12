@@ -1,0 +1,83 @@
+# Convergence theorem and its scope {#sec-main-result}
+
+We now combine the stochastic averaging, retraction and Lyapunov arguments.  It is important to distinguish the localized theorem below from a global theorem for untruncated adaptation.
+
+For a compact set \(K\subset\mathbb R^d\times\mathbb S_{++}^d\), define the event
+
+$$
+\Omega_K=\{\exists N<\infty:
+  (\mu_n,\Gamma_n)\in K\text{ for all }n\geq N\},
+$$ {#eq-eventual-compactness}
+
+and let \(\Omega_{\mathrm{ec}}\) be the union of these events over a fixed countable compact exhaustion of the mean--covariance parameter domain.
+
+::: {#thm-localized-oja}
+## Localized convergence of adaptive Markov--Oja
+
+Suppose the target satisfies @asm-target-M and the Gaussian random-walk Metropolis family satisfies @asm-kernel.  Let \((X_n,\mu_n,\Gamma_n,W_n)\) follow @def-coupled-recursion with @asm-step-sizes, \(\Gamma_0\succ0\), \(W_0\in\mathrm{St}(d,r)\), and \(\mathbb E V(X_0)<\infty\).  Then, almost surely on \(\Omega_{\mathrm{ec}}\),
+
+$$
+\boxed{\quad
+\mu_n\longrightarrow m,\qquad
+\Gamma_n\longrightarrow C,\qquad
+\operatorname{dist}_F(W_n,\mathcal E_C)\longrightarrow0,
+\quad}
+$$ {#eq-main-convergence}
+
+where
+
+$$
+\mathcal E_C=\{W\in\mathrm{St}(d,r):
+  (I-WW^\top)CW=0\}.
+$$ {#eq-E-C}
+
+In particular this theorem does not assert convergence to the dominant principal subspace, nor almost-sure eventual compactness of the untruncated recursion.
+:::
+
+::: {.proof}
+**1. A Euclidean representation of the actual recursion.**  By @lem-retraction the iterates satisfy @eq-euclidean-recursion with a quadratic remainder.  Under the localized weighted moment bounds, @lem-retraction-summability makes its accumulated tails vanish.
+
+**2. Markov noise.**  The Poisson equation @eq-poisson, its Lipschitz property @lem-poisson-regularity, and the four-term identity @eq-weighted-poisson show through @lem-noise-accumulation that the weighted noise has vanishing tails.  This does not assume that the accepted states are independent or stationary at any finite time.
+
+**3. ODE tracking and compactness.**  On \(\Omega_{\mathrm{ec}}\) the interpolation is precompact and is an asymptotic pseudotrajectory of @eq-coupled-ode by @eq-ode-window.  Invariance of the Stiefel manifold for the limiting ODE means that the limit set lies in \(\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)\).  By Theorem 5.7 of @benaim1999, its limit set is internally chain transitive.
+
+**4. A strict Lyapunov function around the limit set.**  Fix an eventual compact set \(K\).  Choose \(L\) large enough that \(K\subset K_L\), with \(K_L\) the compact A&M sublevel set @eq-am-sublevel.  The deterministic ODE preserves \(K_L\times\mathrm{St}(d,r)\), because \(\dot w_{\mathrm{AM}}\leq0\).  Choose \(\lambda\) as in @prp-composite.  Then \(\widetilde w_L\) is strictly decreasing away from \(\mathcal E\), and its values on \(\mathcal E\) form a finite set.
+
+**5. Identify the stochastic limit set.**  Proposition 6.4 of @benaim1999 states that an internally chain-transitive set for a compact flow with a strict Lyapunov function must lie in the zero-dissipation set when the latter has Lyapunov values with empty interior.  The set here is \(\mathcal E\), and finiteness of \(\widetilde w_L(\mathcal E)\) verifies the condition.  Every limit point of the interpolated trajectory therefore belongs to \(\mathcal E\).  Because the trajectory is precompact, its distance to \(\mathcal E\) tends to zero.  Reading off the three coordinates gives @eq-main-convergence.
+:::
+
+## How to read this statement
+
+It is a convergence theorem for the un-reprojected recursion **conditional on eventual compactness**.  The qualification is mathematically precise: for any path on which the estimates stay eventually inside a compact subset of the positive-definite domain, the stochastic and geometric perturbations have negligible tails and the limit-set argument applies.
+
+A&M achieve unconditional stability for their mean--covariance recursion with a random-reinitialization mechanism, under an open Euclidean parameter-domain formulation.  The extra Stiefel coordinate is compact, and its retraction contributes a summable error.  These facts strongly suggest adapting that stability proof, but @thm-localized-oja does not silently equate a summable perturbation with an automatic invocation of A&M's Theorem 11.
+
+::: {#cor-finite-reinitialization}
+## Finite-reinitialization consequence
+
+Suppose an implementation of the enlarged recursion uses an A&M-type expanding-compact reinitialization mechanism, and suppose its number of reinitializations is almost surely finite and its post-last-reinitialization trajectory is eventually contained in a compact mean--covariance set.  Then @eq-main-convergence holds almost surely.
+:::
+
+::: {.proof}
+After the last reinitialization the dynamics have the form @def-coupled-recursion, possibly with a shifted step-size index.  A finite prefix does not affect any summability, ODE-time or limit-set argument; apply @thm-localized-oja to that tail.
+:::
+
+The premise that the enlarged algorithm has finitely many reinitializations is an **additional stability obligation**.  A direct manifold-compatible adaptation of A&M's Theorem 11 would close the unconditional version; it is not proved in this draft.
+
+## A deterministic check on the limiting flow
+
+The first equation of @eq-coupled-ode is explicit:
+
+$$
+v(t)=e^{-t}v(0).
+$$
+
+Setting \(D(t)=\Gamma(t)-C\), the second becomes \(\dot D=vv^\top-D\), so
+
+$$
+D(t)=e^{-t}D(0)
+  +(e^{-t}-e^{-2t})v(0)v(0)^\top.
+$$ {#eq-explicit-covariance-flow}
+
+Thus \((\mu(t),\Gamma(t))\to(m,C)\) exponentially.  The Oja equation is therefore an asymptotically autonomous perturbation of
+\(\dot W=B_C(W)\).  This elementary calculation independently supports the equilibrium picture established by the composite Lyapunov argument, but it is not a substitute for the stochastic Markov-noise analysis.
