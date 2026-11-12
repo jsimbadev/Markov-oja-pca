@@ -1,3 +1,0 @@
-# Discussion {#sec-discussion}
-
-Describe the scope, interpretation, limitations and possible extensions of the proved result.
