@@ -1,8 +1,8 @@
 # Online principal-subspace estimation with adaptive MCMC
 
-This repository is a standalone mathematical research note on **Oja's online principal-subspace iteration driven by an adaptive Markov chain**.  It is based on the reusable [quarto-math-note](https://github.com/jsimbadev/quarto-math-note) workflow and is independent of other research projects.
+This repository is a standalone mathematical research note on **global Oja principal-subspace adaptation in MCMC, with the learned subspace feeding back into the Metropolis proposal**. The proposal covariance combines a full global covariance reference with a subspace-informed component.  It is based on the reusable [quarto-math-note](https://github.com/jsimbadev/quarto-math-note) workflow and is independent of other research projects.
 
-**Manuscript status: first research draft.**  The main theorem proves convergence on **eventually compact** adaptive-parameter trajectories.  Extension to unconditional convergence requires proving finite reinitialization/stability for the enlarged mean--covariance--Stiefel recursion.  Leading-eigenspace selection is not claimed.  The complete verification checklist is in [notes/proof-obligations.md](notes/proof-obligations.md).
+**Manuscript status: first research draft.**  The main theorem proves convergence on **eventually compact** adaptive-parameter trajectories.  Extension to unconditional convergence requires a stochastic stability/finite-reinitialization proof for the feedback-coupled mean--covariance--Stiefel recursion.  Leading-eigenspace selection is not claimed.  The complete verification checklist is in [notes/proof-obligations.md](notes/proof-obligations.md).
 
 ## Read the note
 
