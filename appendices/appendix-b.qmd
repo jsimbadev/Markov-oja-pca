@@ -43,20 +43,17 @@ $$
 
 Thus $\Gamma_n$ stays positive definite at every **finite** iteration.  This does not establish that its smallest eigenvalue stays bounded away from zero as $n\to\infty$.  Such a uniform lower bound requires the eventual-compactness/stability argument; the distinction is central to @eq-compact-eigenvalue-bounds.
 
-## A direct deterministic check of the PCA energy
+## The reconstruction-error objective and its geometric interpretation
 
-Using @eq-oja-coupling-perturbation and $B_C=(I-WW^\top)CW$,
+The residual projector $P_W=I-WW^\top$ is symmetric and idempotent.  Therefore the expected reconstruction error in @eq-reconstruction-energy is equivalently
 
-$$
-\begin{aligned}
-\frac{\mathrm d}{\mathrm dt}\Phi(W(t))
-&=-\langle B_C,B_C+(I-WW^\top)vv^\top W\rangle_F\\
-&\leq-\|B_C\|_F^2+\|B_C\|_F\|v\|^2.
-\end{aligned}
-$$
+$
+\mathcal R(\mu,W)
+=\frac12\big(\operatorname{tr}Q(\mu)
+-\operatorname{tr}(W^\top Q(\mu)W)\big).
+$
 
-For the fixed-target Oja flow ($v=0$) this simplifies to
-$\dot\Phi=-\|B_C\|_F^2$.  The composite argument in @prp-composite quantitatively absorbs the nonzero-$v$ cross term with mean--covariance dissipation.  Its strictness is **relative to the equilibrium set**, not to an individual basis or a unique top eigenspace.
+At fixed $\mu$, minimizing $\mathcal R$ means maximizing the variance explained by $W$.  On the Stiefel manifold its negative Riemannian gradient is exactly the averaged sample-driven Oja field; see @lem-reconstruction-gradient.  The moving centring parameter contributes the further nonpositive term $-\|P_W(\mu-m)\|^2$ to the derivative.  Thus the composite functional @eq-composite-energy is a direct sum of the mean--covariance energy and an objective actually decreased by the complete averaged recursion.
 
 ## Invariant subspaces and finitely many energy values
 

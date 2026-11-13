@@ -15,7 +15,7 @@ Status categories: **PROVED IN DRAFT** means the argument is written here but aw
 | Euclidean ODE tracking for full recursion | PROVED IN DRAFT | Section 5, standard discrete Grönwall / APT theorem |
 | A&M Lyapunov drift identity | PROVED IN DRAFT | Section 6; rederive from (52), do not mechanically rely on printed expanded (53) |
 | Compact sublevels, uniform eigenvalue bounds | PROVED IN DRAFT | Section 6, eigenvalue transform and Rayleigh--Ritz |
-| Composite Lyapunov strictness for sample-driven Oja | PROVED IN DRAFT | Section 6; perturbation is \(vv^\top\), not \(\Gamma-C\) |
+| Joint reconstruction-error Lyapunov identity | PROVED IN DRAFT | Section 6; differentiate \(\mathcal R(\mu,W)=\tfrac12\pi[\|P_W(X-\mu)\|^2]\) in both \(\mu\) and \(W\), and verify global strictness for any \(\lambda>0\) |
 | Finite Lyapunov critical values and ICT theorem | FROM LITERATURE | Benaïm 1999 Theorem 5.7 and Proposition 6.4 |
 | Conditional almost-sure convergence to invariant-subspace set | PROVED IN DRAFT | Section 7; verify the localized path argument under chosen filtration |
 | Finite number of reinitializations for the enlarged algorithm | OPEN | Requires manifold-compatible A&M Theorem 11 proof and exact reinitialization map |
@@ -25,7 +25,7 @@ Status categories: **PROVED IN DRAFT** means the argument is written here but aw
 
 ## Hand-check order
 
-1. Reproduce Section 6's gradient calculation without reference to this draft.
+1. Reproduce both gradients of the reconstruction-error functional and the exact three-square dissipation identity in Section 6 without reference to this draft.
 2. Check the stopped weighted Poisson decomposition term by term in Appendix A.
 3. Verify hypotheses and exact theorem numbering in A&M and Benaïm.
 4. Decide whether the first posted manuscript should present a localized result or incorporate a full random-truncation stability extension.

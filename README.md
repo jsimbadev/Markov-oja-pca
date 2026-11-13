@@ -17,7 +17,7 @@ After GitHub Actions renders the manuscript, the current branch contains:
 3. Coupled adaptive MCMC--Oja recursion and mean field
 4. Markov assumptions and Poisson regularity
 5. Retraction and stochastic error accumulation
-6. Lyapunov structure and composite energy
+6. Expected reconstruction error and global joint Lyapunov dissipation
 7. Localized convergence theorem
 8. Interpretation and limitations
 

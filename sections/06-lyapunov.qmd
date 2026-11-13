@@ -1,10 +1,10 @@
 # Lyapunov structure of the averaged flow {#sec-lyapunov}
 
-The Lyapunov part has two logically distinct tasks: bound the noncompact mean--covariance coordinates, and identify which $W$ values can persist in the limit.  The first is controlled by A&M's original energy; the second is revealed by a small PCA-energy perturbation.
+The mean and covariance estimates, and the Oja frame, are driven by the *same centred observations*.  This suggests choosing a Lyapunov function whose geometric component is centred at the evolving mean $\mu$, rather than regarding the dependence of $W$ on $\mu$ as an external forcing.  The natural choice is the expected residual of orthogonal projection onto the subspace spanned by $W$.  Its derivative has a useful exact sign along the full averaged flow.
 
-## Mean--covariance dissipation, derived directly
+## Mean--covariance dissipation
 
-Let $v=\mu-m$, $Q=C+vv^\top$ and $A=\Gamma^{-1}$.  In the notation of @andrieuMoulines2006, equation (52), define
+Let $v=\mu-m$, $Q(\mu)=C+vv^\top$, and $A=\Gamma^{-1}$.  As in @andrieuMoulines2006, equation (52), define
 
 $$
 w_{\mathrm{AM}}(\mu,\Gamma)
@@ -27,19 +27,19 @@ where
 $$
 D_{\mathrm{AM}}
 =2v^\top\Gamma^{-1}v+
-\big\|\Gamma^{-1/2}(\Gamma-Q)\Gamma^{-1/2}\big\|_F^2
+\big\|\Gamma^{-1/2}(\Gamma-Q(\mu))\Gamma^{-1/2}\big\|_F^2
 \geq0.
 $$ {#eq-am-dissipation}
 
-Moreover $D_{\mathrm{AM}}=0$ if and only if $(\mu,\Gamma)=(m,C)$.
+Moreover, $D_{\mathrm{AM}}=0$ if and only if $(\mu,\Gamma)=(m,C)$.
 :::
 
 ::: {.proof}
-We differentiate both arguments independently.  The elementary matrix identities
+Differentiate the two parameter coordinates independently.  The identities
 
 $$
 \mathrm d(\log\det\Gamma)[U]=\operatorname{tr}(\Gamma^{-1}U),
-\quad
+\qquad
 \mathrm d(\Gamma^{-1})[U]=-\Gamma^{-1}U\Gamma^{-1}
 $$
 
@@ -50,24 +50,27 @@ $$
 \nabla_\Gamma w_{\mathrm{AM}}=A-AQA=A(\Gamma-Q)A.
 $$
 
-The relevant mean-field components are $\dot\mu=-v$ and $\dot\Gamma=Q-\Gamma$.  Therefore
+The corresponding averaged dynamics are $\dot\mu=-v$ and $\dot\Gamma=Q-\Gamma$.  Thus
 
 $$
 \begin{aligned}
-\langle\nabla w_{\mathrm{AM}},h\rangle
-&=\langle2Av,-v\rangle
-  +\operatorname{tr}\{A(\Gamma-Q)A(Q-\Gamma)\}\\
-&=-2v^\top Av
- -\operatorname{tr}\{A(\Gamma-Q)A(\Gamma-Q)\}.
+\dot w_{\mathrm{AM}}
+&=\langle 2Av,-v\rangle+
+  \operatorname{tr}\{A(\Gamma-Q)A(Q-\Gamma)\}\\
+&=-2v^\top Av-
+  \operatorname{tr}\{A(\Gamma-Q)A(\Gamma-Q)\}.
 \end{aligned}
 $$
 
-The trace is the square of the Frobenius norm in @eq-am-dissipation, because $A\succ0$ and $\Gamma-Q$ is symmetric.  Each negative term can vanish only when its corresponding quantity vanishes.  Thus $v=0$ and $\Gamma=Q=C$.  We deliberately retain this unexpanded sum of squares rather than relying on a printed expansion of equation (53) in A&M.
+As $A$ is positive definite and $\Gamma-Q$ is symmetric, the trace is
+$\|A^{1/2}(\Gamma-Q)A^{1/2}\|_F^2$.  Both nonnegative quantities vanish exactly when $v=0$ and $\Gamma=Q=C$.
 :::
 
-## Why compact sublevel sets stay uniformly positive definite
+## Compactness of the mean--covariance sublevel sets
 
-A&M's energy is coercive on $\mathbb R^d\times\mathbb S_{++}^d$.  This can be seen directly.  Put $S=C^{-1/2}\Gamma C^{-1/2}\succ0$.  Then
+The coercivity of $w_{\mathrm{AM}}$ will also control the noncompact coordinates of our joint Lyapunov function.
+
+Put $S=C^{-1/2}\Gamma C^{-1/2}\succ0$.  Then
 
 $$
 w_{\mathrm{AM}}
@@ -76,137 +79,188 @@ w_{\mathrm{AM}}
 +v^\top\Gamma^{-1}v.
 $$ {#eq-am-coercivity-transformation}
 
-For every eigenvalue $s_i>0$ of $S$, the scalar function
-$\log s_i+s_i^{-1}$ goes to $+\infty$ both as $s_i\downarrow0$ and as $s_i\uparrow\infty$.  Consequently a sublevel set bounds the eigenvalues of $S$ away from both zero and infinity.  Then the positive quadratic term in $v$ bounds $\|v\|$.
+Writing $s_1,\ldots,s_d>0$ for the eigenvalues of $S$, the middle terms are
+$\sum_i(\log s_i+s_i^{-1})$.  The scalar function $s\mapsto\log s+s^{-1}$ is bounded below by $1$, and tends to $+\infty$ as $s\downarrow0$ or $s\uparrow\infty$.  Consequently, a sublevel bound on $w_{\mathrm{AM}}$ bounds all eigenvalues of $S$ away from $0$ and $\infty$.  The remaining nonnegative quadratic term then bounds $\|v\|$.
 
-In particular, for a nonempty sublevel set
+In particular, each nonempty sublevel set
 
 $$
-K_L=\{(\mu,\Gamma):w_{\mathrm{AM}}(\mu,\Gamma)\leq L\},
+K_L=\{(\mu,\Gamma):w_{\mathrm{AM}}(\mu,\Gamma)\leq L\}
 $$ {#eq-am-sublevel}
 
-there are constants $0<a_L\leq b_L<\infty$ and $M_L<\infty$ such that
+is compact **inside** $\mathbb R^d\times\mathbb S_{++}^d$, with constants
+$0<a_L\leq b_L<\infty$ and $M_L<\infty$ such that
 
 $$
 a_LI\preceq\Gamma\preceq b_LI,\qquad
 \|\mu-m\|\leq M_L
-\quad\text{on }K_L.
+\qquad \text{on }K_L.
 $$ {#eq-compact-eigenvalue-bounds}
 
-This also follows from compactness inside the *positive-definite*, rather than semidefinite, cone and continuity of the extremal eigenvalue functions:
-$|\lambda_{\min}(A)-\lambda_{\min}(B)|\leq\|A-B\|_{\mathrm{op}}$.
-The strict lower bound $a_L>0$ is exactly what fails for compact sets containing singular matrices.
+The positive lower eigenvalue bound is part of compactness in the *open* positive-definite domain, not a consequence of bounded matrix entries alone.
 
-::: {#lem-uniform-dissipation}
-## Uniform coercivity of the dissipation on $K_L$
+## The expected reconstruction error
 
-There exists $c_L>0$ such that on $K_L$,
+For $W\in\mathrm{St}(d,r)$ write
 
 $$
-D_{\mathrm{AM}}(\mu,\Gamma)
-\geq c_L\big(
-\|\mu-m\|^2+\|\Gamma-C\|_F^2
-\big).
-$$ {#eq-compact-dissipation}
-
-One admissible choice is
-$c_L=(b_L/2+2b_L^2+b_LM_L^2)^{-1}$.
-:::
-
-::: {.proof}
-The eigenvalue bound $\Gamma\preceq b_LI$ implies $\Gamma^{-1}\succeq b_L^{-1}I$.  Therefore
-
-$$
-D_{\mathrm{AM}}\geq
-(2/b_L)\|v\|^2+b_L^{-2}\|\Gamma-Q\|_F^2.
+P_W=I-WW^\top.
 $$
 
-Since $\Gamma-C=(\Gamma-Q)+vv^\top$,
+This is the orthogonal projector onto the complement of $\operatorname{span}(W)$.  The squared length of the residual after projecting a centred observation $x-\mu$ onto $\operatorname{span}(W)$ is $\|P_W(x-\mu)\|^2$.  Averaging over the common invariant target law gives the natural PCA objective
 
 $$
 \begin{aligned}
-\|\Gamma-C\|_F^2
-&\leq2\|\Gamma-Q\|_F^2+2\|vv^\top\|_F^2\\
-&=2\|\Gamma-Q\|_F^2+2\|v\|^4\\
-&\leq (2b_L^2+b_LM_L^2)D_{\mathrm{AM}}.
+\mathcal R(\mu,W)
+&=\frac12\pi\!\left[\|P_W(X-\mu)\|^2\right]\\
+&=\frac12\operatorname{tr}\!\big(P_WQ(\mu)\big)\\
+&=\frac12\operatorname{tr}(P_WC)
+  +\frac12v^\top P_Wv.
+\end{aligned}
+$$ {#eq-reconstruction-energy}
+
+The second equality uses @eq-second-moment-identity.  Notice that $\mathcal R\geq0$ and, importantly, the centring parameter $\mu$ is the **same** parameter used in both the covariance and the sample-driven Oja recursions.  This choice connects the objective directly to the algorithm and to classical reconstruction-error Lyapunov arguments for PCA [@plumbley1995].
+
+::: {#lem-reconstruction-gradient}
+## The Oja field is the negative reconstruction-error gradient
+
+For fixed $\mu$, the Riemannian gradient on the embedded Stiefel manifold is
+
+$$
+\operatorname{grad}_W\mathcal R(\mu,W)
+=-P_WQ(\mu)W.
+$$ {#eq-reconstruction-gradient}
+
+For fixed $W$, the Euclidean gradient in the mean coordinate is
+
+$$
+\nabla_\mu\mathcal R(\mu,W)=P_Wv.
+$$ {#eq-reconstruction-mean-gradient}
+
+Hence, along the coupled mean-field system @eq-coupled-ode,
+
+$$
+\boxed{
+\frac{\mathrm d}{\mathrm dt}\mathcal R(\mu,W)
+=-\|P_Wv\|^2
+-\|P_WQ(\mu)W\|_F^2.
+}
+$$ {#eq-reconstruction-dissipation}
+:::
+
+::: {.proof}
+Because $P_W$ is a symmetric idempotent matrix, $v^\top P_Wv=\|P_Wv\|^2$.  Differentiating the last expression in @eq-reconstruction-energy with respect to $\mu$ immediately gives $\nabla_\mu\mathcal R=P_Wv$.
+
+For the $W$ derivative, hold $\mu$ fixed and use
+$\operatorname{tr}(P_WQ)=\operatorname{tr}Q-\operatorname{tr}(W^\top QW)$.
+The first term does not depend on $W$.  Since $Q$ is symmetric,
+
+$$
+\mathrm d_W\mathcal R[U]=-\operatorname{tr}(U^\top QW)
+=-\langle QW,U\rangle_F.
+$$
+
+Thus the ambient Euclidean gradient is $-QW$.  Its orthogonal projection onto the Stiefel tangent space is
+
+$$
+-QW+W\,\operatorname{sym}(W^\top QW)
+=-(I-WW^\top)QW=-P_WQW,
+$$
+
+where $\operatorname{sym}(W^\top QW)=W^\top QW$ by symmetry of $Q$.
+
+Finally, the first and third components of @eq-coupled-ode are
+
+$$
+\dot\mu=-v,\qquad
+\dot W=P_WQ(\mu)W=-\operatorname{grad}_W\mathcal R.
+$$
+
+Apply the chain rule on $\mathbb R^d\times\mathrm{St}(d,r)$:
+
+$$
+\begin{aligned}
+\dot{\mathcal R}
+&=\langle P_Wv,-v\rangle
+  +\langle-P_WQW,P_WQW\rangle_F\\
+&=-\|P_Wv\|^2-\|P_WQW\|_F^2.
 \end{aligned}
 $$
 
-Also $\|v\|^2\leq(b_L/2)D_{\mathrm{AM}}$.  Add these bounds and invert the resulting positive constant.
+The first negative square is the contribution of the evolving mean; the second is the dissipation generated by the Oja step.
 :::
 
-## Add a PCA energy
-
-On the Stiefel manifold, define
-
-$$
-\Phi(W)=-\frac12\operatorname{tr}(W^\top CW),
-\qquad B_C(W)=(I-WW^\top)CW.
-$$ {#eq-pca-energy}
-
-The Riemannian gradient of $\Phi$ is $\operatorname{grad}\Phi=-B_C$.  This is a familiar reconstruction-error Lyapunov objective for principal-subspace algorithms [@plumbley1995].  The exact averaged Oja field in our **sample-driven** algorithm is
-
-$$
-\dot W=B_C(W)+(I-WW^\top)vv^\top W.
-$$ {#eq-oja-coupling-perturbation}
-
-Its perturbation from the target-covariance flow is quadratic in the mean error $v$.  No $\Gamma-C$ term appears in this version of the algorithm.
+## A Lyapunov function for the full coupled system
 
 ::: {#prp-composite}
-## Composite Lyapunov function on each A&M sublevel set
+## Global joint Lyapunov dissipation
 
-Fix a nonempty compact sublevel set $K_L$ as in @eq-am-sublevel.  There exists $\lambda_L>0$ such that for every $0<\lambda<\lambda_L$ the composite function
+For every $\lambda>0$ define
 
 $$
-\widetilde w_L(\mu,\Gamma,W)
-=w_{\mathrm{AM}}(\mu,\Gamma)+\lambda\Phi(W)
+\mathcal L_\lambda(\mu,\Gamma,W)
+=w_{\mathrm{AM}}(\mu,\Gamma)+\lambda\mathcal R(\mu,W).
 $$ {#eq-composite-energy}
 
-has nonpositive derivative along @eq-coupled-ode on
-$K_L\times\mathrm{St}(d,r)$, with equality precisely at
+Along every solution of @eq-coupled-ode in
+$\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)$,
+
+$$
+\boxed{
+\begin{aligned}
+\dot{\mathcal L}_\lambda
+={}&-D_{\mathrm{AM}}(\mu,\Gamma)\\
+&-\lambda\|P_W(\mu-m)\|^2\\
+&-\lambda\|P_WQ(\mu)W\|_F^2
+\leq0.
+\end{aligned}
+}
+$$ {#eq-composite-dissipation}
+
+Equality holds precisely on
 
 $$
 \mathcal E=\{(m,C,W):
-      (I-WW^\top)CW=0\}.
+             (I-WW^\top)CW=0\}.
 $$ {#eq-full-equilibria}
+
+Every nonempty sublevel set of $\mathcal L_\lambda$ is compact and forward invariant under @eq-coupled-ode.
 :::
 
 ::: {.proof}
-Since $\operatorname{grad}\Phi=-B_C$, @eq-oja-coupling-perturbation gives
+Add the identities @eq-am-dissipation and @eq-reconstruction-dissipation; there is no unspecified remainder.  All three terms on the right-hand side are nonpositive for every $\lambda>0$.
+
+If $\dot{\mathcal L}_\lambda=0$, then $D_{\mathrm{AM}}=0$, so $\mu=m$ and $\Gamma=C$ by @lem-am-dissipation.  It follows that $Q(\mu)=C$.  The final square vanishes exactly when $P_WCW=0$.  Conversely every such point makes all three terms vanish.
+
+For compactness, $\mathcal R\geq0$ implies
 
 $$
-\begin{aligned}
-\dot{\widetilde w}_L
-&=-D_{\mathrm{AM}}-\lambda\|B_C\|_F^2
--\lambda\langle B_C,(I-WW^\top)vv^\top W\rangle_F\\
-&\leq-D_{\mathrm{AM}}-\lambda\|B_C\|_F^2
-+\lambda\|B_C\|_F\|v\|^2.
-\end{aligned}
+\{\mathcal L_\lambda\leq L\}
+\subseteq K_L\times\mathrm{St}(d,r).
 $$
 
-Apply $ab\leq(a^2+b^2)/2$, then @eq-compact-dissipation and $\|v\|\leq M_L$:
-
-$$
-\begin{aligned}
-\dot{\widetilde w}_L
-&\leq -D_{\mathrm{AM}}-\frac{\lambda}{2}\|B_C\|_F^2
-+\frac{\lambda}{2}\|v\|^4\\
-&\leq-\left(1-\frac{\lambda M_L^2}{2c_L}\right)
-D_{\mathrm{AM}}-\frac{\lambda}{2}\|B_C\|_F^2.
-\end{aligned}
-$$ {#eq-composite-dissipation}
-
-Choose $\lambda M_L^2<2c_L$; if $M_L=0$, any positive $\lambda$ works.  Equality can then occur only when $D_{\mathrm{AM}}=0$ and $B_C=0$, which is exactly @eq-full-equilibria.
+The right-hand side is compact by @eq-am-sublevel and compactness of the Stiefel manifold.  The left-hand side is closed there by continuity of $\mathcal L_\lambda$, hence compact.  The derivative inequality shows that its value cannot increase along an ODE solution; therefore the sublevel set is forward invariant.
 :::
 
-The compact-set qualification is essential.  A&M's original $w_{\mathrm{AM}}$ gives global nonpositive drift for $(\mu,\Gamma)$, and its sublevel sets are **forward invariant** under the deterministic ODE.  The composite function is a strict Lyapunov function on each selected forward-invariant sublevel set; it is not claimed to verify A&M's A4 globally for one universal $\lambda$.
+The proposition is **global for the averaged ODE**: its sign does not depend on restricting the drift calculation to a compact set.  This does not, by itself, establish pathwise boundedness of the *stochastic* recursion.  Uniform kernel and Poisson estimates, and stochastic stability or reinitialization, remain necessary for an unconditional stochastic convergence theorem.
 
-## Identify the equilibria
+## Equilibria and Lyapunov values
 
-At an equilibrium $\mu=m$, $\Gamma=C$, and $B_C(W)=0$.  Thus
+The condition $P_WCW=0$ is equivalent to
 
 $$
 CW=WW^\top CW.
 $$ {#eq-invariant-subspace}
 
-Equivalently, the column space of $W$ is an invariant $r$-dimensional subspace of the symmetric matrix $C$.  The equilibrium set is generally **not a singleton**.  At any such $W$, $\operatorname{tr}(W^\top CW)$ is a sum of $r$ eigenvalues of $C$ (counted with multiplicity).  Therefore the composite Lyapunov function assumes only finitely many distinct values on $\mathcal E$, even if the eigenvalues have multiplicities.  This finite-critical-values property is what connects @prp-composite to the ODE limit-set theorem.
+Thus $\operatorname{span}(W)$ is an invariant $r$-dimensional subspace of the symmetric matrix $C$.  The equilibrium set need not select the leading subspace.
+
+For later use, observe that at a joint equilibrium,
+
+$$
+\mathcal L_\lambda(m,C,W)
+=\log\det C+d+
+  \frac{\lambda}{2}
+   \big(\operatorname{tr}C-\operatorname{tr}(W^\top CW)\big).
+$$ {#eq-equilibrium-lyapunov-value}
+
+The trace $\operatorname{tr}(W^\top CW)$ is a sum of $r$ eigenvalues of $C$, counted with multiplicity.  Hence $\mathcal L_\lambda$ assumes only **finitely many distinct values** on $\mathcal E$, even when eigenspaces have multiplicity and contain infinitely many possible frames.  This property will allow us to apply the internally chain-transitive limit-set argument of @benaim1999.

@@ -18,7 +18,8 @@ abstract: |
   shows that, on eventually compact parameter trajectories, the estimates
   approach the target moments and the Oja iterate approaches the collection
   of invariant subspaces of the target covariance.  A composite Lyapunov
-  function provides a quantitative dissipativity argument on compact sets.
+  function based on the expected PCA reconstruction error gives an exact global
+  dissipation identity for the averaged coupled system.
   The remaining global stability question, needed for an unconditional
   convergence theorem for the untruncated algorithm, is isolated explicitly.
 keywords:
