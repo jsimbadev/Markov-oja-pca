@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jordan Simbananiye">
-<meta name="dcterms.date" content="2026-11-12">
+<meta name="dcterms.date" content="2026-11-13">
 <meta name="keywords" content="adaptive MCMC, online PCA, Oja iteration, stochastic approximation, Poisson equation, retraction">
 
 <title>Online principal-subspace estimation with adaptive Markov chain Monte Carlo</title>
@@ -63,7 +63,7 @@ div.csl-indent {
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="index_files/libs/bootstrap/bootstrap-75ee88b12325132ef7d9745e7a05061e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/bootstrap/bootstrap-43002380c1ab0959773ff275c485c642.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <!-- Generated from macros.tex by scripts/sync-macros.py; edit macros.tex. -->
 <script>
 window.MathJax = window.MathJax || {};
@@ -214,10 +214,11 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-lyapunov" id="toc-sec-lyapunov" class="nav-link" data-scroll-target="#sec-lyapunov"><span class="header-section-number">6</span> Lyapunov structure of the averaged flow</a>
   <ul class="collapse">
-  <li><a href="#meancovariance-dissipation-derived-directly" id="toc-meancovariance-dissipation-derived-directly" class="nav-link" data-scroll-target="#meancovariance-dissipation-derived-directly"><span class="header-section-number">6.1</span> Mean–covariance dissipation, derived directly</a></li>
-  <li><a href="#why-compact-sublevel-sets-stay-uniformly-positive-definite" id="toc-why-compact-sublevel-sets-stay-uniformly-positive-definite" class="nav-link" data-scroll-target="#why-compact-sublevel-sets-stay-uniformly-positive-definite"><span class="header-section-number">6.2</span> Why compact sublevel sets stay uniformly positive definite</a></li>
-  <li><a href="#add-a-pca-energy" id="toc-add-a-pca-energy" class="nav-link" data-scroll-target="#add-a-pca-energy"><span class="header-section-number">6.3</span> Add a PCA energy</a></li>
-  <li><a href="#identify-the-equilibria" id="toc-identify-the-equilibria" class="nav-link" data-scroll-target="#identify-the-equilibria"><span class="header-section-number">6.4</span> Identify the equilibria</a></li>
+  <li><a href="#meancovariance-dissipation" id="toc-meancovariance-dissipation" class="nav-link" data-scroll-target="#meancovariance-dissipation"><span class="header-section-number">6.1</span> Mean–covariance dissipation</a></li>
+  <li><a href="#compactness-of-the-meancovariance-sublevel-sets" id="toc-compactness-of-the-meancovariance-sublevel-sets" class="nav-link" data-scroll-target="#compactness-of-the-meancovariance-sublevel-sets"><span class="header-section-number">6.2</span> Compactness of the mean–covariance sublevel sets</a></li>
+  <li><a href="#the-expected-reconstruction-error" id="toc-the-expected-reconstruction-error" class="nav-link" data-scroll-target="#the-expected-reconstruction-error"><span class="header-section-number">6.3</span> The expected reconstruction error</a></li>
+  <li><a href="#a-lyapunov-function-for-the-full-coupled-system" id="toc-a-lyapunov-function-for-the-full-coupled-system" class="nav-link" data-scroll-target="#a-lyapunov-function-for-the-full-coupled-system"><span class="header-section-number">6.4</span> A Lyapunov function for the full coupled system</a></li>
+  <li><a href="#equilibria-and-lyapunov-values" id="toc-equilibria-and-lyapunov-values" class="nav-link" data-scroll-target="#equilibria-and-lyapunov-values"><span class="header-section-number">6.5</span> Equilibria and Lyapunov values</a></li>
   </ul></li>
   <li><a href="#sec-main-result" id="toc-sec-main-result" class="nav-link" data-scroll-target="#sec-main-result"><span class="header-section-number">7</span> Convergence theorem and its scope</a>
   <ul class="collapse">
@@ -230,7 +231,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#the-stiefel-tangent-and-invariance-statements" id="toc-the-stiefel-tangent-and-invariance-statements" class="nav-link" data-scroll-target="#the-stiefel-tangent-and-invariance-statements"><span class="header-section-number">10.1</span> The Stiefel tangent and invariance statements</a></li>
   <li><a href="#positive-definiteness-of-the-covariance-iterate" id="toc-positive-definiteness-of-the-covariance-iterate" class="nav-link" data-scroll-target="#positive-definiteness-of-the-covariance-iterate"><span class="header-section-number">10.2</span> Positive definiteness of the covariance iterate</a></li>
-  <li><a href="#a-direct-deterministic-check-of-the-pca-energy" id="toc-a-direct-deterministic-check-of-the-pca-energy" class="nav-link" data-scroll-target="#a-direct-deterministic-check-of-the-pca-energy"><span class="header-section-number">10.3</span> A direct deterministic check of the PCA energy</a></li>
+  <li><a href="#the-reconstruction-error-objective-and-its-geometric-interpretation" id="toc-the-reconstruction-error-objective-and-its-geometric-interpretation" class="nav-link" data-scroll-target="#the-reconstruction-error-objective-and-its-geometric-interpretation"><span class="header-section-number">10.3</span> The reconstruction-error objective and its geometric interpretation</a></li>
   <li><a href="#invariant-subspaces-and-finitely-many-energy-values" id="toc-invariant-subspaces-and-finitely-many-energy-values" class="nav-link" data-scroll-target="#invariant-subspaces-and-finitely-many-energy-values"><span class="header-section-number">10.4</span> Invariant subspaces and finitely many energy values</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -266,7 +267,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">12 November 2026</p>
+      <p class="date">13 November 2026</p>
     </div>
   </div>
   
@@ -276,7 +277,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>We investigate whether Oja’s online principal-subspace iteration can be coupled to adaptive Markov chain Monte Carlo without assuming independent samples. The adaptive mean and covariance estimates follow the recursion considered by Andrieu and Moulines, while an additional Stiefel-valued iterate is updated through a polar retraction. We identify the common averaged vector field, establish a uniform second-order bound for the retraction error, and give an explicit weighted Poisson decomposition of the controlled Markov fluctuations. A localized convergence theorem shows that, on eventually compact parameter trajectories, the estimates approach the target moments and the Oja iterate approaches the collection of invariant subspaces of the target covariance. A composite Lyapunov function provides a quantitative dissipativity argument on compact sets. The remaining global stability question, needed for an unconditional convergence theorem for the untruncated algorithm, is isolated explicitly.</p>
+    <p>We investigate whether Oja’s online principal-subspace iteration can be coupled to adaptive Markov chain Monte Carlo without assuming independent samples. The adaptive mean and covariance estimates follow the recursion considered by Andrieu and Moulines, while an additional Stiefel-valued iterate is updated through a polar retraction. We identify the common averaged vector field, establish a uniform second-order bound for the retraction error, and give an explicit weighted Poisson decomposition of the controlled Markov fluctuations. A localized convergence theorem shows that, on eventually compact parameter trajectories, the estimates approach the target moments and the Oja iterate approaches the collection of invariant subspaces of the target covariance. A composite Lyapunov function based on the expected PCA reconstruction error gives an exact global dissipation identity for the averaged coupled system. The remaining global stability question, needed for an unconditional convergence theorem for the untruncated algorithm, is isolated explicitly.</p>
   </div>
 </div>
 
@@ -295,11 +296,11 @@ window.Quarto = {
 <p>Online principal component analysis (PCA) is often presented as a stochastic approximation algorithm driven by independent observations. In a Monte Carlo application, however, observations are naturally successive states of a Markov chain. Furthermore, when the sampler adapts its proposal distribution, even the transition kernel changes over time. The central question of this note is consequently concrete:</p>
 <p><em>Can an Oja principal-subspace recursion be run on the output of an adaptive MCMC sampler while retaining a rigorous stochastic approximation interpretation and convergence guarantee?</em></p>
 <p>We consider a target distribution <span class="math inline">\(\pi\)</span> on <span class="math inline">\(\mathbb R^d\)</span> and a Gaussian random-walk Metropolis family with proposal covariance updated online. The mean–covariance adaptation is that of <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>. The addition is an orthonormal frame <span class="math inline">\(W_n\)</span> whose columns are updated from the <strong>same accepted MCMC states</strong> through a projected Oja increment and a Stiefel retraction. This separates two issues often conflated in informal discussions of PCA adaptation: the estimation of the target covariance and the choice of a low-dimensional invariant subspace of that covariance.</p>
-<p>Three mathematical observations make the coupling tractable. First, all frozen MCMC kernels have the same invariant distribution <span class="math inline">\(\pi\)</span>. Their time-inhomogeneity therefore affects the <strong>noise averaging argument</strong> but not the algebraic form of the mean field. Second, a polar retraction can be expanded in the ambient matrix space with a quadratic remainder, allowing Euclidean stochastic approximation estimates without changing the geometry of the actual iterates. Third, the classical mean–covariance Lyapunov function already controls all noncompact parameter coordinates. Adding a small multiple of the PCA energy gives a strict, quantitative dissipation inequality on any prescribed compact mean–covariance region.</p>
+<p>Three mathematical observations make the coupling tractable. First, all frozen MCMC kernels have the same invariant distribution <span class="math inline">\(\pi\)</span>. Their time-inhomogeneity therefore affects the <strong>noise averaging argument</strong> but not the algebraic form of the mean field. Second, a polar retraction can be expanded in the ambient matrix space with a quadratic remainder, allowing Euclidean stochastic approximation estimates without changing the geometry of the actual iterates. Third, the dependence of both the covariance and Oja updates on the evolving mean identifies a natural expected reconstruction-error objective. Together with the mean–covariance Lyapunov function, it gives an exact global dissipation identity for the coupled averaged flow.</p>
 <p>The paper follows the proof rather than concealing its mechanics. We derive the mean field, state weighted-kernel assumptions, expand the retraction, show the exact telescoping terms in the Poisson decomposition, and differentiate the Lyapunov function explicitly. The initial convergence conclusion is deliberately the approach to the set of <strong>invariant <span class="math inline">\(r\)</span>-dimensional subspaces</strong>. Almost-sure selection of the leading eigenspace is a stronger claim and is not implied by deterministic eigenvalue gaps alone.</p>
 <section id="relation-to-existing-results" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="relation-to-existing-results"><span class="header-section-number">1.1</span> Relation to existing results</h2>
-<p>Andrieu and Moulines establish a general controlled-Markov framework for adaptive MCMC, including kernel drift and regularity estimates, Poisson equations, and a random-truncation stability method <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>. We retain that framework and its condition (M), rather than assuming independent samples. The retraction calculations use standard embedded-manifold Taylor expansions as developed by <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">2</a>]</span>. The PCA energy is closely related to the classical Lyapunov treatment of principal-component algorithms <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span>. We use the ordinary differential equation (ODE) method for stochastic approximation and the associated internally chain-transitive limit-set principle <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>.</p>
+<p>Andrieu and Moulines establish a general controlled-Markov framework for adaptive MCMC, including kernel drift and regularity estimates, Poisson equations, and a random-truncation stability method <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>. We retain that framework and its condition (M), rather than assuming independent samples. The retraction calculations use standard embedded-manifold Taylor expansions as developed by <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">2</a>]</span>. The expected reconstruction-error objective follows the classical Lyapunov treatment of principal-component algorithms <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span>. We use the ordinary differential equation (ODE) method for stochastic approximation and the associated internally chain-transitive limit-set principle <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>.</p>
 <p>The contribution is a transparent synthesis for this particular coupled recursion, not a new general theorem about manifold-valued Markov processes. In particular, the first main theorem is <strong>localized</strong>: it proves convergence on sample paths whose mean–covariance estimates ultimately remain in a compact subset of the positive-definite parameter domain. The finite-reinitialization step required to remove that qualification for the enlarged adaptive algorithm is listed as a separate proof obligation.</p>
 </section>
 </section>
@@ -351,46 +352,58 @@ window.Quarto = {
 <td style="text-align: left;">Stiefel iterate; <span class="math inline">\(\operatorname{span}(W_n)\)</span> is its subspace</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(P_W\)</span></td>
+<td style="text-align: left;">Orthogonal residual projector <span class="math inline">\(I-WW^\top\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathcal R(\mu,W)\)</span></td>
+<td style="text-align: left;">Expected centred PCA reconstruction error <span class="math inline">\(\frac12\pi[\|P_W(X-\mu)\|^2]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathcal L_\lambda\)</span></td>
+<td style="text-align: left;">Joint Lyapunov function <span class="math inline">\(w_{\mathrm{AM}}+\lambda\mathcal R\)</span>, <span class="math inline">\(\lambda&gt;0\)</span></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\theta_n\)</span></td>
 <td style="text-align: left;">Full parameter <span class="math inline">\((\mu_n,\Gamma_n,W_n)\)</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(P_\theta\)</span></td>
 <td style="text-align: left;">Frozen MCMC kernel; in the example <span class="math inline">\(P_\theta=P_\Gamma\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><span class="math inline">\(H(\theta,x)\)</span></td>
 <td style="text-align: left;">Stochastic approximation observable in ambient coordinates</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(h(\theta)\)</span></td>
 <td style="text-align: left;">Mean field <span class="math inline">\(\pi[H(\theta,\cdot)]\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\gamma_n\)</span></td>
 <td style="text-align: left;">Positive decreasing stochastic approximation step size</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(R_W(U)\)</span></td>
 <td style="text-align: left;">Polar retraction of tangent increment <span class="math inline">\(U\)</span> at <span class="math inline">\(W\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><span class="math inline">\(V\colon\mathbb R^d\to[1,\infty)\)</span></td>
 <td style="text-align: left;">Markov drift/weight function</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(\|f\|_{V^a}\)</span></td>
 <td style="text-align: left;"><span class="math inline">\(\sup_x \|f(x)\|/V^a(x)\)</span>, for scalar, vector or matrix <span class="math inline">\(f\)</span></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><span class="math inline">\(u_\theta\)</span></td>
 <td style="text-align: left;">Centered Poisson solution <span class="math inline">\(u_\theta-P_\theta u_\theta=H_\theta-h(\theta)\)</span></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><span class="math inline">\(v_\theta\)</span></td>
 <td style="text-align: left;"><span class="math inline">\(P_\theta u_\theta\)</span>, used in summation by parts</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><span class="math inline">\(\mathcal E_C\)</span></td>
 <td style="text-align: left;"><span class="math inline">\(\{W\in\mathrm{St}(d,r):(I-WW^\top)CW=0\}\)</span></td>
 </tr>
@@ -690,10 +703,10 @@ M_k=u_{\theta_{k-1}}(X_k)-v_{\theta_{k-1}}(X_{k-1}).
 </section>
 <section id="sec-lyapunov" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Lyapunov structure of the averaged flow</h1>
-<p>The Lyapunov part has two logically distinct tasks: bound the noncompact mean–covariance coordinates, and identify which <span class="math inline">\(W\)</span> values can persist in the limit. The first is controlled by A&amp;M’s original energy; the second is revealed by a small PCA-energy perturbation.</p>
-<section id="meancovariance-dissipation-derived-directly" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="meancovariance-dissipation-derived-directly"><span class="header-section-number">6.1</span> Mean–covariance dissipation, derived directly</h2>
-<p>Let <span class="math inline">\(v=\mu-m\)</span>, <span class="math inline">\(Q=C+vv^\top\)</span> and <span class="math inline">\(A=\Gamma^{-1}\)</span>. In the notation of <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>, equation (52), define</p>
+<p>The mean and covariance estimates, and the Oja frame, are driven by the <em>same centred observations</em>. This suggests choosing a Lyapunov function whose geometric component is centred at the evolving mean <span class="math inline">\(\mu\)</span>, rather than regarding the dependence of <span class="math inline">\(W\)</span> on <span class="math inline">\(\mu\)</span> as an external forcing. The natural choice is the expected residual of orthogonal projection onto the subspace spanned by <span class="math inline">\(W\)</span>. Its derivative has a useful exact sign along the full averaged flow.</p>
+<section id="meancovariance-dissipation" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="meancovariance-dissipation"><span class="header-section-number">6.1</span> Mean–covariance dissipation</h2>
+<p>Let <span class="math inline">\(v=\mu-m\)</span>, <span class="math inline">\(Q(\mu)=C+vv^\top\)</span>, and <span class="math inline">\(A=\Gamma^{-1}\)</span>. As in <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>, equation (52), define</p>
 <p><span id="eq-am-energy"><span class="math display">\[
 w_{\mathrm{AM}}(\mu,\Gamma)
 =\log\det\Gamma+v^\top\Gamma^{-1}v
@@ -709,16 +722,16 @@ w_{\mathrm{AM}}(\mu,\Gamma)
 <p><span id="eq-am-dissipation"><span class="math display">\[
 D_{\mathrm{AM}}
 =2v^\top\Gamma^{-1}v+
-\big\|\Gamma^{-1/2}(\Gamma-Q)\Gamma^{-1/2}\big\|_F^2
+\big\|\Gamma^{-1/2}(\Gamma-Q(\mu))\Gamma^{-1/2}\big\|_F^2
 \geq0.
 \tag{6.2}\]</span></span></p>
-<p>Moreover <span class="math inline">\(D_{\mathrm{AM}}=0\)</span> if and only if <span class="math inline">\((\mu,\Gamma)=(m,C)\)</span>.</p>
+<p>Moreover, <span class="math inline">\(D_{\mathrm{AM}}=0\)</span> if and only if <span class="math inline">\((\mu,\Gamma)=(m,C)\)</span>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>We differentiate both arguments independently. The elementary matrix identities</p>
+<p><span class="proof-title"><em>Proof</em>. </span>Differentiate the two parameter coordinates independently. The identities</p>
 <p><span class="math display">\[
 \mathrm d(\log\det\Gamma)[U]=\operatorname{tr}(\Gamma^{-1}U),
-\quad
+\qquad
 \mathrm d(\Gamma^{-1})[U]=-\Gamma^{-1}U\Gamma^{-1}
 \]</span></p>
 <p>give</p>
@@ -726,124 +739,162 @@ D_{\mathrm{AM}}
 \nabla_\mu w_{\mathrm{AM}}=2Av,\qquad
 \nabla_\Gamma w_{\mathrm{AM}}=A-AQA=A(\Gamma-Q)A.
 \]</span></p>
-<p>The relevant mean-field components are <span class="math inline">\(\dot\mu=-v\)</span> and <span class="math inline">\(\dot\Gamma=Q-\Gamma\)</span>. Therefore</p>
+<p>The corresponding averaged dynamics are <span class="math inline">\(\dot\mu=-v\)</span> and <span class="math inline">\(\dot\Gamma=Q-\Gamma\)</span>. Thus</p>
 <p><span class="math display">\[
 \begin{aligned}
-\langle\nabla w_{\mathrm{AM}},h\rangle
-&amp;=\langle2Av,-v\rangle
-  +\operatorname{tr}\{A(\Gamma-Q)A(Q-\Gamma)\}\\
-&amp;=-2v^\top Av
--\operatorname{tr}\{A(\Gamma-Q)A(\Gamma-Q)\}.
+\dot w_{\mathrm{AM}}
+&amp;=\langle 2Av,-v\rangle+
+  \operatorname{tr}\{A(\Gamma-Q)A(Q-\Gamma)\}\\
+&amp;=-2v^\top Av-
+  \operatorname{tr}\{A(\Gamma-Q)A(\Gamma-Q)\}.
 \end{aligned}
 \]</span></p>
-<p>The trace is the square of the Frobenius norm in <a href="#eq-am-dissipation" class="quarto-xref">Equation&nbsp;6.2</a>, because <span class="math inline">\(A\succ0\)</span> and <span class="math inline">\(\Gamma-Q\)</span> is symmetric. Each negative term can vanish only when its corresponding quantity vanishes. Thus <span class="math inline">\(v=0\)</span> and <span class="math inline">\(\Gamma=Q=C\)</span>. We deliberately retain this unexpanded sum of squares rather than relying on a printed expansion of equation (53) in A&amp;M.</p>
+<p>As <span class="math inline">\(A\)</span> is positive definite and <span class="math inline">\(\Gamma-Q\)</span> is symmetric, the trace is <span class="math inline">\(\|A^{1/2}(\Gamma-Q)A^{1/2}\|_F^2\)</span>. Both nonnegative quantities vanish exactly when <span class="math inline">\(v=0\)</span> and <span class="math inline">\(\Gamma=Q=C\)</span>.</p>
 </div>
 </section>
-<section id="why-compact-sublevel-sets-stay-uniformly-positive-definite" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="why-compact-sublevel-sets-stay-uniformly-positive-definite"><span class="header-section-number">6.2</span> Why compact sublevel sets stay uniformly positive definite</h2>
-<p>A&amp;M’s energy is coercive on <span class="math inline">\(\mathbb R^d\times\mathbb S_{++}^d\)</span>. This can be seen directly. Put <span class="math inline">\(S=C^{-1/2}\Gamma C^{-1/2}\succ0\)</span>. Then</p>
+<section id="compactness-of-the-meancovariance-sublevel-sets" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="compactness-of-the-meancovariance-sublevel-sets"><span class="header-section-number">6.2</span> Compactness of the mean–covariance sublevel sets</h2>
+<p>The coercivity of <span class="math inline">\(w_{\mathrm{AM}}\)</span> will also control the noncompact coordinates of our joint Lyapunov function.</p>
+<p>Put <span class="math inline">\(S=C^{-1/2}\Gamma C^{-1/2}\succ0\)</span>. Then</p>
 <p><span id="eq-am-coercivity-transformation"><span class="math display">\[
 w_{\mathrm{AM}}
 =\log\det C+\log\det S
 +\operatorname{tr}(S^{-1})
 +v^\top\Gamma^{-1}v.
 \tag{6.3}\]</span></span></p>
-<p>For every eigenvalue <span class="math inline">\(s_i&gt;0\)</span> of <span class="math inline">\(S\)</span>, the scalar function <span class="math inline">\(\log s_i+s_i^{-1}\)</span> goes to <span class="math inline">\(+\infty\)</span> both as <span class="math inline">\(s_i\downarrow0\)</span> and as <span class="math inline">\(s_i\uparrow\infty\)</span>. Consequently a sublevel set bounds the eigenvalues of <span class="math inline">\(S\)</span> away from both zero and infinity. Then the positive quadratic term in <span class="math inline">\(v\)</span> bounds <span class="math inline">\(\|v\|\)</span>.</p>
-<p>In particular, for a nonempty sublevel set</p>
+<p>Writing <span class="math inline">\(s_1,\ldots,s_d&gt;0\)</span> for the eigenvalues of <span class="math inline">\(S\)</span>, the middle terms are <span class="math inline">\(\sum_i(\log s_i+s_i^{-1})\)</span>. The scalar function <span class="math inline">\(s\mapsto\log s+s^{-1}\)</span> is bounded below by <span class="math inline">\(1\)</span>, and tends to <span class="math inline">\(+\infty\)</span> as <span class="math inline">\(s\downarrow0\)</span> or <span class="math inline">\(s\uparrow\infty\)</span>. Consequently, a sublevel bound on <span class="math inline">\(w_{\mathrm{AM}}\)</span> bounds all eigenvalues of <span class="math inline">\(S\)</span> away from <span class="math inline">\(0\)</span> and <span class="math inline">\(\infty\)</span>. The remaining nonnegative quadratic term then bounds <span class="math inline">\(\|v\|\)</span>.</p>
+<p>In particular, each nonempty sublevel set</p>
 <p><span id="eq-am-sublevel"><span class="math display">\[
-K_L=\{(\mu,\Gamma):w_{\mathrm{AM}}(\mu,\Gamma)\leq L\},
+K_L=\{(\mu,\Gamma):w_{\mathrm{AM}}(\mu,\Gamma)\leq L\}
 \tag{6.4}\]</span></span></p>
-<p>there are constants <span class="math inline">\(0&lt;a_L\leq b_L&lt;\infty\)</span> and <span class="math inline">\(M_L&lt;\infty\)</span> such that</p>
+<p>is compact <strong>inside</strong> <span class="math inline">\(\mathbb R^d\times\mathbb S_{++}^d\)</span>, with constants <span class="math inline">\(0&lt;a_L\leq b_L&lt;\infty\)</span> and <span class="math inline">\(M_L&lt;\infty\)</span> such that</p>
 <p><span id="eq-compact-eigenvalue-bounds"><span class="math display">\[
 a_LI\preceq\Gamma\preceq b_LI,\qquad
 \|\mu-m\|\leq M_L
-\quad\text{on }K_L.
+\qquad \text{on }K_L.
 \tag{6.5}\]</span></span></p>
-<p>This also follows from compactness inside the <em>positive-definite</em>, rather than semidefinite, cone and continuity of the extremal eigenvalue functions: <span class="math inline">\(|\lambda_{\min}(A)-\lambda_{\min}(B)|\leq\|A-B\|_{\mathrm{op}}\)</span>. The strict lower bound <span class="math inline">\(a_L&gt;0\)</span> is exactly what fails for compact sets containing singular matrices.</p>
-<div id="lem-uniform-dissipation" class="theorem lemma">
-<p><span class="theorem-title"><strong>Lemma 6.2 (Uniform coercivity of the dissipation on <span class="math inline">\(K_L\)</span>)</strong></span> There exists <span class="math inline">\(c_L&gt;0\)</span> such that on <span class="math inline">\(K_L\)</span>,</p>
-<p><span id="eq-compact-dissipation"><span class="math display">\[
-D_{\mathrm{AM}}(\mu,\Gamma)
-\geq c_L\big(
-\|\mu-m\|^2+\|\Gamma-C\|_F^2
-\big).
+<p>The positive lower eigenvalue bound is part of compactness in the <em>open</em> positive-definite domain, not a consequence of bounded matrix entries alone.</p>
+</section>
+<section id="the-expected-reconstruction-error" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-expected-reconstruction-error"><span class="header-section-number">6.3</span> The expected reconstruction error</h2>
+<p>For <span class="math inline">\(W\in\mathrm{St}(d,r)\)</span> write</p>
+<p><span class="math display">\[
+P_W=I-WW^\top.
+\]</span></p>
+<p>This is the orthogonal projector onto the complement of <span class="math inline">\(\operatorname{span}(W)\)</span>. The squared length of the residual after projecting a centred observation <span class="math inline">\(x-\mu\)</span> onto <span class="math inline">\(\operatorname{span}(W)\)</span> is <span class="math inline">\(\|P_W(x-\mu)\|^2\)</span>. Averaging over the common invariant target law gives the natural PCA objective</p>
+<p><span id="eq-reconstruction-energy"><span class="math display">\[
+\begin{aligned}
+\mathcal R(\mu,W)
+&amp;=\frac12\pi\!\left[\|P_W(X-\mu)\|^2\right]\\
+&amp;=\frac12\operatorname{tr}\!\big(P_WQ(\mu)\big)\\
+&amp;=\frac12\operatorname{tr}(P_WC)
+  +\frac12v^\top P_Wv.
+\end{aligned}
 \tag{6.6}\]</span></span></p>
-<p>One admissible choice is <span class="math inline">\(c_L=(b_L/2+2b_L^2+b_LM_L^2)^{-1}\)</span>.</p>
+<p>The second equality uses <a href="#eq-second-moment-identity" class="quarto-xref">Equation&nbsp;3.7</a>. Notice that <span class="math inline">\(\mathcal R\geq0\)</span> and, importantly, the centring parameter <span class="math inline">\(\mu\)</span> is the <strong>same</strong> parameter used in both the covariance and the sample-driven Oja recursions. This choice connects the objective directly to the algorithm and to classical reconstruction-error Lyapunov arguments for PCA <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span>.</p>
+<div id="lem-reconstruction-gradient" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 6.2 (The Oja field is the negative reconstruction-error gradient)</strong></span> For fixed <span class="math inline">\(\mu\)</span>, the Riemannian gradient on the embedded Stiefel manifold is</p>
+<p><span id="eq-reconstruction-gradient"><span class="math display">\[
+\operatorname{grad}_W\mathcal R(\mu,W)
+=-P_WQ(\mu)W.
+\tag{6.7}\]</span></span></p>
+<p>For fixed <span class="math inline">\(W\)</span>, the Euclidean gradient in the mean coordinate is</p>
+<p><span id="eq-reconstruction-mean-gradient"><span class="math display">\[
+\nabla_\mu\mathcal R(\mu,W)=P_Wv.
+\tag{6.8}\]</span></span></p>
+<p>Hence, along the coupled mean-field system <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.9</a>,</p>
+<p><span id="eq-reconstruction-dissipation"><span class="math display">\[
+\boxed{
+\frac{\mathrm d}{\mathrm dt}\mathcal R(\mu,W)
+=-\|P_Wv\|^2
+-\|P_WQ(\mu)W\|_F^2.
+}
+\tag{6.9}\]</span></span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>The eigenvalue bound <span class="math inline">\(\Gamma\preceq b_LI\)</span> implies <span class="math inline">\(\Gamma^{-1}\succeq b_L^{-1}I\)</span>. Therefore</p>
+<p><span class="proof-title"><em>Proof</em>. </span>Because <span class="math inline">\(P_W\)</span> is a symmetric idempotent matrix, <span class="math inline">\(v^\top P_Wv=\|P_Wv\|^2\)</span>. Differentiating the last expression in <a href="#eq-reconstruction-energy" class="quarto-xref">Equation&nbsp;6.6</a> with respect to <span class="math inline">\(\mu\)</span> immediately gives <span class="math inline">\(\nabla_\mu\mathcal R=P_Wv\)</span>.</p>
+<p>For the <span class="math inline">\(W\)</span> derivative, hold <span class="math inline">\(\mu\)</span> fixed and use <span class="math inline">\(\operatorname{tr}(P_WQ)=\operatorname{tr}Q-\operatorname{tr}(W^\top QW)\)</span>. The first term does not depend on <span class="math inline">\(W\)</span>. Since <span class="math inline">\(Q\)</span> is symmetric,</p>
 <p><span class="math display">\[
-D_{\mathrm{AM}}\geq
-(2/b_L)\|v\|^2+b_L^{-2}\|\Gamma-Q\|_F^2.
+\mathrm d_W\mathcal R[U]=-\operatorname{tr}(U^\top QW)
+=-\langle QW,U\rangle_F.
 \]</span></p>
-<p>Since <span class="math inline">\(\Gamma-C=(\Gamma-Q)+vv^\top\)</span>,</p>
+<p>Thus the ambient Euclidean gradient is <span class="math inline">\(-QW\)</span>. Its orthogonal projection onto the Stiefel tangent space is</p>
+<p><span class="math display">\[
+-QW+W\,\operatorname{sym}(W^\top QW)
+=-(I-WW^\top)QW=-P_WQW,
+\]</span></p>
+<p>where <span class="math inline">\(\operatorname{sym}(W^\top QW)=W^\top QW\)</span> by symmetry of <span class="math inline">\(Q\)</span>.</p>
+<p>Finally, the first and third components of <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.9</a> are</p>
+<p><span class="math display">\[
+\dot\mu=-v,\qquad
+\dot W=P_WQ(\mu)W=-\operatorname{grad}_W\mathcal R.
+\]</span></p>
+<p>Apply the chain rule on <span class="math inline">\(\mathbb R^d\times\mathrm{St}(d,r)\)</span>:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\|\Gamma-C\|_F^2
-&amp;\leq2\|\Gamma-Q\|_F^2+2\|vv^\top\|_F^2\\
-&amp;=2\|\Gamma-Q\|_F^2+2\|v\|^4\\
-&amp;\leq (2b_L^2+b_LM_L^2)D_{\mathrm{AM}}.
+\dot{\mathcal R}
+&amp;=\langle P_Wv,-v\rangle
+  +\langle-P_WQW,P_WQW\rangle_F\\
+&amp;=-\|P_Wv\|^2-\|P_WQW\|_F^2.
 \end{aligned}
 \]</span></p>
-<p>Also <span class="math inline">\(\|v\|^2\leq(b_L/2)D_{\mathrm{AM}}\)</span>. Add these bounds and invert the resulting positive constant.</p>
+<p>The first negative square is the contribution of the evolving mean; the second is the dissipation generated by the Oja step.</p>
 </div>
 </section>
-<section id="add-a-pca-energy" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="add-a-pca-energy"><span class="header-section-number">6.3</span> Add a PCA energy</h2>
-<p>On the Stiefel manifold, define</p>
-<p><span id="eq-pca-energy"><span class="math display">\[
-\Phi(W)=-\frac12\operatorname{tr}(W^\top CW),
-\qquad B_C(W)=(I-WW^\top)CW.
-\tag{6.7}\]</span></span></p>
-<p>The Riemannian gradient of <span class="math inline">\(\Phi\)</span> is <span class="math inline">\(\operatorname{grad}\Phi=-B_C\)</span>. This is a familiar reconstruction-error Lyapunov objective for principal-subspace algorithms <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span>. The exact averaged Oja field in our <strong>sample-driven</strong> algorithm is</p>
-<p><span id="eq-oja-coupling-perturbation"><span class="math display">\[
-\dot W=B_C(W)+(I-WW^\top)vv^\top W.
-\tag{6.8}\]</span></span></p>
-<p>Its perturbation from the target-covariance flow is quadratic in the mean error <span class="math inline">\(v\)</span>. No <span class="math inline">\(\Gamma-C\)</span> term appears in this version of the algorithm.</p>
+<section id="a-lyapunov-function-for-the-full-coupled-system" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="a-lyapunov-function-for-the-full-coupled-system"><span class="header-section-number">6.4</span> A Lyapunov function for the full coupled system</h2>
 <div id="prp-composite" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 6.1 (Composite Lyapunov function on each A&amp;M sublevel set)</strong></span> Fix a nonempty compact sublevel set <span class="math inline">\(K_L\)</span> as in <a href="#eq-am-sublevel" class="quarto-xref">Equation&nbsp;6.4</a>. There exists <span class="math inline">\(\lambda_L&gt;0\)</span> such that for every <span class="math inline">\(0&lt;\lambda&lt;\lambda_L\)</span> the composite function</p>
+<p><span class="theorem-title"><strong>Proposition 6.1 (Global joint Lyapunov dissipation)</strong></span> For every <span class="math inline">\(\lambda&gt;0\)</span> define</p>
 <p><span id="eq-composite-energy"><span class="math display">\[
-\widetilde w_L(\mu,\Gamma,W)
-=w_{\mathrm{AM}}(\mu,\Gamma)+\lambda\Phi(W)
-\tag{6.9}\]</span></span></p>
-<p>has nonpositive derivative along <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.9</a> on <span class="math inline">\(K_L\times\mathrm{St}(d,r)\)</span>, with equality precisely at</p>
+\mathcal L_\lambda(\mu,\Gamma,W)
+=w_{\mathrm{AM}}(\mu,\Gamma)+\lambda\mathcal R(\mu,W).
+\tag{6.10}\]</span></span></p>
+<p>Along every solution of <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.9</a> in <span class="math inline">\(\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)\)</span>,</p>
+<p><span id="eq-composite-dissipation"><span class="math display">\[
+\boxed{
+\begin{aligned}
+\dot{\mathcal L}_\lambda
+={}&amp;-D_{\mathrm{AM}}(\mu,\Gamma)\\
+&amp;-\lambda\|P_W(\mu-m)\|^2\\
+&amp;-\lambda\|P_WQ(\mu)W\|_F^2
+\leq0.
+\end{aligned}
+}
+\tag{6.11}\]</span></span></p>
+<p>Equality holds precisely on</p>
 <p><span id="eq-full-equilibria"><span class="math display">\[
 \mathcal E=\{(m,C,W):
-      (I-WW^\top)CW=0\}.
-\tag{6.10}\]</span></span></p>
+             (I-WW^\top)CW=0\}.
+\tag{6.12}\]</span></span></p>
+<p>Every nonempty sublevel set of <span class="math inline">\(\mathcal L_\lambda\)</span> is compact and forward invariant under <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.9</a>.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>Since <span class="math inline">\(\operatorname{grad}\Phi=-B_C\)</span>, <a href="#eq-oja-coupling-perturbation" class="quarto-xref">Equation&nbsp;6.8</a> gives</p>
+<p><span class="proof-title"><em>Proof</em>. </span>Add the identities <a href="#eq-am-dissipation" class="quarto-xref">Equation&nbsp;6.2</a> and <a href="#eq-reconstruction-dissipation" class="quarto-xref">Equation&nbsp;6.9</a>; there is no unspecified remainder. All three terms on the right-hand side are nonpositive for every <span class="math inline">\(\lambda&gt;0\)</span>.</p>
+<p>If <span class="math inline">\(\dot{\mathcal L}_\lambda=0\)</span>, then <span class="math inline">\(D_{\mathrm{AM}}=0\)</span>, so <span class="math inline">\(\mu=m\)</span> and <span class="math inline">\(\Gamma=C\)</span> by <a href="#lem-am-dissipation" class="quarto-xref">Lemma&nbsp;6.1</a>. It follows that <span class="math inline">\(Q(\mu)=C\)</span>. The final square vanishes exactly when <span class="math inline">\(P_WCW=0\)</span>. Conversely every such point makes all three terms vanish.</p>
+<p>For compactness, <span class="math inline">\(\mathcal R\geq0\)</span> implies</p>
 <p><span class="math display">\[
-\begin{aligned}
-\dot{\widetilde w}_L
-&amp;=-D_{\mathrm{AM}}-\lambda\|B_C\|_F^2
--\lambda\langle B_C,(I-WW^\top)vv^\top W\rangle_F\\
-&amp;\leq-D_{\mathrm{AM}}-\lambda\|B_C\|_F^2
-+\lambda\|B_C\|_F\|v\|^2.
-\end{aligned}
+\{\mathcal L_\lambda\leq L\}
+\subseteq K_L\times\mathrm{St}(d,r).
 \]</span></p>
-<p>Apply <span class="math inline">\(ab\leq(a^2+b^2)/2\)</span>, then <a href="#eq-compact-dissipation" class="quarto-xref">Equation&nbsp;6.6</a> and <span class="math inline">\(\|v\|\leq M_L\)</span>:</p>
-<p><span id="eq-composite-dissipation"><span class="math display">\[
-\begin{aligned}
-\dot{\widetilde w}_L
-&amp;\leq -D_{\mathrm{AM}}-\frac{\lambda}{2}\|B_C\|_F^2
-+\frac{\lambda}{2}\|v\|^4\\
-&amp;\leq-\left(1-\frac{\lambda M_L^2}{2c_L}\right)
-D_{\mathrm{AM}}-\frac{\lambda}{2}\|B_C\|_F^2.
-\end{aligned}
-\tag{6.11}\]</span></span></p>
-<p>Choose <span class="math inline">\(\lambda M_L^2&lt;2c_L\)</span>; if <span class="math inline">\(M_L=0\)</span>, any positive <span class="math inline">\(\lambda\)</span> works. Equality can then occur only when <span class="math inline">\(D_{\mathrm{AM}}=0\)</span> and <span class="math inline">\(B_C=0\)</span>, which is exactly <a href="#eq-full-equilibria" class="quarto-xref">Equation&nbsp;6.10</a>.</p>
+<p>The right-hand side is compact by <a href="#eq-am-sublevel" class="quarto-xref">Equation&nbsp;6.4</a> and compactness of the Stiefel manifold. The left-hand side is closed there by continuity of <span class="math inline">\(\mathcal L_\lambda\)</span>, hence compact. The derivative inequality shows that its value cannot increase along an ODE solution; therefore the sublevel set is forward invariant.</p>
 </div>
-<p>The compact-set qualification is essential. A&amp;M’s original <span class="math inline">\(w_{\mathrm{AM}}\)</span> gives global nonpositive drift for <span class="math inline">\((\mu,\Gamma)\)</span>, and its sublevel sets are <strong>forward invariant</strong> under the deterministic ODE. The composite function is a strict Lyapunov function on each selected forward-invariant sublevel set; it is not claimed to verify A&amp;M’s A4 globally for one universal <span class="math inline">\(\lambda\)</span>.</p>
+<p>The proposition is <strong>global for the averaged ODE</strong>: its sign does not depend on restricting the drift calculation to a compact set. This does not, by itself, establish pathwise boundedness of the <em>stochastic</em> recursion. Uniform kernel and Poisson estimates, and stochastic stability or reinitialization, remain necessary for an unconditional stochastic convergence theorem.</p>
 </section>
-<section id="identify-the-equilibria" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="identify-the-equilibria"><span class="header-section-number">6.4</span> Identify the equilibria</h2>
-<p>At an equilibrium <span class="math inline">\(\mu=m\)</span>, <span class="math inline">\(\Gamma=C\)</span>, and <span class="math inline">\(B_C(W)=0\)</span>. Thus</p>
+<section id="equilibria-and-lyapunov-values" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="equilibria-and-lyapunov-values"><span class="header-section-number">6.5</span> Equilibria and Lyapunov values</h2>
+<p>The condition <span class="math inline">\(P_WCW=0\)</span> is equivalent to</p>
 <p><span id="eq-invariant-subspace"><span class="math display">\[
 CW=WW^\top CW.
-\tag{6.12}\]</span></span></p>
-<p>Equivalently, the column space of <span class="math inline">\(W\)</span> is an invariant <span class="math inline">\(r\)</span>-dimensional subspace of the symmetric matrix <span class="math inline">\(C\)</span>. The equilibrium set is generally <strong>not a singleton</strong>. At any such <span class="math inline">\(W\)</span>, <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> is a sum of <span class="math inline">\(r\)</span> eigenvalues of <span class="math inline">\(C\)</span> (counted with multiplicity). Therefore the composite Lyapunov function assumes only finitely many distinct values on <span class="math inline">\(\mathcal E\)</span>, even if the eigenvalues have multiplicities. This finite-critical-values property is what connects <a href="#prp-composite" class="quarto-xref">Proposition&nbsp;6.1</a> to the ODE limit-set theorem.</p>
+\tag{6.13}\]</span></span></p>
+<p>Thus <span class="math inline">\(\operatorname{span}(W)\)</span> is an invariant <span class="math inline">\(r\)</span>-dimensional subspace of the symmetric matrix <span class="math inline">\(C\)</span>. The equilibrium set need not select the leading subspace.</p>
+<p>For later use, observe that at a joint equilibrium,</p>
+<p><span id="eq-equilibrium-lyapunov-value"><span class="math display">\[
+\mathcal L_\lambda(m,C,W)
+=\log\det C+d+
+  \frac{\lambda}{2}
+   \big(\operatorname{tr}C-\operatorname{tr}(W^\top CW)\big).
+\tag{6.14}\]</span></span></p>
+<p>The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> is a sum of <span class="math inline">\(r\)</span> eigenvalues of <span class="math inline">\(C\)</span>, counted with multiplicity. Hence <span class="math inline">\(\mathcal L_\lambda\)</span> assumes only <strong>finitely many distinct values</strong> on <span class="math inline">\(\mathcal E\)</span>, even when eigenspaces have multiplicity and contain infinitely many possible frames. This property will allow us to apply the internally chain-transitive limit-set argument of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>.</p>
 </section>
 </section>
 <section id="sec-main-result" class="level1" data-number="7">
@@ -875,8 +926,8 @@ CW=WW^\top CW.
 <p><span class="proof-title"><em>Proof</em>. </span><strong>1. A Euclidean representation of the actual recursion.</strong> By <a href="#lem-retraction" class="quarto-xref">Lemma&nbsp;5.1</a> the iterates satisfy <a href="#eq-euclidean-recursion" class="quarto-xref">Equation&nbsp;5.4</a> with a quadratic remainder. Under the localized weighted moment bounds, <a href="#lem-retraction-summability" class="quarto-xref">Lemma&nbsp;5.2</a> makes its accumulated tails vanish.</p>
 <p><strong>2. Markov noise.</strong> The Poisson equation <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;4.8</a>, its Lipschitz property <a href="#lem-poisson-regularity" class="quarto-xref">Lemma&nbsp;4.2</a>, and the four-term identity <a href="#eq-weighted-poisson" class="quarto-xref">Equation&nbsp;5.6</a> show through <a href="#lem-noise-accumulation" class="quarto-xref">Lemma&nbsp;5.3</a> that the weighted noise has vanishing tails. This does not assume that the accepted states are independent or stationary at any finite time.</p>
 <p><strong>3. ODE tracking and compactness.</strong> On <span class="math inline">\(\Omega_{\mathrm{ec}}\)</span> the interpolation is precompact and is an asymptotic pseudotrajectory of <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.9</a> by <a href="#eq-ode-window" class="quarto-xref">Equation&nbsp;5.9</a>. Invariance of the Stiefel manifold for the limiting ODE means that the limit set lies in <span class="math inline">\(\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)\)</span>. By Theorem 5.7 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>, its limit set is internally chain transitive.</p>
-<p><strong>4. A strict Lyapunov function around the limit set.</strong> Fix an eventual compact set <span class="math inline">\(K\)</span>. Choose <span class="math inline">\(L\)</span> large enough that <span class="math inline">\(K\subset K_L\)</span>, with <span class="math inline">\(K_L\)</span> the compact A&amp;M sublevel set <a href="#eq-am-sublevel" class="quarto-xref">Equation&nbsp;6.4</a>. The deterministic ODE preserves <span class="math inline">\(K_L\times\mathrm{St}(d,r)\)</span>, because <span class="math inline">\(\dot w_{\mathrm{AM}}\leq0\)</span>. Choose <span class="math inline">\(\lambda\)</span> as in <a href="#prp-composite" class="quarto-xref">Proposition&nbsp;6.1</a>. Then <span class="math inline">\(\widetilde w_L\)</span> is strictly decreasing away from <span class="math inline">\(\mathcal E\)</span>, and its values on <span class="math inline">\(\mathcal E\)</span> form a finite set.</p>
-<p><strong>5. Identify the stochastic limit set.</strong> Proposition 6.4 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span> states that an internally chain-transitive set for a compact flow with a strict Lyapunov function must lie in the zero-dissipation set when the latter has Lyapunov values with empty interior. The set here is <span class="math inline">\(\mathcal E\)</span>, and finiteness of <span class="math inline">\(\widetilde w_L(\mathcal E)\)</span> verifies the condition. Every limit point of the interpolated trajectory therefore belongs to <span class="math inline">\(\mathcal E\)</span>. Because the trajectory is precompact, its distance to <span class="math inline">\(\mathcal E\)</span> tends to zero. Reading off the three coordinates gives <a href="#eq-main-convergence" class="quarto-xref">Equation&nbsp;7.2</a>.</p>
+<p><strong>4. A strict Lyapunov function around the limit set.</strong> Fix an eventual compact set <span class="math inline">\(K\)</span>. Choose any <span class="math inline">\(\lambda&gt;0\)</span> and then an <span class="math inline">\(L\)</span> large enough that <span class="math inline">\(K\times\mathrm{St}(d,r)\)</span> is contained in the joint sublevel set <span class="math inline">\(\{\mathcal L_\lambda\leq L\}\)</span>. By <a href="#prp-composite" class="quarto-xref">Proposition&nbsp;6.1</a> this is a compact, forward-invariant set for the limiting ODE. Its Lyapunov function <span class="math inline">\(\mathcal L_\lambda\)</span> has strictly negative derivative away from <span class="math inline">\(\mathcal E\)</span>, and its values on <span class="math inline">\(\mathcal E\)</span> form a finite set.</p>
+<p><strong>5. Identify the stochastic limit set.</strong> Proposition 6.4 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span> states that an internally chain-transitive set for a compact flow with a strict Lyapunov function must lie in the zero-dissipation set when the latter has Lyapunov values with empty interior. The set here is <span class="math inline">\(\mathcal E\)</span>, and finiteness of <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> verifies the condition. Every limit point of the interpolated trajectory therefore belongs to <span class="math inline">\(\mathcal E\)</span>. Because the trajectory is precompact, its distance to <span class="math inline">\(\mathcal E\)</span> tends to zero. Reading off the three coordinates gives <a href="#eq-main-convergence" class="quarto-xref">Equation&nbsp;7.2</a>.</p>
 </div>
 <section id="how-to-read-this-statement" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="how-to-read-this-statement"><span class="header-section-number">7.1</span> How to read this statement</h2>
@@ -906,9 +957,9 @@ D(t)=e^{-t}D(0)
 </section>
 <section id="sec-discussion" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Interpretation and further questions</h1>
-<p>The analysis establishes a sharp division of responsibilities. All frozen Metropolis kernels target the same <span class="math inline">\(\pi\)</span>, so their common invariant distribution determines the deterministic Oja mean field. A&amp;M’s Markov theory controls the failure of successive observations to be independent. The polar retraction preserves orthogonality while contributing only an absolutely summable second-order error. The target mean–covariance energy controls noncompact coordinates, and the PCA energy identifies the eventual subspace equilibria.</p>
+<p>The analysis establishes a sharp division of responsibilities. All frozen Metropolis kernels target the same <span class="math inline">\(\pi\)</span>, so their common invariant distribution determines the deterministic Oja mean field. A&amp;M’s Markov theory controls the failure of successive observations to be independent. The polar retraction preserves orthogonality while contributing only an absolutely summable second-order error. The mean–covariance energy controls noncompact coordinates, while the expected reconstruction error has an exact decreasing derivative in both the evolving mean and the Oja frame. Their sum identifies the joint equilibrium set.</p>
 <p>The result should not be read as an assertion that online Oja necessarily selects the leading <span class="math inline">\(r\)</span>-dimensional eigenspace. Its limiting stationary set contains <strong>every invariant <span class="math inline">\(r\)</span>-subspace</strong> of <span class="math inline">\(C\)</span>, including non-leading eigenspaces. Deterministically, the leading subspace is locally attracting under an eigengap, whereas non-leading invariant subspaces have unstable directions; showing that Markov-driven stochastic iterates almost surely avoid unstable equilibria requires additional hypotheses on noise excitation and is a distinct problem. The Lyapunov literature of <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span> is relevant to that refinement.</p>
-<p>There is also an important distinction between two possible algorithms. We have analyzed a <em>sample-driven</em> Oja increment, using <span class="math inline">\((X_{n+1}-\mu_n)(X_{n+1}-\mu_n)^\top\)</span>. Its mean-field perturbation from the target Oja flow depends on <span class="math inline">\((\mu-m)(\mu-m)^\top\)</span>. If one instead updates <span class="math inline">\(W\)</span> using the <em>estimated covariance</em> <span class="math inline">\(\Gamma_n\)</span>, then <span class="math inline">\(\dot W=(I-WW^\top)\Gamma W\)</span>, with a different coupling error depending on <span class="math inline">\(\Gamma-C\)</span>. The same composite Lyapunov method can treat this variant, but the stochastic innovation and Poisson step must be stated consistently with the chosen update.</p>
+<p>There is also an important distinction between two possible algorithms. We have analyzed a <em>sample-driven</em> Oja increment, using <span class="math inline">\((X_{n+1}-\mu_n)(X_{n+1}-\mu_n)^\top\)</span>. Its mean-field perturbation from the target Oja flow depends on <span class="math inline">\((\mu-m)(\mu-m)^\top\)</span>. If one instead updates <span class="math inline">\(W\)</span> using the <em>estimated covariance</em> <span class="math inline">\(\Gamma_n\)</span>, then <span class="math inline">\(\dot W=(I-WW^\top)\Gamma W\)</span>, with a different coupling error depending on <span class="math inline">\(\Gamma-C\)</span>. Its convergence analysis requires an objective and noise decomposition consistent with that distinct update, and is not claimed by the present theorem.</p>
 <p>Finally, the localized result does not settle the probability-one finite-reinitialization question for the <strong>enlarged</strong> algorithm. Under the concrete Gaussian random-walk kernel, the necessary kernel bounds are available from A&amp;M, and the new coordinate is compact. Establishing the exact manifold-compatible stability theorem, with the reinitialization map and boundary conditions stated, is the remaining step before claiming unconditional convergence of the original adaptive procedure. This is recorded transparently in the internal proof audit.</p>
 <p>The present theorem is therefore a useful foundation for investigating principal-subspace adaptation with Markov rather than independent innovations. It identifies the precise non-i.i.d. bookkeeping, proves a localized limiting-subspace result, and leaves the stronger global stability and leading-eigenspace selection questions clearly separated.</p>
 </section>
@@ -983,21 +1034,19 @@ R_W(U)^\top R_W(U)
 \]</span></p>
 <p>Thus <span class="math inline">\(\Gamma_n\)</span> stays positive definite at every <strong>finite</strong> iteration. This does not establish that its smallest eigenvalue stays bounded away from zero as <span class="math inline">\(n\to\infty\)</span>. Such a uniform lower bound requires the eventual-compactness/stability argument; the distinction is central to <a href="#eq-compact-eigenvalue-bounds" class="quarto-xref">Equation&nbsp;6.5</a>.</p>
 </section>
-<section id="a-direct-deterministic-check-of-the-pca-energy" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="a-direct-deterministic-check-of-the-pca-energy"><span class="header-section-number">10.3</span> A direct deterministic check of the PCA energy</h2>
-<p>Using <a href="#eq-oja-coupling-perturbation" class="quarto-xref">Equation&nbsp;6.8</a> and <span class="math inline">\(B_C=(I-WW^\top)CW\)</span>,</p>
+<section id="the-reconstruction-error-objective-and-its-geometric-interpretation" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="the-reconstruction-error-objective-and-its-geometric-interpretation"><span class="header-section-number">10.3</span> The reconstruction-error objective and its geometric interpretation</h2>
+<p>The residual projector <span class="math inline">\(P_W=I-WW^\top\)</span> is symmetric and idempotent. Therefore the expected reconstruction error in <a href="#eq-reconstruction-energy" class="quarto-xref">Equation&nbsp;6.6</a> is equivalently</p>
 <p><span class="math display">\[
-\begin{aligned}
-\frac{\mathrm d}{\mathrm dt}\Phi(W(t))
-&amp;=-\langle B_C,B_C+(I-WW^\top)vv^\top W\rangle_F\\
-&amp;\leq-\|B_C\|_F^2+\|B_C\|_F\|v\|^2.
-\end{aligned}
+\mathcal R(\mu,W)
+=\frac12\big(\operatorname{tr}Q(\mu)
+-\operatorname{tr}(W^\top Q(\mu)W)\big).
 \]</span></p>
-<p>For the fixed-target Oja flow (<span class="math inline">\(v=0\)</span>) this simplifies to <span class="math inline">\(\dot\Phi=-\|B_C\|_F^2\)</span>. The composite argument in <a href="#prp-composite" class="quarto-xref">Proposition&nbsp;6.1</a> quantitatively absorbs the nonzero-<span class="math inline">\(v\)</span> cross term with mean–covariance dissipation. Its strictness is <strong>relative to the equilibrium set</strong>, not to an individual basis or a unique top eigenspace.</p>
+<p>At fixed <span class="math inline">\(\mu\)</span>, minimizing <span class="math inline">\(\mathcal R\)</span> means maximizing the variance explained by <span class="math inline">\(W\)</span>. On the Stiefel manifold its negative Riemannian gradient is exactly the averaged sample-driven Oja field; see <a href="#lem-reconstruction-gradient" class="quarto-xref">Lemma&nbsp;6.2</a>. The moving centring parameter contributes the further nonpositive term <span class="math inline">\(-\|P_W(\mu-m)\|^2\)</span> to the derivative. Thus the composite functional <a href="#eq-composite-energy" class="quarto-xref">Equation&nbsp;6.10</a> is a direct sum of the mean–covariance energy and an objective actually decreased by the complete averaged recursion.</p>
 </section>
 <section id="invariant-subspaces-and-finitely-many-energy-values" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="invariant-subspaces-and-finitely-many-energy-values"><span class="header-section-number">10.4</span> Invariant subspaces and finitely many energy values</h2>
-<p>Let <span class="math inline">\(C=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top\)</span>, counting eigenvalues with multiplicity. If <span class="math inline">\(\operatorname{span}(W)\)</span> is invariant under the symmetric <span class="math inline">\(C\)</span>, it is a direct sum of subspaces of eigenspaces. The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> equals a sum of exactly <span class="math inline">\(r\)</span> entries from this eigenvalue list. The number of possible sums is finite, although there can be infinitely many orthonormal bases representing the same invariant subspace, and even infinitely many invariant subspaces when eigenvalues repeat. Therefore <span class="math inline">\(\widetilde w_L(\mathcal E)\)</span> is a finite subset of <span class="math inline">\(\mathbb R\)</span>, as required by <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>, Proposition 6.4.</p>
+<p>Let <span class="math inline">\(C=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top\)</span>, counting eigenvalues with multiplicity. If <span class="math inline">\(\operatorname{span}(W)\)</span> is invariant under the symmetric <span class="math inline">\(C\)</span>, it is a direct sum of subspaces of eigenspaces. The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> equals a sum of exactly <span class="math inline">\(r\)</span> entries from this eigenvalue list. The number of possible sums is finite, although there can be infinitely many orthonormal bases representing the same invariant subspace, and even infinitely many invariant subspaces when eigenvalues repeat. Therefore <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> is a finite subset of <span class="math inline">\(\mathbb R\)</span>, as required by <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>, Proposition 6.4.</p>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
