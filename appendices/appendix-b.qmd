@@ -47,11 +47,11 @@ Thus $\Gamma_n$ stays positive definite at every **finite** iteration.  This doe
 
 The residual projector $P_W=I-WW^\top$ is symmetric and idempotent.  Therefore the expected reconstruction error in @eq-reconstruction-energy is equivalently
 
-$
+$$
 \mathcal R(\mu,W)
 =\frac12\big(\operatorname{tr}Q(\mu)
 -\operatorname{tr}(W^\top Q(\mu)W)\big).
-$
+$$
 
 At fixed $\mu$, minimizing $\mathcal R$ means maximizing the variance explained by $W$.  On the Stiefel manifold its negative Riemannian gradient is exactly the averaged sample-driven Oja field; see @lem-reconstruction-gradient.  The moving centring parameter contributes the further nonpositive term $-\|P_W(\mu-m)\|^2$ to the derivative.  Thus the composite functional @eq-composite-energy is a direct sum of the mean--covariance energy and an objective actually decreased by the complete averaged recursion.
 
