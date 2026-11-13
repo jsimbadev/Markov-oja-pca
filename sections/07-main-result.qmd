@@ -14,7 +14,7 @@ and let $\Omega_{\mathrm{ec}}$ be the union of these events over a fixed countab
 ::: {#thm-localized-oja}
 ## Localized convergence of adaptive Markov--Oja
 
-Suppose the target satisfies @asm-target-M and the Gaussian random-walk Metropolis family satisfies @asm-kernel.  Let $(X_n,\mu_n,\Gamma_n,W_n)$ follow @def-coupled-recursion with @asm-step-sizes, $\Gamma_0\succ0$, $W_0\in\mathrm{St}(d,r)$, and $\mathbb E V(X_0)<\infty$.  Then, almost surely on $\Omega_{\mathrm{ec}}$,
+Suppose the target satisfies @asm-target-M and the subspace-dependent Gaussian random-walk Metropolis family @eq-subspace-proposal satisfies @asm-kernel.  Let $(X_n,\mu_n,\Gamma_n,W_n)$ follow @def-coupled-recursion with @asm-step-sizes, $\Gamma_0\succ0$, $W_0\in\mathrm{St}(d,r)$, and $\mathbb E V(X_0)<\infty$.  Then, almost surely on $\Omega_{\mathrm{ec}}$,
 
 $$
 \boxed{\quad
@@ -50,19 +50,19 @@ In particular this theorem does not assert convergence to the dominant principal
 
 It is a convergence theorem for the un-reprojected recursion **conditional on eventual compactness**.  The qualification is mathematically precise: for any path on which the estimates stay eventually inside a compact subset of the positive-definite domain, the stochastic and geometric perturbations have negligible tails and the limit-set argument applies.
 
-A&M achieve unconditional stability for their mean--covariance recursion with a random-reinitialization mechanism, under an open Euclidean parameter-domain formulation.  The extra Stiefel coordinate is compact, and its retraction contributes a summable error.  These facts strongly suggest adapting that stability proof, but @thm-localized-oja does not silently equate a summable perturbation with an automatic invocation of A&M's Theorem 11.
+A&M achieve unconditional stability for their covariance-only mean--covariance recursion with a random-reinitialization mechanism. Here the kernel additionally depends on $W$, so that result cannot simply be inherited from an autonomous covariance-only marginal process. The compact Stiefel coordinate and summable retraction error help, but the random-truncation argument must be verified for the fully coupled state. No unconditional stability claim is made by @thm-localized-oja.
 
 ::: {#cor-finite-reinitialization}
 ## Finite-reinitialization consequence
 
-Suppose an implementation of the enlarged recursion uses an A&M-type expanding-compact reinitialization mechanism, and suppose its number of reinitializations is almost surely finite and its post-last-reinitialization trajectory is eventually contained in a compact mean--covariance set.  Then @eq-main-convergence holds almost surely.
+Suppose an implementation of the feedback-coupled recursion uses an A&M-type expanding-compact reinitialization mechanism, and suppose its number of reinitializations is almost surely finite and its post-last-reinitialization trajectory is eventually contained in a compact mean--covariance set.  Then @eq-main-convergence holds almost surely.
 :::
 
 ::: {.proof}
 After the last reinitialization the dynamics have the form @def-coupled-recursion, possibly with a shifted step-size index.  A finite prefix does not affect any summability, ODE-time or limit-set argument; apply @thm-localized-oja to that tail.
 :::
 
-The premise that the enlarged algorithm has finitely many reinitializations is an **additional stability obligation**.  A direct manifold-compatible adaptation of A&M's Theorem 11 would close the unconditional version; it is not proved in this draft.
+The premise that the feedback-coupled algorithm has finitely many reinitializations is an **additional stability obligation**. A manifold-compatible adaptation of A&M's random-truncation argument, with a specified reset map and $W$-dependent kernel regularity, would close the unconditional version; it is not proved in this draft.
 
 ## A deterministic check on the limiting flow
 
