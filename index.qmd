@@ -7,21 +7,22 @@ author:
       - name: "University College London — CCMI CDT"
 date: last-modified
 abstract: |
-  We investigate whether Oja's online principal-subspace iteration can be
-  coupled to adaptive Markov chain Monte Carlo without assuming independent
-  samples.  The adaptive mean and covariance estimates follow the recursion
-  considered by Andrieu and Moulines, while an additional Stiefel-valued
-  iterate is updated through a polar retraction.  We identify the common
+  We analyse global online principal-subspace adaptation in Metropolis sampling
+  where the proposal covariance depends jointly on the learned covariance and
+  Oja subspace. The mean and covariance updates follow Andrieu and Moulines,
+  and an additional Stiefel-valued iterate uses the same accepted states and
+  a polar retraction.  We identify the common
   averaged vector field, establish a uniform second-order bound for the
   retraction error, and give an explicit weighted Poisson decomposition of
   the controlled Markov fluctuations.  A localized convergence theorem
   shows that, on eventually compact parameter trajectories, the estimates
   approach the target moments and the Oja iterate approaches the collection
-  of invariant subspaces of the target covariance.  A composite Lyapunov
+  of invariant subspaces of the target covariance, despite feedback from the
+  learned subspace to the kernel.  A composite Lyapunov
   function based on the expected PCA reconstruction error gives an exact global
   dissipation identity for the averaged coupled system.
-  The remaining global stability question, needed for an unconditional
-  convergence theorem for the untruncated algorithm, is isolated explicitly.
+  The remaining global stochastic stability question for the fully
+  feedback-coupled algorithm is isolated explicitly.
 keywords:
   - adaptive MCMC
   - online PCA
