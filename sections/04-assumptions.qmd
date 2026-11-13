@@ -35,20 +35,27 @@ so $V\geq1$.  For a vector- or matrix-valued observable $f$, use $\|f\|_{V^a}=\s
 ::: {#asm-kernel}
 ## Locally uniform Markov kernel control
 
-For every compact $K\subset\mathbb R^d\times\mathbb S_{++}^d$, the family $P_\Gamma$, $(\mu,\Gamma)\in K$, satisfies uniform minorization and geometric drift with weight $V$, and the weighted operator bound
+For every compact $K\subset\Theta$, the family $P_\theta=P_{\Gamma,W}$, $\theta\in K$, satisfies uniform minorization and geometric drift with weight $V$, and the weighted operator bound
 
 $$
-\|(P_\Gamma-P_{\Gamma'})f\|_{V^a}
-\leq L_{K,a}\|\Gamma-\Gamma'\|_F\|f\|_{V^a},
+\|(P_\theta-P_{\theta'})f\|_{V^a}
+\leq L_{K,a}\|\theta-\theta'\|\,\|f\|_{V^a},
 \qquad 0\leq a\leq1.
 $$ {#eq-weighted-kernel-lipschitz}
 
-Every $P_\Gamma$ preserves the same $\pi$.
+Every $P_\theta$ preserves the same $\pi$.
 :::
 
-Proposition 12 and Lemma 13 of @andrieuMoulines2006 establish precisely these ingredients for the symmetric Gaussian random-walk Metropolis family under @asm-target-M.  Notice that $P_{\mu,\Gamma,W}=P_\Gamma$: adjoining $W$ adds **no new kernel dependence**.  Compactness of $\mathrm{St}(d,r)$ makes the constants uniform in $W$.
+Proposition 12 and Lemma 13 of @andrieuMoulines2006 provide the needed Gaussian random-walk drift/minorization and proposal-covariance perturbation ingredients under @asm-target-M. To apply them here, consider the covariance map @eq-subspace-proposal. For each compact $K\subset\Theta$, the eigenvalues of $\Sigma(\Gamma,W)$ lie uniformly in an interval $[a_K,b_K]\subset(0,\infty)$, and smoothness yields
 
-For a chain stopped when $(\mu_n,\Gamma_n)$ exits a compact parameter region, the drift bound yields a localized moment estimate of the form
+$$
+\|\Sigma(\Gamma,W)-\Sigma(\Gamma',W')\|_F
+\leq C_K\big(\|\Gamma-\Gamma'\|_F+\|W-W'\|_F\big).
+$$ {#eq-subspace-covariance-lipschitz}
+
+Thus A&M's Gaussian estimates apply on the compact image of $K$ under $\Sigma$. Unlike covariance-only adaptation, **changes in $W$ enter the kernel and the Poisson parameter-variation estimate**. The exact weighted operator bounds and exponents invoked from A&M should be checked against their primary statements when closing unconditional stability.
+
+For a chain stopped when $(\mu_n,\Gamma_n,W_n)$ exits a compact parameter region, the drift bound yields a localized moment estimate of the form
 
 $$
 \sup_{n\geq0}\mathbb E[
@@ -73,7 +80,7 @@ $$ {#eq-stepsizes}
 ::: {#lem-observable-regularity}
 ## Polynomial and weighted Lipschitz bounds
 
-For every compact $K$ in the mean--covariance parameter domain, a constant $A_K$ exists such that for all $\theta,\theta'\in K\times\mathrm{St}(d,r)$,
+For every compact $K\subset\Theta$, a constant $A_K$ exists such that for all $\theta,\theta'\in K$,
 
 $$
 \begin{aligned}
@@ -116,7 +123,7 @@ Existence alone is not enough: changing $\theta$ generates differences of $P_\th
 ::: {#lem-poisson-regularity}
 ## Uniform bounds and Lipschitz regularity
 
-On every compact $K\times\mathrm{St}(d,r)$, there exists $L_K$ such that
+On every compact $K\subset\Theta$, there exists $L_K$ such that
 
 $$
 \begin{aligned}
