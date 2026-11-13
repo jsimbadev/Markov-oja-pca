@@ -14,6 +14,9 @@ This page fixes notation used throughout the manuscript.  The conventions for we
 | $\mathbb S_{++}^d$ | Real symmetric, **strictly** positive-definite $d\times d$ matrices |
 | $\mathrm{St}(d,r)$ | $\{W\in\mathbb R^{d\times r}:W^\top W=I_r\}$ |
 | $W_n$ | Stiefel iterate; $\operatorname{span}(W_n)$ is its subspace |
+| $P_W$ | Orthogonal residual projector $I-WW^\top$ |
+| $\mathcal R(\mu,W)$ | Expected centred PCA reconstruction error $\frac12\pi[\|P_W(X-\mu)\|^2]$ |
+| $\mathcal L_\lambda$ | Joint Lyapunov function $w_{\mathrm{AM}}+\lambda\mathcal R$, $\lambda>0$ |
 | $\theta_n$ | Full parameter $(\mu_n,\Gamma_n,W_n)$ |
 | $P_\theta$ | Frozen MCMC kernel; in the example $P_\theta=P_\Gamma$ |
 | $H(\theta,x)$ | Stochastic approximation observable in ambient coordinates |
