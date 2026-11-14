@@ -14,8 +14,9 @@ Status categories: **PROVED IN DRAFT** means the argument is written here but aw
 | Weighted cumulative Markov noise convergence | PROVED IN DRAFT | Section 5, Appendix A; verify localization indicators, endpoint indexing and initial moments by hand |
 | Euclidean ODE tracking for full recursion | PROVED IN DRAFT | Section 5, standard discrete Grönwall / APT theorem |
 | A&M Lyapunov drift identity | PROVED IN DRAFT | Section 6; rederive from (52), do not mechanically rely on printed expanded (53) |
-| Compact sublevels, uniform eigenvalue bounds | PROVED IN DRAFT | Section 6, eigenvalue transform and Rayleigh--Ritz |
+| Compact sublevels, uniform eigenvalue bounds | PROVED IN DRAFT | Section 6, eigenvalue transform and Rayleigh--Ritz; Section 6b inherits joint compactness from nonnegative reconstruction energy and compact Stiefel |
 | Joint reconstruction-error Lyapunov identity | PROVED IN DRAFT | Section 6; differentiate \(\mathcal R(\mu,W)=\tfrac12\pi[\|P_W(X-\mu)\|^2]\) in both \(\mu\) and \(W\), and verify global strictness for any \(\lambda>0\) |
+| Deterministic AMP stability hypotheses (Lyapunov compactness, strict decrease, critical values) | PROVED IN DRAFT | Section 6b; verify Euclidean-to-Stiefel use of AMP's perturbation lemma separately |
 | Finite Lyapunov critical values and ICT theorem | FROM LITERATURE | Benaïm 1999 Theorem 5.7 and Proposition 6.4 |
 | Conditional almost-sure convergence to invariant-subspace set | PROVED IN DRAFT | Section 7; verify the localized path argument under chosen filtration |
 | Finite number of reinitializations for the feedback-coupled algorithm | OPEN | Requires manifold-compatible A&M random truncation, W-dependent kernel control and exact reset map |
@@ -27,6 +28,6 @@ Status categories: **PROVED IN DRAFT** means the argument is written here but aw
 
 1. Reproduce both gradients of the reconstruction-error functional and the exact three-square dissipation identity in Section 6 without reference to this draft.
 2. Check the stopped weighted Poisson decomposition term by term in Appendix A.
-3. Verify hypotheses and exact theorem numbering in A&M and Benaïm.
+3. Read AMP Section 2 and verify the ambient-extension/perturbed-retraction step in Section 6b; separately verify hypotheses and exact theorem numbering in A&M and Benaïm.
 4. Check the feedback-coupled kernel estimates and decide whether to close the random-truncation stability argument before posting.
 5. Review the final rendered PDF and compare mathematical line breaks with the source.
