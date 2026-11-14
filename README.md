@@ -18,8 +18,9 @@ After GitHub Actions renders the manuscript, the current branch contains:
 4. Markov assumptions and Poisson regularity
 5. Retraction and stochastic error accumulation
 6. Expected reconstruction error and global joint Lyapunov dissipation
-7. Localized convergence theorem
-8. Interpretation and limitations
+7. Deterministic stability in the sense of AMP: compact sublevels, strict decrease and critical values
+8. Localized convergence theorem
+9. Interpretation and limitations
 
 Appendix A details all four Poisson remainder estimates; Appendix B records the geometry and the invariant-subspace calculations.
 
