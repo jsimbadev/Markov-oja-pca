@@ -44,6 +44,8 @@ keywords:
 
 {{< include sections/06-lyapunov.qmd >}}
 
+{{< include sections/06b-deterministic-stability.qmd >}}
+
 {{< include sections/07-main-result.qmd >}}
 
 {{< include sections/08-discussion.qmd >}}
