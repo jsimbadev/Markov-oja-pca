@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jordan Simbananiye">
-<meta name="dcterms.date" content="2026-11-13">
+<meta name="dcterms.date" content="2026-11-14">
 <meta name="keywords" content="adaptive MCMC, online PCA, Oja iteration, stochastic approximation, Poisson equation, retraction">
 
 <title>Online principal-subspace estimation with adaptive Markov chain Monte Carlo</title>
@@ -220,22 +220,28 @@ window.Quarto = {
   <li><a href="#a-lyapunov-function-for-the-full-coupled-system" id="toc-a-lyapunov-function-for-the-full-coupled-system" class="nav-link" data-scroll-target="#a-lyapunov-function-for-the-full-coupled-system"><span class="header-section-number">6.4</span> A Lyapunov function for the full coupled system</a></li>
   <li><a href="#equilibria-and-lyapunov-values" id="toc-equilibria-and-lyapunov-values" class="nav-link" data-scroll-target="#equilibria-and-lyapunov-values"><span class="header-section-number">6.5</span> Equilibria and Lyapunov values</a></li>
   </ul></li>
-  <li><a href="#sec-main-result" id="toc-sec-main-result" class="nav-link" data-scroll-target="#sec-main-result"><span class="header-section-number">7</span> Convergence theorem and its scope</a>
+  <li><a href="#sec-deterministic-stability" id="toc-sec-deterministic-stability" class="nav-link" data-scroll-target="#sec-deterministic-stability"><span class="header-section-number">7</span> Deterministic stability and the AMP criterion</a>
   <ul class="collapse">
-  <li><a href="#how-to-read-this-statement" id="toc-how-to-read-this-statement" class="nav-link" data-scroll-target="#how-to-read-this-statement"><span class="header-section-number">7.1</span> How to read this statement</a></li>
-  <li><a href="#a-deterministic-check-on-the-limiting-flow" id="toc-a-deterministic-check-on-the-limiting-flow" class="nav-link" data-scroll-target="#a-deterministic-check-on-the-limiting-flow"><span class="header-section-number">7.2</span> A deterministic check on the limiting flow</a></li>
+  <li><a href="#the-lyapunov-hypotheses-on-the-product-parameter-space" id="toc-the-lyapunov-hypotheses-on-the-product-parameter-space" class="nav-link" data-scroll-target="#the-lyapunov-hypotheses-on-the-product-parameter-space"><span class="header-section-number">7.1</span> The Lyapunov hypotheses on the product parameter space</a></li>
+  <li><a href="#from-a-directional-derivative-to-a-finite-step-inequality" id="toc-from-a-directional-derivative-to-a-finite-step-inequality" class="nav-link" data-scroll-target="#from-a-directional-derivative-to-a-finite-step-inequality"><span class="header-section-number">7.2</span> From a directional derivative to a finite-step inequality</a></li>
+  <li><a href="#what-remains-for-global-stochastic-stability" id="toc-what-remains-for-global-stochastic-stability" class="nav-link" data-scroll-target="#what-remains-for-global-stochastic-stability"><span class="header-section-number">7.3</span> What remains for global stochastic stability</a></li>
   </ul></li>
-  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">8</span> Interpretation and further questions</a>
+  <li><a href="#sec-main-result" id="toc-sec-main-result" class="nav-link" data-scroll-target="#sec-main-result"><span class="header-section-number">8</span> Convergence theorem and its scope</a>
   <ul class="collapse">
-  <li><a href="#global-covariance-as-a-reference" id="toc-global-covariance-as-a-reference" class="nav-link" data-scroll-target="#global-covariance-as-a-reference"><span class="header-section-number">8.1</span> Global covariance as a reference</a></li>
+  <li><a href="#how-to-read-this-statement" id="toc-how-to-read-this-statement" class="nav-link" data-scroll-target="#how-to-read-this-statement"><span class="header-section-number">8.1</span> How to read this statement</a></li>
+  <li><a href="#a-deterministic-check-on-the-limiting-flow" id="toc-a-deterministic-check-on-the-limiting-flow" class="nav-link" data-scroll-target="#a-deterministic-check-on-the-limiting-flow"><span class="header-section-number">8.2</span> A deterministic check on the limiting flow</a></li>
   </ul></li>
-  <li><a href="#sec-appendix-poisson" id="toc-sec-appendix-poisson" class="nav-link" data-scroll-target="#sec-appendix-poisson"><span class="header-section-number">9</span> Detailed weighted Poisson estimates</a></li>
-  <li><a href="#sec-appendix-geometry" id="toc-sec-appendix-geometry" class="nav-link" data-scroll-target="#sec-appendix-geometry"><span class="header-section-number">10</span> Supplementary geometric and deterministic details</a>
+  <li><a href="#sec-discussion" id="toc-sec-discussion" class="nav-link" data-scroll-target="#sec-discussion"><span class="header-section-number">9</span> Interpretation and further questions</a>
   <ul class="collapse">
-  <li><a href="#the-stiefel-tangent-and-invariance-statements" id="toc-the-stiefel-tangent-and-invariance-statements" class="nav-link" data-scroll-target="#the-stiefel-tangent-and-invariance-statements"><span class="header-section-number">10.1</span> The Stiefel tangent and invariance statements</a></li>
-  <li><a href="#positive-definiteness-of-the-covariance-iterate" id="toc-positive-definiteness-of-the-covariance-iterate" class="nav-link" data-scroll-target="#positive-definiteness-of-the-covariance-iterate"><span class="header-section-number">10.2</span> Positive definiteness of the covariance iterate</a></li>
-  <li><a href="#the-reconstruction-error-objective-and-its-geometric-interpretation" id="toc-the-reconstruction-error-objective-and-its-geometric-interpretation" class="nav-link" data-scroll-target="#the-reconstruction-error-objective-and-its-geometric-interpretation"><span class="header-section-number">10.3</span> The reconstruction-error objective and its geometric interpretation</a></li>
-  <li><a href="#invariant-subspaces-and-finitely-many-energy-values" id="toc-invariant-subspaces-and-finitely-many-energy-values" class="nav-link" data-scroll-target="#invariant-subspaces-and-finitely-many-energy-values"><span class="header-section-number">10.4</span> Invariant subspaces and finitely many energy values</a></li>
+  <li><a href="#global-covariance-as-a-reference" id="toc-global-covariance-as-a-reference" class="nav-link" data-scroll-target="#global-covariance-as-a-reference"><span class="header-section-number">9.1</span> Global covariance as a reference</a></li>
+  </ul></li>
+  <li><a href="#sec-appendix-poisson" id="toc-sec-appendix-poisson" class="nav-link" data-scroll-target="#sec-appendix-poisson"><span class="header-section-number">10</span> Detailed weighted Poisson estimates</a></li>
+  <li><a href="#sec-appendix-geometry" id="toc-sec-appendix-geometry" class="nav-link" data-scroll-target="#sec-appendix-geometry"><span class="header-section-number">11</span> Supplementary geometric and deterministic details</a>
+  <ul class="collapse">
+  <li><a href="#the-stiefel-tangent-and-invariance-statements" id="toc-the-stiefel-tangent-and-invariance-statements" class="nav-link" data-scroll-target="#the-stiefel-tangent-and-invariance-statements"><span class="header-section-number">11.1</span> The Stiefel tangent and invariance statements</a></li>
+  <li><a href="#positive-definiteness-of-the-covariance-iterate" id="toc-positive-definiteness-of-the-covariance-iterate" class="nav-link" data-scroll-target="#positive-definiteness-of-the-covariance-iterate"><span class="header-section-number">11.2</span> Positive definiteness of the covariance iterate</a></li>
+  <li><a href="#the-reconstruction-error-objective-and-its-geometric-interpretation" id="toc-the-reconstruction-error-objective-and-its-geometric-interpretation" class="nav-link" data-scroll-target="#the-reconstruction-error-objective-and-its-geometric-interpretation"><span class="header-section-number">11.3</span> The reconstruction-error objective and its geometric interpretation</a></li>
+  <li><a href="#invariant-subspaces-and-finitely-many-energy-values" id="toc-invariant-subspaces-and-finitely-many-energy-values" class="nav-link" data-scroll-target="#invariant-subspaces-and-finitely-many-energy-values"><span class="header-section-number">11.4</span> Invariant subspaces and finitely many energy values</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -270,7 +276,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">13 November 2026</p>
+      <p class="date">14 November 2026</p>
     </div>
   </div>
   
@@ -300,16 +306,17 @@ window.Quarto = {
 <p><em>Can an Oja principal-subspace recursion be run on the output of an adaptive MCMC sampler while retaining a rigorous stochastic approximation interpretation and convergence guarantee?</em></p>
 <p>We consider a single global target distribution <span class="math inline">\(\pi\)</span> on <span class="math inline">\(\mathbb R^d\)</span> and a Gaussian random-walk Metropolis family whose proposal covariance depends jointly on the covariance estimate <span class="math inline">\(\Gamma_n\)</span> and the learned principal subspace <span class="math inline">\(W_n\)</span>. Moment adaptation follows <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>, while Oja uses the <strong>same accepted states</strong> and a Stiefel retraction. The subspace is not merely a passive diagnostic: it feeds back into the Markov kernel. The full covariance supplies a global reference geometry, and Oja maintains a low-dimensional subspace without repeatedly diagonalizing that estimate.</p>
 <p>Three mathematical observations make the coupling tractable. First, all frozen MCMC kernels have the same invariant distribution <span class="math inline">\(\pi\)</span>. Their time-inhomogeneity, now including feedback through <span class="math inline">\(W\)</span>, affects the <strong>noise averaging argument</strong> but not the algebraic form of the mean field. Second, a polar retraction can be expanded in the ambient matrix space with a quadratic remainder, allowing Euclidean stochastic approximation estimates without changing the geometry of the actual iterates. Third, the dependence of both the covariance and Oja updates on the evolving mean identifies a natural expected reconstruction-error objective. Together with the mean–covariance Lyapunov function, it gives an exact global dissipation identity for the coupled averaged flow.</p>
+<p>We also make explicit the deterministic stability mechanism of Andrieu, Moulines and Priouret <span class="citation" data-cites="andrieuMoulinesPriouret2005">[<a href="#ref-andrieuMoulinesPriouret2005" role="doc-biblioref">2</a>]</span>: compact joint Lyapunov sublevels and strict mean-field dissipation furnish its deterministic hypotheses, while finite reinitialization for the enlarged Markov-driven recursion remains an independent stochastic question.</p>
 <p>The paper follows the proof rather than concealing its mechanics. We derive the mean field, state weighted-kernel assumptions, expand the retraction, show the exact telescoping terms in the Poisson decomposition, and differentiate the Lyapunov function explicitly. The initial convergence conclusion is deliberately the approach to the set of <strong>invariant <span class="math inline">\(r\)</span>-dimensional subspaces</strong>, for the feedback-coupled global adaptation. Almost-sure selection of the leading eigenspace is a stronger claim and is not implied by deterministic eigenvalue gaps alone.</p>
 <section id="relation-to-existing-results" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="relation-to-existing-results"><span class="header-section-number">1.1</span> Relation to existing results</h2>
-<p>Andrieu and Moulines establish a general controlled-Markov framework for adaptive MCMC, including kernel drift and regularity estimates, Poisson equations, and a random-truncation stability method <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>. We retain that framework and its condition (M), composing its Gaussian kernel bounds with a smooth subspace-dependent covariance map rather than assuming independent samples. The retraction calculations use standard embedded-manifold Taylor expansions as developed by <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">2</a>]</span>. The expected reconstruction-error objective follows the classical Lyapunov treatment of principal-component algorithms <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span>. We use the ordinary differential equation (ODE) method for stochastic approximation and the associated internally chain-transitive limit-set principle <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>.</p>
+<p>Andrieu and Moulines establish a general controlled-Markov framework for adaptive MCMC, including kernel drift and regularity estimates, Poisson equations, and a random-truncation stability method <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>. We retain that framework and its condition (M), composing its Gaussian kernel bounds with a smooth subspace-dependent covariance map rather than assuming independent samples. The retraction calculations use standard embedded-manifold Taylor expansions as developed by <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">3</a>]</span>. The expected reconstruction-error objective follows the classical Lyapunov treatment of principal-component algorithms <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">4</a>]</span>. We use the ordinary differential equation (ODE) method for stochastic approximation and the associated internally chain-transitive limit-set principle <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">5</a>]</span>.</p>
 <p>The contribution is a transparent synthesis for this particular coupled recursion, not a new general theorem about manifold-valued Markov processes. In particular, the first main theorem is <strong>localized</strong>: it proves convergence on sample paths whose mean–covariance estimates ultimately remain in a compact subset of the positive-definite parameter domain. The finite-reinitialization step required to remove that qualification for the enlarged adaptive algorithm is listed as a separate proof obligation.</p>
 </section>
 </section>
 <section id="sec-notation" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Notation and conventions</h1>
-<p>This page fixes notation used throughout the manuscript. The conventions for weighted functions, the Markov kernel and Poisson equations follow <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>; the notation for the Stiefel manifold and retractions follows <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">2</a>]</span>.</p>
+<p>This page fixes notation used throughout the manuscript. The conventions for weighted functions, the Markov kernel and Poisson equations follow <span class="citation" data-cites="andrieuMoulines2006">[<a href="#ref-andrieuMoulines2006" role="doc-biblioref">1</a>]</span>; the notation for the Stiefel manifold and retractions follows <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">3</a>]</span>.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -638,7 +645,7 @@ R_W(U)-W-U=(W+U)[(I_r+U^\top U)^{-1/2}-I_r].
 \leq2\sqrt r+\|U\|_F
 \leq(2\sqrt r+1)\|U\|_F^2.
 \]</span></p>
-<p>The linear estimate follows for small <span class="math inline">\(U\)</span> from the quadratic one, and for large <span class="math inline">\(U\)</span> from <span class="math inline">\(\|R_W(U)-W\|_F\leq2\sqrt r\)</span>. This explicit global bound is convenient with unbounded MCMC observations; the local Taylor principle is described in <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">2</a>]</span>, Section 4.1.</p>
+<p>The linear estimate follows for small <span class="math inline">\(U\)</span> from the quadratic one, and for large <span class="math inline">\(U\)</span> from <span class="math inline">\(\|R_W(U)-W\|_F\leq2\sqrt r\)</span>. This explicit global bound is convenient with unbounded MCMC observations; the local Taylor principle is described in <span class="citation" data-cites="boumal2023">[<a href="#ref-boumal2023" role="doc-biblioref">3</a>]</span>, Section 4.1.</p>
 </div>
 <p>Writing <span class="math inline">\(G_n=G(\mu_n,W_n,X_{n+1})\)</span>, <a href="#eq-coupled-algorithm" class="quarto-xref">Equation&nbsp;3.6</a> becomes</p>
 <p><span id="eq-retraction-remainder"><span class="math display">\[
@@ -699,7 +706,7 @@ M_k=u_{\theta_{k-1}}(X_k)-v_{\theta_{k-1}}(X_{k-1}).
 \tag{5.7}\]</span></span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>The estimates are detailed in <a href="#sec-appendix-poisson" class="quarto-xref">Chapter&nbsp;9</a>. In summary, the first line of <a href="#eq-weighted-poisson" class="quarto-xref">Equation&nbsp;5.6</a> converges by the martingale <span class="math inline">\(L^2\)</span> theorem and <span class="math inline">\(\sum\gamma_k^2&lt;\infty\)</span>. Its endpoints vanish by Borel–Cantelli. The third line has absolutely summable coefficients because <span class="math inline">\(\gamma_k\)</span> is nonincreasing. For the final line, combine Poisson Lipschitz regularity with the parameter increment estimate</p>
+<p><span class="proof-title"><em>Proof</em>. </span>The estimates are detailed in <a href="#sec-appendix-poisson" class="quarto-xref">Chapter&nbsp;10</a>. In summary, the first line of <a href="#eq-weighted-poisson" class="quarto-xref">Equation&nbsp;5.6</a> converges by the martingale <span class="math inline">\(L^2\)</span> theorem and <span class="math inline">\(\sum\gamma_k^2&lt;\infty\)</span>. Its endpoints vanish by Borel–Cantelli. The third line has absolutely summable coefficients because <span class="math inline">\(\gamma_k\)</span> is nonincreasing. For the final line, combine Poisson Lipschitz regularity with the parameter increment estimate</p>
 <p><span id="eq-increment-estimate"><span class="math display">\[
 \|\theta_k-\theta_{k-1}\|
 \leq C_K\gamma_k V^\beta(X_k),
@@ -716,7 +723,7 @@ M_k=u_{\theta_{k-1}}(X_k)-v_{\theta_{k-1}}(X_{k-1}).
 [\gamma_{k+1}\xi_{k+1}+(0,0,r_{k+1})]\right\|\to0.
 \tag{5.9}\]</span></span></p>
 <p>The averaged field is locally Lipschitz; its Euler error on a compact set is <span class="math inline">\(O(\sum\gamma_k^2)\)</span>. Comparing the interpolation with the integral equation for <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.10</a> and applying Grönwall’s inequality proves that the interpolation is an <strong>asymptotic pseudotrajectory</strong> of the ODE. Its values between consecutive Stiefel iterates need not lie on the manifold; their distance to the manifold vanishes because <a href="#eq-increment-estimate" class="quarto-xref">Equation&nbsp;5.8</a> and the weighted moment bound imply the step increment tends to zero. The limiting flow itself preserves Stiefel orthogonality.</p>
-<p>This is the usual Euclidean stochastic approximation method <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>, with the extra geometric term shown explicitly.</p>
+<p>This is the usual Euclidean stochastic approximation method <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">5</a>]</span>, with the extra geometric term shown explicitly.</p>
 </section>
 </section>
 <section id="sec-lyapunov" class="level1" data-number="6">
@@ -809,7 +816,7 @@ P_W=I-WW^\top.
   +\frac12v^\top P_Wv.
 \end{aligned}
 \tag{6.6}\]</span></span></p>
-<p>The second equality uses <a href="#eq-second-moment-identity" class="quarto-xref">Equation&nbsp;3.8</a>. Notice that <span class="math inline">\(\mathcal R\geq0\)</span> and, importantly, the centring parameter <span class="math inline">\(\mu\)</span> is the <strong>same</strong> parameter used in both the covariance and the sample-driven Oja recursions. This choice connects the objective directly to the algorithm and to classical reconstruction-error Lyapunov arguments for PCA <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span>.</p>
+<p>The second equality uses <a href="#eq-second-moment-identity" class="quarto-xref">Equation&nbsp;3.8</a>. Notice that <span class="math inline">\(\mathcal R\geq0\)</span> and, importantly, the centring parameter <span class="math inline">\(\mu\)</span> is the <strong>same</strong> parameter used in both the covariance and the sample-driven Oja recursions. This choice connects the objective directly to the algorithm and to classical reconstruction-error Lyapunov arguments for PCA <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">4</a>]</span>.</p>
 <div id="lem-reconstruction-gradient" class="theorem lemma">
 <p><span class="theorem-title"><strong>Lemma 6.2 (The Oja field is the negative reconstruction-error gradient)</strong></span> For fixed <span class="math inline">\(\mu\)</span>, the Riemannian gradient on the embedded Stiefel manifold is</p>
 <p><span id="eq-reconstruction-gradient"><span class="math display">\[
@@ -912,55 +919,115 @@ CW=WW^\top CW.
   \frac{\lambda}{2}
    \big(\operatorname{tr}C-\operatorname{tr}(W^\top CW)\big).
 \tag{6.14}\]</span></span></p>
-<p>The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> is a sum of <span class="math inline">\(r\)</span> eigenvalues of <span class="math inline">\(C\)</span>, counted with multiplicity. Hence <span class="math inline">\(\mathcal L_\lambda\)</span> assumes only <strong>finitely many distinct values</strong> on <span class="math inline">\(\mathcal E\)</span>, even when eigenspaces have multiplicity and contain infinitely many possible frames. This property will allow us to apply the internally chain-transitive limit-set argument of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>.</p>
+<p>The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> is a sum of <span class="math inline">\(r\)</span> eigenvalues of <span class="math inline">\(C\)</span>, counted with multiplicity. Hence <span class="math inline">\(\mathcal L_\lambda\)</span> assumes only <strong>finitely many distinct values</strong> on <span class="math inline">\(\mathcal E\)</span>, even when eigenspaces have multiplicity and contain infinitely many possible frames. This property will allow us to apply the internally chain-transitive limit-set argument of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">5</a>]</span>.</p>
 </section>
 </section>
-<section id="sec-main-result" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Convergence theorem and its scope</h1>
-<p>We now combine the stochastic averaging, retraction and Lyapunov arguments. It is important to distinguish the localized theorem below from a global theorem for untruncated adaptation.</p>
+<section id="sec-deterministic-stability" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Deterministic stability and the AMP criterion</h1>
+<p>The previous section establishes the Lyapunov structure of the <em>averaged</em> coupled system. We now state explicitly how it fits the deterministic stability argument of Andrieu, Moulines and Priouret <span class="citation" data-cites="andrieuMoulinesPriouret2005">[<a href="#ref-andrieuMoulinesPriouret2005" role="doc-biblioref">2, sect. 2</a>]</span>. This separates what follows from the mean field and its geometry from the remaining probabilistic question of eventual compactness.</p>
+<section id="the-lyapunov-hypotheses-on-the-product-parameter-space" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-lyapunov-hypotheses-on-the-product-parameter-space"><span class="header-section-number">7.1</span> The Lyapunov hypotheses on the product parameter space</h2>
+<p>Write <span class="math inline">\(\Theta=\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)\)</span> and let <span class="math inline">\(\mathcal L_\lambda=w_{\mathrm{AM}}+\lambda\mathcal R\)</span>, for any <span class="math inline">\(\lambda&gt;0\)</span>. The relevant form of AMP’s condition (A1) consists of a continuously differentiable Lyapunov function, a compact sublevel containing its zero-dissipation set, a nonpositive derivative along <span class="math inline">\(h\)</span> (strict away from that set), and an empty-interior set of Lyapunov critical values. AMP formulate this on a Euclidean parameter domain; here the deterministic flow lies on a smooth product manifold. We verify the <em>properties</em> first, without asserting that the Euclidean theorem applies to the retracted recursion verbatim.</p>
+<div id="prp-amp-lyapunov" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 7.1 (Verification of the deterministic Lyapunov properties)</strong></span> Assume <span class="math inline">\(C\succ0\)</span> and use the mean field <a href="#eq-coupled-field" class="quarto-xref">Equation&nbsp;3.9</a>. For each <span class="math inline">\(\lambda&gt;0\)</span>, the following hold.</p>
+<ol type="1">
+<li><span class="math inline">\(\mathcal L_\lambda\)</span> is continuously differentiable on <span class="math inline">\(\Theta\)</span>, and every nonempty sublevel <span class="math inline">\(\{\mathcal L_\lambda\leq L\}\)</span> is compact in <span class="math inline">\(\Theta\)</span>.</li>
+<li><span class="math inline">\(D\mathcal L_\lambda(\theta)[h(\theta)]\leq0\)</span>, with equality exactly on <span class="math inline">\(\mathcal E\)</span> defined in <a href="#eq-full-equilibria" class="quarto-xref">Equation&nbsp;6.12</a>.</li>
+<li><span class="math inline">\(\mathcal E\)</span> is compact, is contained in a finite Lyapunov sublevel, and <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> is a finite set; in particular, its interior in <span class="math inline">\(\mathbb R\)</span> is empty.</li>
+</ol>
+<p>Consequently, the averaged ODE has compact forward-invariant Lyapunov sublevels, and its strict-dissipation and critical-value properties match the deterministic hypotheses used in AMP’s Section 2.</p>
+</div>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>The regularity and dissipation identity are <a href="#prp-composite" class="quarto-xref">Proposition&nbsp;6.1</a>. Because <span class="math inline">\(\mathcal R\geq0\)</span>, <span class="math display">\[
+\{\mathcal L_\lambda\leq L\}
+\subseteq
+\{w_{\mathrm{AM}}\leq L\}\times\mathrm{St}(d,r).
+\]</span> The right-hand side is compact by <a href="#eq-am-sublevel" class="quarto-xref">Equation&nbsp;6.4</a> and compactness of the Stiefel manifold. The joint sublevel is closed in this product by continuity and is therefore compact. In particular, a bounded Lyapunov value controls <span class="math inline">\(\|\mu\|\)</span>, bounds <span class="math inline">\(\Gamma\)</span> above, and keeps <span class="math inline">\(\lambda_{\min}(\Gamma)\)</span> bounded away from zero. The latter is essential: boundedness in the ambient matrix space alone would not give compactness inside <span class="math inline">\(\mathbb S_{++}^d\)</span>.</p>
+<p>By <a href="#eq-composite-dissipation" class="quarto-xref">Equation&nbsp;6.11</a>, all terms in <span class="math inline">\(D\mathcal L_\lambda[h]\)</span> are negative squares (or the negative A&amp;M dissipation). The equality conditions identify <span class="math inline">\(\mathcal E\)</span>. At an equilibrium, the value is <a href="#eq-equilibrium-lyapunov-value" class="quarto-xref">Equation&nbsp;6.14</a>; <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> is a sum of <span class="math inline">\(r\)</span> eigenvalues of <span class="math inline">\(C\)</span>, with multiplicity. There are only finitely many such values. Finally <span class="math inline">\(\mathcal E\)</span> is closed within the compact slice <span class="math inline">\(\{m\}\times\{C\}\times\mathrm{St}(d,r)\)</span>, and is itself compact.</p>
+</div>
+<p>The compactness step is therefore <em>inherited</em>, rather than proved from scratch for the Stiefel component. This is stronger than merely asserting that the frame is bounded: it also excludes approach to singular covariance matrices.</p>
+</section>
+<section id="from-a-directional-derivative-to-a-finite-step-inequality" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="from-a-directional-derivative-to-a-finite-step-inequality"><span class="header-section-number">7.2</span> From a directional derivative to a finite-step inequality</h2>
+<p>AMP’s Lemma 2.1 is a useful deterministic bridge. On any compact set <span class="math inline">\(K\subset\Theta\)</span> disjoint from <span class="math inline">\(\mathcal E\)</span>, <a href="#eq-composite-dissipation" class="quarto-xref">Equation&nbsp;6.11</a> and continuity give a constant <span class="math inline">\(c_K&gt;0\)</span> such that <span id="eq-uniform-lyapunov-margin"><span class="math display">\[
+D\mathcal L_\lambda(\theta)[h(\theta)]\leq-c_K,
+\qquad \theta\in K.
+\tag{7.1}\]</span></span></p>
+<p>For a Euclidean step <span class="math inline">\(\theta^+=\theta+\rho(h(\theta)+z)\)</span>, the fundamental theorem of calculus, applied to a <span class="math inline">\(C^1\)</span> extension of <span class="math inline">\(\mathcal L_\lambda\)</span> on an ambient neighbourhood of <span class="math inline">\(K\)</span>, gives the <em>exact</em> identity <span id="eq-amp-integral-expansion"><span class="math display">\[
+\begin{aligned}
+\mathcal L_\lambda(\theta^+)-\mathcal L_\lambda(\theta)
+={}&amp;\rho D\mathcal L_\lambda(\theta)[h(\theta)]\\
+&amp;+\rho\int_0^1\big\langle
+\nabla\mathcal L_\lambda(\theta+t\rho(h+z))-
+\nabla\mathcal L_\lambda(\theta),h+z\big\rangle\,\mathrm dt\\
+&amp;+\rho\langle\nabla\mathcal L_\lambda(\theta),z\rangle .
+\end{aligned}
+\tag{7.2}\]</span></span></p>
+<p>Here <span class="math inline">\(h\)</span> and <span class="math inline">\(z\)</span> in the integrand mean <span class="math inline">\(h(\theta)\)</span> and <span class="math inline">\(z\)</span>, respectively. The ambient extension is used only to compare finite steps; all conclusions about the actual Oja flow are restricted to <span class="math inline">\(\Theta\)</span>. Uniform continuity of the gradient on a compact neighbourhood makes the integral remainder small when <span class="math inline">\(\rho\)</span> and <span class="math inline">\(\|z\|\)</span> are small. Hence a strict decrease margin survives sufficiently small perturbations, as in AMP Lemma 2.1. No global Hessian bound is needed.</p>
+<p>For the <em>actual</em> retraction recursion, <a href="#eq-euclidean-recursion" class="quarto-xref">Equation&nbsp;5.4</a> adds <span class="math inline">\(e_{n+1}=(0,0,r_{n+1})\)</span>. Thus its step-direction perturbation is <span class="math inline">\(\xi_{n+1}+e_{n+1}/\gamma_{n+1}\)</span>. In the Markov setting individual <span class="math inline">\(\xi_{n+1}\)</span> need not be small. AMP’s Section 2 instead uses an auxiliary sequence and <strong>small accumulated weighted perturbations</strong>; compare their Lemma 2.4 and Theorem 2.2. On compact-stopped trajectories, <a href="#lem-noise-accumulation" class="quarto-xref">Lemma&nbsp;5.3</a> and <a href="#lem-retraction-summability" class="quarto-xref">Lemma&nbsp;5.2</a> supply the corresponding vanishing tails: <span id="eq-joint-perturbation-tail"><span class="math display">\[
+\lim_{n\to\infty}\sup_{m\geq n}
+\left\|\sum_{k=n}^{m}\big[\gamma_k\xi_k+e_k\big]\right\|=0
+\quad\text{almost surely on eventual compactness}.
+\tag{7.3}\]</span></span></p>
+<p>The point is an implication between two <em>different</em> kinds of argument: Section 2 of AMP is deterministic once a bound on cumulative perturbations is given; Sections 3–5 establish the probabilistic estimates and stability of a reinitialised algorithm.</p>
+</section>
+<section id="what-remains-for-global-stochastic-stability" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="what-remains-for-global-stochastic-stability"><span class="header-section-number">7.3</span> What remains for global stochastic stability</h2>
+<p>The above verification does <strong>not</strong> establish <a href="#eq-joint-perturbation-tail" class="quarto-xref">Equation&nbsp;7.3</a> without localisation, nor eventual compactness of the unmodified recursion. More precisely:</p>
+<ul>
+<li><strong>Deterministic ingredient (established here):</strong> compact sublevels, uniform negative directional derivative away from <span class="math inline">\(\mathcal E\)</span>, and finitely many critical Lyapunov values.</li>
+<li><strong>Local stochastic ingredient (Section <a href="#sec-tracking" class="quarto-xref">Chapter&nbsp;5</a>):</strong> Poisson-noise and retraction tails on compact-stopped paths.</li>
+<li><strong>Global stochastic ingredient (outstanding):</strong> specify a manifold-compatible expanding-compact truncation/reinitialisation rule and prove that reinitialisations are almost surely finite for the kernel depending on both <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(W\)</span>; alternatively prove direct stability for the untruncated recursion.</li>
+</ul>
+<p>AMP’s Theorems 5.4–5.5 provide the model for the last implication, but their <em>Euclidean</em> random-truncation argument must be checked for the Stiefel update and its reset map. The localized theorem in <a href="#sec-main-result" class="quarto-xref">Chapter&nbsp;8</a> requires no such unconditional claim.</p>
+</section>
+</section>
+<section id="sec-main-result" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Convergence theorem and its scope</h1>
+<p>We now combine the stochastic averaging, retraction and Lyapunov arguments. Section <a href="#sec-deterministic-stability" class="quarto-xref">Chapter&nbsp;7</a> verifies the deterministic hypotheses behind AMP’s stability mechanism, whereas Section <a href="#sec-tracking" class="quarto-xref">Chapter&nbsp;5</a> proves only localized stochastic perturbation estimates. It is important to distinguish the localized theorem below from a global theorem for untruncated adaptation.</p>
 <p>For a compact set <span class="math inline">\(K\subset\mathbb R^d\times\mathbb S_{++}^d\)</span>, define the event</p>
 <p><span id="eq-eventual-compactness"><span class="math display">\[
 \Omega_K=\{\exists N&lt;\infty:
   (\mu_n,\Gamma_n)\in K\text{ for all }n\geq N\},
-\tag{7.1}\]</span></span></p>
+\tag{8.1}\]</span></span></p>
 <p>and let <span class="math inline">\(\Omega_{\mathrm{ec}}\)</span> be the union of these events over a fixed countable compact exhaustion of the mean–covariance parameter domain.</p>
 <div id="thm-localized-oja" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.1 (Localized convergence of adaptive Markov–Oja)</strong></span> Suppose the target satisfies <a href="#cnj-target-M" class="quarto-xref">Assumption&nbsp;4.1</a> and the subspace-dependent Gaussian random-walk Metropolis family <a href="#eq-subspace-proposal" class="quarto-xref">Equation&nbsp;3.2</a> satisfies <a href="#cnj-kernel" class="quarto-xref">Assumption&nbsp;4.2</a>. Let <span class="math inline">\((X_n,\mu_n,\Gamma_n,W_n)\)</span> follow <a href="#def-coupled-recursion" class="quarto-xref">Definition&nbsp;3.1</a> with <a href="#cnj-step-sizes" class="quarto-xref">Assumption&nbsp;4.3</a>, <span class="math inline">\(\Gamma_0\succ0\)</span>, <span class="math inline">\(W_0\in\mathrm{St}(d,r)\)</span>, and <span class="math inline">\(\mathbb E V(X_0)&lt;\infty\)</span>. Then, almost surely on <span class="math inline">\(\Omega_{\mathrm{ec}}\)</span>,</p>
+<p><span class="theorem-title"><strong>Theorem 8.1 (Localized convergence of adaptive Markov–Oja)</strong></span> Suppose the target satisfies <a href="#cnj-target-M" class="quarto-xref">Assumption&nbsp;4.1</a> and the subspace-dependent Gaussian random-walk Metropolis family <a href="#eq-subspace-proposal" class="quarto-xref">Equation&nbsp;3.2</a> satisfies <a href="#cnj-kernel" class="quarto-xref">Assumption&nbsp;4.2</a>. Let <span class="math inline">\((X_n,\mu_n,\Gamma_n,W_n)\)</span> follow <a href="#def-coupled-recursion" class="quarto-xref">Definition&nbsp;3.1</a> with <a href="#cnj-step-sizes" class="quarto-xref">Assumption&nbsp;4.3</a>, <span class="math inline">\(\Gamma_0\succ0\)</span>, <span class="math inline">\(W_0\in\mathrm{St}(d,r)\)</span>, and <span class="math inline">\(\mathbb E V(X_0)&lt;\infty\)</span>. Then, almost surely on <span class="math inline">\(\Omega_{\mathrm{ec}}\)</span>,</p>
 <p><span id="eq-main-convergence"><span class="math display">\[
 \boxed{\quad
 \mu_n\longrightarrow m,\qquad
 \Gamma_n\longrightarrow C,\qquad
 \operatorname{dist}_F(W_n,\mathcal E_C)\longrightarrow0,
 \quad}
-\tag{7.2}\]</span></span></p>
+\tag{8.2}\]</span></span></p>
 <p>where</p>
 <p><span id="eq-E-C"><span class="math display">\[
 \mathcal E_C=\{W\in\mathrm{St}(d,r):
   (I-WW^\top)CW=0\}.
-\tag{7.3}\]</span></span></p>
+\tag{8.3}\]</span></span></p>
 <p>In particular this theorem does not assert convergence to the dominant principal subspace, nor almost-sure eventual compactness of the untruncated recursion.</p>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span><strong>1. A Euclidean representation of the actual recursion.</strong> By <a href="#lem-retraction" class="quarto-xref">Lemma&nbsp;5.1</a> the iterates satisfy <a href="#eq-euclidean-recursion" class="quarto-xref">Equation&nbsp;5.4</a> with a quadratic remainder. Under the localized weighted moment bounds, <a href="#lem-retraction-summability" class="quarto-xref">Lemma&nbsp;5.2</a> makes its accumulated tails vanish.</p>
 <p><strong>2. Markov noise.</strong> The Poisson equation <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;4.9</a>, its Lipschitz property <a href="#lem-poisson-regularity" class="quarto-xref">Lemma&nbsp;4.2</a>, and the four-term identity <a href="#eq-weighted-poisson" class="quarto-xref">Equation&nbsp;5.6</a> show through <a href="#lem-noise-accumulation" class="quarto-xref">Lemma&nbsp;5.3</a> that the weighted noise has vanishing tails. This does not assume that the accepted states are independent or stationary at any finite time.</p>
-<p><strong>3. ODE tracking and compactness.</strong> On <span class="math inline">\(\Omega_{\mathrm{ec}}\)</span> the interpolation is precompact and is an asymptotic pseudotrajectory of <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.10</a> by <a href="#eq-ode-window" class="quarto-xref">Equation&nbsp;5.9</a>. Invariance of the Stiefel manifold for the limiting ODE means that the limit set lies in <span class="math inline">\(\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)\)</span>. By Theorem 5.7 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>, its limit set is internally chain transitive.</p>
+<p><strong>3. ODE tracking and compactness.</strong> On <span class="math inline">\(\Omega_{\mathrm{ec}}\)</span> the interpolation is precompact and is an asymptotic pseudotrajectory of <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.10</a> by <a href="#eq-ode-window" class="quarto-xref">Equation&nbsp;5.9</a>. Invariance of the Stiefel manifold for the limiting ODE means that the limit set lies in <span class="math inline">\(\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)\)</span>. By Theorem 5.7 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">5</a>]</span>, its limit set is internally chain transitive.</p>
 <p><strong>4. A strict Lyapunov function around the limit set.</strong> Fix an eventual compact set <span class="math inline">\(K\)</span>. Choose any <span class="math inline">\(\lambda&gt;0\)</span> and then an <span class="math inline">\(L\)</span> large enough that <span class="math inline">\(K\times\mathrm{St}(d,r)\)</span> is contained in the joint sublevel set <span class="math inline">\(\{\mathcal L_\lambda\leq L\}\)</span>. By <a href="#prp-composite" class="quarto-xref">Proposition&nbsp;6.1</a> this is a compact, forward-invariant set for the limiting ODE. Its Lyapunov function <span class="math inline">\(\mathcal L_\lambda\)</span> has strictly negative derivative away from <span class="math inline">\(\mathcal E\)</span>, and its values on <span class="math inline">\(\mathcal E\)</span> form a finite set.</p>
-<p><strong>5. Identify the stochastic limit set.</strong> Proposition 6.4 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span> states that an internally chain-transitive set for a compact flow with a strict Lyapunov function must lie in the zero-dissipation set when the latter has Lyapunov values with empty interior. The set here is <span class="math inline">\(\mathcal E\)</span>, and finiteness of <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> verifies the condition. Every limit point of the interpolated trajectory therefore belongs to <span class="math inline">\(\mathcal E\)</span>. Because the trajectory is precompact, its distance to <span class="math inline">\(\mathcal E\)</span> tends to zero. Reading off the three coordinates gives <a href="#eq-main-convergence" class="quarto-xref">Equation&nbsp;7.2</a>.</p>
+<p><strong>5. Identify the stochastic limit set.</strong> Proposition 6.4 of <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">5</a>]</span> states that an internally chain-transitive set for a compact flow with a strict Lyapunov function must lie in the zero-dissipation set when the latter has Lyapunov values with empty interior. The set here is <span class="math inline">\(\mathcal E\)</span>, and finiteness of <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> verifies the condition. Every limit point of the interpolated trajectory therefore belongs to <span class="math inline">\(\mathcal E\)</span>. Because the trajectory is precompact, its distance to <span class="math inline">\(\mathcal E\)</span> tends to zero. Reading off the three coordinates gives <a href="#eq-main-convergence" class="quarto-xref">Equation&nbsp;8.2</a>.</p>
 </div>
-<section id="how-to-read-this-statement" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="how-to-read-this-statement"><span class="header-section-number">7.1</span> How to read this statement</h2>
+<section id="how-to-read-this-statement" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="how-to-read-this-statement"><span class="header-section-number">8.1</span> How to read this statement</h2>
 <p>It is a convergence theorem for the un-reprojected recursion <strong>conditional on eventual compactness</strong>. The qualification is mathematically precise: for any path on which the estimates stay eventually inside a compact subset of the positive-definite domain, the stochastic and geometric perturbations have negligible tails and the limit-set argument applies.</p>
-<p>A&amp;M achieve unconditional stability for their covariance-only mean–covariance recursion with a random-reinitialization mechanism. Here the kernel additionally depends on <span class="math inline">\(W\)</span>, so that result cannot simply be inherited from an autonomous covariance-only marginal process. The compact Stiefel coordinate and summable retraction error help, but the random-truncation argument must be verified for the fully coupled state. No unconditional stability claim is made by <a href="#thm-localized-oja" class="quarto-xref">Theorem&nbsp;7.1</a>.</p>
+<p>A&amp;M achieve unconditional stability for their covariance-only mean–covariance recursion with a random-reinitialization mechanism. Here the kernel additionally depends on <span class="math inline">\(W\)</span>, so that result cannot simply be inherited from an autonomous covariance-only marginal process. The compact Stiefel coordinate and summable retraction error help, but the random-truncation argument must be verified for the fully coupled state. No unconditional stability claim is made by <a href="#thm-localized-oja" class="quarto-xref">Theorem&nbsp;8.1</a>.</p>
 <div id="cor-finite-reinitialization" class="theorem corollary">
-<p><span class="theorem-title"><strong>Corollary 7.1 (Finite-reinitialization consequence)</strong></span> Suppose an implementation of the feedback-coupled recursion uses an A&amp;M-type expanding-compact reinitialization mechanism, and suppose its number of reinitializations is almost surely finite and its post-last-reinitialization trajectory is eventually contained in a compact mean–covariance set. Then <a href="#eq-main-convergence" class="quarto-xref">Equation&nbsp;7.2</a> holds almost surely.</p>
+<p><span class="theorem-title"><strong>Corollary 8.1 (Finite-reinitialization consequence)</strong></span> Suppose an implementation of the feedback-coupled recursion uses an A&amp;M-type expanding-compact reinitialization mechanism, and suppose its number of reinitializations is almost surely finite and its post-last-reinitialization trajectory is eventually contained in a compact mean–covariance set. Then <a href="#eq-main-convergence" class="quarto-xref">Equation&nbsp;8.2</a> holds almost surely.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>After the last reinitialization the dynamics have the form <a href="#def-coupled-recursion" class="quarto-xref">Definition&nbsp;3.1</a>, possibly with a shifted step-size index. A finite prefix does not affect any summability, ODE-time or limit-set argument; apply <a href="#thm-localized-oja" class="quarto-xref">Theorem&nbsp;7.1</a> to that tail.</p>
+<p><span class="proof-title"><em>Proof</em>. </span>After the last reinitialization the dynamics have the form <a href="#def-coupled-recursion" class="quarto-xref">Definition&nbsp;3.1</a>, possibly with a shifted step-size index. A finite prefix does not affect any summability, ODE-time or limit-set argument; apply <a href="#thm-localized-oja" class="quarto-xref">Theorem&nbsp;8.1</a> to that tail.</p>
 </div>
 <p>The premise that the feedback-coupled algorithm has finitely many reinitializations is an <strong>additional stability obligation</strong>. A manifold-compatible adaptation of A&amp;M’s random-truncation argument, with a specified reset map and <span class="math inline">\(W\)</span>-dependent kernel regularity, would close the unconditional version; it is not proved in this draft.</p>
 </section>
-<section id="a-deterministic-check-on-the-limiting-flow" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="a-deterministic-check-on-the-limiting-flow"><span class="header-section-number">7.2</span> A deterministic check on the limiting flow</h2>
+<section id="a-deterministic-check-on-the-limiting-flow" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="a-deterministic-check-on-the-limiting-flow"><span class="header-section-number">8.2</span> A deterministic check on the limiting flow</h2>
 <p>The first equation of <a href="#eq-coupled-ode" class="quarto-xref">Equation&nbsp;3.10</a> is explicit:</p>
 <p><span class="math display">\[
 v(t)=e^{-t}v(0).
@@ -969,24 +1036,24 @@ v(t)=e^{-t}v(0).
 <p><span id="eq-explicit-covariance-flow"><span class="math display">\[
 D(t)=e^{-t}D(0)
   +(e^{-t}-e^{-2t})v(0)v(0)^\top.
-\tag{7.4}\]</span></span></p>
+\tag{8.4}\]</span></span></p>
 <p>Thus <span class="math inline">\((\mu(t),\Gamma(t))\to(m,C)\)</span> exponentially. The Oja equation is therefore an asymptotically autonomous perturbation of <span class="math inline">\(\dot W=B_C(W)\)</span>. This elementary calculation independently supports the equilibrium picture established by the composite Lyapunov argument, but it is not a substitute for the stochastic Markov-noise analysis.</p>
 </section>
 </section>
-<section id="sec-discussion" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Interpretation and further questions</h1>
+<section id="sec-discussion" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Interpretation and further questions</h1>
 <p>The analysis establishes a sharp division of responsibilities. All frozen Metropolis kernels target the same <span class="math inline">\(\pi\)</span>, even though the learned global subspace enters the proposal covariance, so their common invariant distribution determines the deterministic Oja mean field. A&amp;M’s Markov theory controls the failure of successive observations to be independent. The polar retraction preserves orthogonality while contributing only an absolutely summable second-order error. The mean–covariance energy controls noncompact coordinates, while the expected reconstruction error has an exact decreasing derivative in both the evolving mean and the Oja frame. Their sum identifies the joint equilibrium set.</p>
-<p>The result should not be read as an assertion that online Oja necessarily selects the leading <span class="math inline">\(r\)</span>-dimensional eigenspace. Its limiting stationary set contains <strong>every invariant <span class="math inline">\(r\)</span>-subspace</strong> of <span class="math inline">\(C\)</span>, including non-leading eigenspaces. Deterministically, the leading subspace is locally attracting under an eigengap, whereas non-leading invariant subspaces have unstable directions; showing that Markov-driven stochastic iterates almost surely avoid unstable equilibria requires additional hypotheses on noise excitation and is a distinct problem. The Lyapunov literature of <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">3</a>]</span> is relevant to that refinement.</p>
+<p>The result should not be read as an assertion that online Oja necessarily selects the leading <span class="math inline">\(r\)</span>-dimensional eigenspace. Its limiting stationary set contains <strong>every invariant <span class="math inline">\(r\)</span>-subspace</strong> of <span class="math inline">\(C\)</span>, including non-leading eigenspaces. Deterministically, the leading subspace is locally attracting under an eigengap, whereas non-leading invariant subspaces have unstable directions; showing that Markov-driven stochastic iterates almost surely avoid unstable equilibria requires additional hypotheses on noise excitation and is a distinct problem. The Lyapunov literature of <span class="citation" data-cites="plumbley1995">[<a href="#ref-plumbley1995" role="doc-biblioref">4</a>]</span> is relevant to that refinement.</p>
 <p>There is also an important distinction between two possible algorithms. We have analyzed a <em>sample-driven</em> Oja increment, using <span class="math inline">\((X_{n+1}-\mu_n)(X_{n+1}-\mu_n)^\top\)</span>. Its mean-field perturbation from the target Oja flow depends on <span class="math inline">\((\mu-m)(\mu-m)^\top\)</span>. If one instead updates <span class="math inline">\(W\)</span> using the <em>estimated covariance</em> <span class="math inline">\(\Gamma_n\)</span>, then <span class="math inline">\(\dot W=(I-WW^\top)\Gamma W\)</span>, with a different coupling error depending on <span class="math inline">\(\Gamma-C\)</span>. Its convergence analysis requires an objective and noise decomposition consistent with that distinct update, and is not claimed by the present theorem.</p>
 <p>Finally, the localized result does not settle the probability-one finite-reinitialization question for the <strong>enlarged</strong> algorithm. For the subspace-dependent Gaussian random-walk family, local kernel bounds follow by combining A&amp;M’s estimates with the smooth covariance map <a href="#eq-subspace-proposal" class="quarto-xref">Equation&nbsp;3.2</a>. However, global stochastic stability cannot be inherited from the covariance-only sampler because <span class="math inline">\(W_n\)</span> now influences its transitions. Establishing the manifold-compatible random-truncation argument, with the reinitialization map and boundary conditions stated, is the remaining step before unconditional convergence. This is recorded transparently in the internal proof audit.</p>
 <p>The present theorem therefore studies global principal-subspace adaptation that <strong>feeds back into</strong> Markov transitions rather than merely observing an adaptive chain. It identifies the precise non-i.i.d. bookkeeping, proves a localized limiting-subspace result, and leaves the stronger global stability and leading-eigenspace selection questions clearly separated.</p>
-<section id="global-covariance-as-a-reference" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="global-covariance-as-a-reference"><span class="header-section-number">8.1</span> Global covariance as a reference</h2>
+<section id="global-covariance-as-a-reference" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="global-covariance-as-a-reference"><span class="header-section-number">9.1</span> Global covariance as a reference</h2>
 <p>The joint adaptation is deliberately global: both <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(W\)</span> estimate features of the same invariant target <span class="math inline">\(\pi\)</span>, and neither relies on spatial partitions or local covariance estimation. The covariance mixture <a href="#eq-subspace-proposal" class="quarto-xref">Equation&nbsp;3.2</a> retains the full estimator as a reference while using Oja to supply an explicit principal-subspace projector. At <span class="math inline">\(\tau=0\)</span> the proposal reduces to covariance-only adaptive Metropolis, although the Oja statistic can still be updated. Fixing a reference covariance instead of learning <span class="math inline">\(\Gamma\)</span> gives a computationally lighter related model, but is <strong>not</strong> literally covered by the present mean–covariance convergence theorem without changing the recursion and stability analysis. This distinction keeps the current statement precise without developing additional models here.</p>
 </section>
 </section>
-<section id="sec-appendix-poisson" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Detailed weighted Poisson estimates</h1>
+<section id="sec-appendix-poisson" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Detailed weighted Poisson estimates</h1>
 <p>For completeness, we account for every line in <a href="#eq-weighted-poisson" class="quarto-xref">Equation&nbsp;5.6</a>. Work first up to the exit time <span class="math inline">\(\tau_K\)</span> from a compact parameter region. By the locally uniform geometric drift and minorization properties, and after enlarging <span class="math inline">\(K\)</span> slightly if necessary, stopped expectations of <span class="math inline">\(V(X_k)\)</span> are uniformly bounded. The same bounds apply to <span class="math inline">\(V^{2\beta}(X_k)\)</span>, since <span class="math inline">\(2\beta\leq1\)</span>.</p>
 <p><strong>Martingale.</strong> From <a href="#eq-poisson-lipschitz" class="quarto-xref">Equation&nbsp;4.10</a> and conditional Jensen’s inequality,</p>
 <p><span id="eq-martingale-bound"><span class="math display">\[
@@ -994,7 +1061,7 @@ D(t)=e^{-t}D(0)
 \leq C_K\,\mathbb E[
 V^{2\beta}(X_{k-1})+V^{2\beta}(X_k);
 \tau_K\geq k]\leq C_K.
-\tag{9.1}\]</span></span></p>
+\tag{10.1}\]</span></span></p>
 <p>Thus <span class="math inline">\(\sum_k\gamma_kM_k\mathbf1_{\{\tau_K\geq k\}}\)</span> is an <span class="math inline">\(L^2\)</span>-bounded martingale, and the martingale convergence theorem makes its tails vanish uniformly over their terminal index.</p>
 <p><strong>Endpoints.</strong> Markov’s inequality and <a href="#eq-poisson-lipschitz" class="quarto-xref">Equation&nbsp;4.10</a> give</p>
 <p><span id="eq-endpoint-bound"><span class="math display">\[
@@ -1002,7 +1069,7 @@ V^{2\beta}(X_{k-1})+V^{2\beta}(X_k);
 \gamma_k\|v_{\theta_{k-1}}(X_{k-1})\|&gt;\varepsilon,\,
 \tau_K\geq k\right)
 \leq \varepsilon^{-2}C_K\sum_k\gamma_k^2&lt;\infty.
-\tag{9.2}\]</span></span></p>
+\tag{10.2}\]</span></span></p>
 <p>Hence <span class="math inline">\(\gamma_kv_{\theta_{k-1}}(X_{k-1})\to0\)</span> almost surely on the localized event, by Borel–Cantelli. The two endpoint contributions therefore vanish even when the upper index <span class="math inline">\(m\)</span> varies.</p>
 <p><strong>Step-size variation.</strong> Because <span class="math inline">\((\gamma_k)\)</span> is nonincreasing and converges to zero,</p>
 <p><span class="math display">\[
@@ -1017,14 +1084,14 @@ V^{2\beta}(X_{k-1})+V^{2\beta}(X_k);
 &amp;\leq L_K\gamma_k\|\theta_k-\theta_{k-1}\|V^\beta(X_k)\\
 &amp;\leq C_K\gamma_k^2V^{2\beta}(X_k).
 \end{aligned}
-\tag{9.3}\]</span></span></p>
+\tag{10.3}\]</span></span></p>
 <p>The sum of the right-hand side has finite expectation on the stopped process. This is a bound for differences of the <strong>Poisson solution evaluated at successive parameters</strong>, rather than a bound for a general extra error in the SA recursion.</p>
 <p>The four convergent expressions prove <a href="#eq-noise-tail" class="quarto-xref">Equation&nbsp;5.7</a> by passing to their tails. Taking a countable compact exhaustion and ignoring a finite initial segment transfers the localized claim to every eventually compact trajectory.</p>
 </section>
-<section id="sec-appendix-geometry" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Supplementary geometric and deterministic details</h1>
-<section id="the-stiefel-tangent-and-invariance-statements" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="the-stiefel-tangent-and-invariance-statements"><span class="header-section-number">10.1</span> The Stiefel tangent and invariance statements</h2>
+<section id="sec-appendix-geometry" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Supplementary geometric and deterministic details</h1>
+<section id="the-stiefel-tangent-and-invariance-statements" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="the-stiefel-tangent-and-invariance-statements"><span class="header-section-number">11.1</span> The Stiefel tangent and invariance statements</h2>
 <p>The tangent space at <span class="math inline">\(W\in\mathrm{St}(d,r)\)</span> is</p>
 <p><span class="math display">\[
 T_W\mathrm{St}(d,r)
@@ -1043,8 +1110,8 @@ R_W(U)^\top R_W(U)
 \]</span></p>
 <p>This is why the limiting problem does not require extending the ODE away from the manifold to <em>define its actual solution</em>, even though ambient Euclidean coordinates are used for stochastic error estimates.</p>
 </section>
-<section id="positive-definiteness-of-the-covariance-iterate" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="positive-definiteness-of-the-covariance-iterate"><span class="header-section-number">10.2</span> Positive definiteness of the covariance iterate</h2>
+<section id="positive-definiteness-of-the-covariance-iterate" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="positive-definiteness-of-the-covariance-iterate"><span class="header-section-number">11.2</span> Positive definiteness of the covariance iterate</h2>
 <p>The first two recursions are exactly Euclidean. The covariance recursion is</p>
 <p><span class="math display">\[
 \Gamma_{n+1}=(1-\gamma_{n+1})\Gamma_n+
@@ -1056,8 +1123,8 @@ R_W(U)^\top R_W(U)
 \]</span></p>
 <p>Thus <span class="math inline">\(\Gamma_n\)</span> stays positive definite at every <strong>finite</strong> iteration. This does not establish that its smallest eigenvalue stays bounded away from zero as <span class="math inline">\(n\to\infty\)</span>. Such a uniform lower bound requires the eventual-compactness/stability argument; the distinction is central to <a href="#eq-compact-eigenvalue-bounds" class="quarto-xref">Equation&nbsp;6.5</a>.</p>
 </section>
-<section id="the-reconstruction-error-objective-and-its-geometric-interpretation" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="the-reconstruction-error-objective-and-its-geometric-interpretation"><span class="header-section-number">10.3</span> The reconstruction-error objective and its geometric interpretation</h2>
+<section id="the-reconstruction-error-objective-and-its-geometric-interpretation" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="the-reconstruction-error-objective-and-its-geometric-interpretation"><span class="header-section-number">11.3</span> The reconstruction-error objective and its geometric interpretation</h2>
 <p>The residual projector <span class="math inline">\(P_W=I-WW^\top\)</span> is symmetric and idempotent. Therefore the expected reconstruction error in <a href="#eq-reconstruction-energy" class="quarto-xref">Equation&nbsp;6.6</a> is equivalently</p>
 <p><span class="math display">\[
 \mathcal R(\mu,W)
@@ -1066,9 +1133,9 @@ R_W(U)^\top R_W(U)
 \]</span></p>
 <p>At fixed <span class="math inline">\(\mu\)</span>, minimizing <span class="math inline">\(\mathcal R\)</span> means maximizing the variance explained by <span class="math inline">\(W\)</span>. On the Stiefel manifold its negative Riemannian gradient is exactly the averaged sample-driven Oja field; see <a href="#lem-reconstruction-gradient" class="quarto-xref">Lemma&nbsp;6.2</a>. The moving centring parameter contributes the further nonpositive term <span class="math inline">\(-\|P_W(\mu-m)\|^2\)</span> to the derivative. Thus the composite functional <a href="#eq-composite-energy" class="quarto-xref">Equation&nbsp;6.10</a> is a direct sum of the mean–covariance energy and an objective actually decreased by the complete averaged recursion.</p>
 </section>
-<section id="invariant-subspaces-and-finitely-many-energy-values" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="invariant-subspaces-and-finitely-many-energy-values"><span class="header-section-number">10.4</span> Invariant subspaces and finitely many energy values</h2>
-<p>Let <span class="math inline">\(C=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top\)</span>, counting eigenvalues with multiplicity. If <span class="math inline">\(\operatorname{span}(W)\)</span> is invariant under the symmetric <span class="math inline">\(C\)</span>, it is a direct sum of subspaces of eigenspaces. The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> equals a sum of exactly <span class="math inline">\(r\)</span> entries from this eigenvalue list. The number of possible sums is finite, although there can be infinitely many orthonormal bases representing the same invariant subspace, and even infinitely many invariant subspaces when eigenvalues repeat. Therefore <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> is a finite subset of <span class="math inline">\(\mathbb R\)</span>, as required by <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">4</a>]</span>, Proposition 6.4.</p>
+<section id="invariant-subspaces-and-finitely-many-energy-values" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="invariant-subspaces-and-finitely-many-energy-values"><span class="header-section-number">11.4</span> Invariant subspaces and finitely many energy values</h2>
+<p>Let <span class="math inline">\(C=U\operatorname{diag}(\lambda_1,\ldots,\lambda_d)U^\top\)</span>, counting eigenvalues with multiplicity. If <span class="math inline">\(\operatorname{span}(W)\)</span> is invariant under the symmetric <span class="math inline">\(C\)</span>, it is a direct sum of subspaces of eigenspaces. The trace <span class="math inline">\(\operatorname{tr}(W^\top CW)\)</span> equals a sum of exactly <span class="math inline">\(r\)</span> entries from this eigenvalue list. The number of possible sums is finite, although there can be infinitely many orthonormal bases representing the same invariant subspace, and even infinitely many invariant subspaces when eigenvalues repeat. Therefore <span class="math inline">\(\mathcal L_\lambda(\mathcal E)\)</span> is a finite subset of <span class="math inline">\(\mathbb R\)</span>, as required by <span class="citation" data-cites="benaim1999">[<a href="#ref-benaim1999" role="doc-biblioref">5</a>]</span>, Proposition 6.4.</p>
 </section>
 </section>
 <section id="references" class="level1 unnumbered">
@@ -1077,14 +1144,17 @@ R_W(U)^\top R_W(U)
 <div id="ref-andrieuMoulines2006" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">C. Andrieu and É. Moulines. <em>On the Ergodicity Properties of Some Adaptive <span>MCMC</span> Algorithms</em>. The Annals of Applied Probability, 16(3), pp. 1462–1505. 2006. doi: <a href="https://doi.org/10.1214/105051606000000286">10.1214/105051606000000286</a>.</div>
 </div>
+<div id="ref-andrieuMoulinesPriouret2005" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">C. Andrieu, É. Moulines, and P. Priouret. <em>Stability of Stochastic Approximation Under Verifiable Conditions</em>. SIAM Journal on Control and Optimization, 44(1), pp. 283–312. 2005. doi: <a href="https://doi.org/10.1137/S0363012902417267">10.1137/S0363012902417267</a>.</div>
+</div>
 <div id="ref-boumal2023" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">N. Boumal. <em>An Introduction to Optimization on Smooth Manifolds</em>. Cambridge University Press. 2023. doi: <a href="https://doi.org/10.1017/9781009166164">10.1017/9781009166164</a>.</div>
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">N. Boumal. <em>An Introduction to Optimization on Smooth Manifolds</em>. Cambridge University Press. 2023. doi: <a href="https://doi.org/10.1017/9781009166164">10.1017/9781009166164</a>.</div>
 </div>
 <div id="ref-plumbley1995" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">M. D. Plumbley. <em>Lyapunov Functions for Convergence of Principal Component Algorithms</em>. Neural Networks, 8(1), pp. 11–23. 1995. doi: <a href="https://doi.org/10.1016/0893-6080(95)91644-9">10.1016/0893-6080(95)91644-9</a>.</div>
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. D. Plumbley. <em>Lyapunov Functions for Convergence of Principal Component Algorithms</em>. Neural Networks, 8(1), pp. 11–23. 1995. doi: <a href="https://doi.org/10.1016/0893-6080(95)91644-9">10.1016/0893-6080(95)91644-9</a>.</div>
 </div>
 <div id="ref-benaim1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Benaïm. <em>Dynamics of Stochastic Approximation Algorithms</em>. S<span class="nocase">é</span>minaire de probabilit<span class="nocase">é</span>s, 33, pp. 1–68. 1999. <a href="https://www.numdam.org/item/SPS_1999__33__1_0/">https://www.numdam.org/item/SPS_1999__33__1_0/</a>.</div>
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">M. Benaïm. <em>Dynamics of Stochastic Approximation Algorithms</em>. S<span class="nocase">é</span>minaire de probabilit<span class="nocase">é</span>s, 33, pp. 1–68. 1999. <a href="https://www.numdam.org/item/SPS_1999__33__1_0/">https://www.numdam.org/item/SPS_1999__33__1_0/</a>.</div>
 </div>
 </div>
 </section>
