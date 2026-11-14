@@ -1,0 +1,75 @@
+# Deterministic stability and the AMP criterion {#sec-deterministic-stability}
+
+The previous section establishes the Lyapunov structure of the *averaged* coupled system.  We now state explicitly how it fits the deterministic stability argument of Andrieu, Moulines and Priouret [@andrieuMoulinesPriouret2005, Section 2].  This separates what follows from the mean field and its geometry from the remaining probabilistic question of eventual compactness.
+
+## The Lyapunov hypotheses on the product parameter space
+
+Write $\Theta=\mathbb R^d\times\mathbb S_{++}^d\times\mathrm{St}(d,r)$ and let
+$\mathcal L_\lambda=w_{\mathrm{AM}}+\lambda\mathcal R$, for any $\lambda>0$.  The relevant form of AMP's condition (A1) consists of a continuously differentiable Lyapunov function, a compact sublevel containing its zero-dissipation set, a nonpositive derivative along $h$ (strict away from that set), and an empty-interior set of Lyapunov critical values.  AMP formulate this on a Euclidean parameter domain; here the deterministic flow lies on a smooth product manifold.  We verify the *properties* first, without asserting that the Euclidean theorem applies to the retracted recursion verbatim.
+
+::: {#prp-amp-lyapunov}
+## Verification of the deterministic Lyapunov properties
+
+Assume $C\succ0$ and use the mean field @eq-coupled-field. For each $\lambda>0$, the following hold.
+
+1. $\mathcal L_\lambda$ is continuously differentiable on $\Theta$, and every nonempty sublevel $\{\mathcal L_\lambda\leq L\}$ is compact in $\Theta$.
+2. $D\mathcal L_\lambda(\theta)[h(\theta)]\leq0$, with equality exactly on $\mathcal E$ defined in @eq-full-equilibria.
+3. $\mathcal E$ is compact, is contained in a finite Lyapunov sublevel, and $\mathcal L_\lambda(\mathcal E)$ is a finite set; in particular, its interior in $\mathbb R$ is empty.
+
+Consequently, the averaged ODE has compact forward-invariant Lyapunov sublevels, and its strict-dissipation and critical-value properties match the deterministic hypotheses used in AMP's Section 2.
+:::
+
+::: {.proof}
+The regularity and dissipation identity are @prp-composite.  Because $\mathcal R\geq0$,
+$$
+\{\mathcal L_\lambda\leq L\}
+\subseteq
+\{w_{\mathrm{AM}}\leq L\}\times\mathrm{St}(d,r).
+$$
+The right-hand side is compact by @eq-am-sublevel and compactness of the Stiefel manifold.  The joint sublevel is closed in this product by continuity and is therefore compact.  In particular, a bounded Lyapunov value controls $\|\mu\|$, bounds $\Gamma$ above, and keeps $\lambda_{\min}(\Gamma)$ bounded away from zero.  The latter is essential: boundedness in the ambient matrix space alone would not give compactness inside $\mathbb S_{++}^d$.
+
+By @eq-composite-dissipation, all terms in $D\mathcal L_\lambda[h]$ are negative squares (or the negative A&M dissipation).  The equality conditions identify $\mathcal E$.  At an equilibrium, the value is @eq-equilibrium-lyapunov-value; $\operatorname{tr}(W^\top CW)$ is a sum of $r$ eigenvalues of $C$, with multiplicity.  There are only finitely many such values.  Finally $\mathcal E$ is closed within the compact slice $\{m\}\times\{C\}\times\mathrm{St}(d,r)$, and is itself compact.
+:::
+
+The compactness step is therefore *inherited*, rather than proved from scratch for the Stiefel component.  This is stronger than merely asserting that the frame is bounded: it also excludes approach to singular covariance matrices.
+
+## From a directional derivative to a finite-step inequality
+
+AMP's Lemma 2.1 is a useful deterministic bridge.  On any compact set $K\subset\Theta$ disjoint from $\mathcal E$, @eq-composite-dissipation and continuity give a constant $c_K>0$ such that
+$$
+D\mathcal L_\lambda(\theta)[h(\theta)]\leq-c_K,
+\qquad \theta\in K.
+$$ {#eq-uniform-lyapunov-margin}
+
+For a Euclidean step $\theta^+=\theta+\rho(h(\theta)+z)$, the fundamental theorem of calculus, applied to a $C^1$ extension of $\mathcal L_\lambda$ on an ambient neighbourhood of $K$, gives the *exact* identity
+$$
+\begin{aligned}
+\mathcal L_\lambda(\theta^+)-\mathcal L_\lambda(\theta)
+={}&\rho D\mathcal L_\lambda(\theta)[h(\theta)]\\
+&+\rho\int_0^1\big\langle
+\nabla\mathcal L_\lambda(\theta+t\rho(h+z))-
+\nabla\mathcal L_\lambda(\theta),h+z\big\rangle\,\mathrm dt\\
+&+\rho\langle\nabla\mathcal L_\lambda(\theta),z\rangle .
+\end{aligned}
+$$ {#eq-amp-integral-expansion}
+
+Here $h$ and $z$ in the integrand mean $h(\theta)$ and $z$, respectively.  The ambient extension is used only to compare finite steps; all conclusions about the actual Oja flow are restricted to $\Theta$.  Uniform continuity of the gradient on a compact neighbourhood makes the integral remainder small when $\rho$ and $\|z\|$ are small.  Hence a strict decrease margin survives sufficiently small perturbations, as in AMP Lemma 2.1.  No global Hessian bound is needed.
+
+For the *actual* retraction recursion, @eq-euclidean-recursion adds $e_{n+1}=(0,0,r_{n+1})$.  Thus its step-direction perturbation is $\xi_{n+1}+e_{n+1}/\gamma_{n+1}$.  In the Markov setting individual $\xi_{n+1}$ need not be small.  AMP's Section 2 instead uses an auxiliary sequence and **small accumulated weighted perturbations**; compare their Lemma 2.4 and Theorem 2.2.  On compact-stopped trajectories, @lem-noise-accumulation and @lem-retraction-summability supply the corresponding vanishing tails:
+$$
+\lim_{n\to\infty}\sup_{m\geq n}
+\left\|\sum_{k=n}^{m}\big[\gamma_k\xi_k+e_k\big]\right\|=0
+\quad\text{almost surely on eventual compactness}.
+$$ {#eq-joint-perturbation-tail}
+
+The point is an implication between two *different* kinds of argument: Section 2 of AMP is deterministic once a bound on cumulative perturbations is given; Sections 3--5 establish the probabilistic estimates and stability of a reinitialised algorithm.
+
+## What remains for global stochastic stability
+
+The above verification does **not** establish @eq-joint-perturbation-tail without localisation, nor eventual compactness of the unmodified recursion.  More precisely:
+
+- **Deterministic ingredient (established here):** compact sublevels, uniform negative directional derivative away from $\mathcal E$, and finitely many critical Lyapunov values.
+- **Local stochastic ingredient (Section @sec-tracking):** Poisson-noise and retraction tails on compact-stopped paths.
+- **Global stochastic ingredient (outstanding):** specify a manifold-compatible expanding-compact truncation/reinitialisation rule and prove that reinitialisations are almost surely finite for the kernel depending on both $\Gamma$ and $W$; alternatively prove direct stability for the untruncated recursion.
+
+AMP's Theorems 5.4--5.5 provide the model for the last implication, but their *Euclidean* random-truncation argument must be checked for the Stiefel update and its reset map.  The localized theorem in @sec-main-result requires no such unconditional claim.
