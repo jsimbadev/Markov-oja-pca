@@ -1,6 +1,6 @@
 # Convergence theorem and its scope {#sec-main-result}
 
-We now combine the stochastic averaging, retraction and Lyapunov arguments.  It is important to distinguish the localized theorem below from a global theorem for untruncated adaptation.
+We now combine the stochastic averaging, retraction and Lyapunov arguments.  Section @sec-deterministic-stability verifies the deterministic hypotheses behind AMP's stability mechanism, whereas Section @sec-tracking proves only localized stochastic perturbation estimates.  It is important to distinguish the localized theorem below from a global theorem for untruncated adaptation.
 
 For a compact set $K\subset\mathbb R^d\times\mathbb S_{++}^d$, define the event
 
